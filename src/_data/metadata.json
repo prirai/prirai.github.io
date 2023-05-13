@@ -1,0 +1,22 @@
+{
+    "title": "The Tux minded Bookshelf",
+    "url": "https://prirai.github.io/",
+    "email": "idealpriyanshu@gmail.com",
+    "language": "en",
+    "description": "The Tux minded Bookshelf",
+    "feed": {
+        "subtitle": "The Tux minded Bookshelf",
+        "filename": "feed.xml",
+        "path": "/feed/feed.xml",
+        "id": "https://prirai.github.io/"
+    },
+    "jsonfeed": {
+        "path": "/feed/feed.json",
+        "url": "https://prirai.github.io/feed/feed.json"
+    },
+    "author": {
+        "name": "Priyanshu Rai",
+        "email": "idealpriyanshu@gmail.com",
+        "url": "https://prirai.github.io/about-me/"
+    }
+}

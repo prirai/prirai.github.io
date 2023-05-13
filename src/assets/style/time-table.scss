@@ -1,0 +1,56 @@
+*::after, *::before {
+    display: block;
+}
+
+.c322 {
+    background-color: #ff5555;
+    color: white;
+    &::before {
+        content: "Electromagnetic Theory";
+    }
+    &::after {
+        content: "Pydi Ganga";
+    }
+}
+
+.c308 {
+    background-color: green;
+    color: white;
+    &::before{
+        content: "Data Science and Machine Learning";
+    }
+    &::after{
+        content: "Tanmay Basu";
+    }
+}
+.c310 {
+    background-color: blue;
+    color: white;
+    &::before{
+        content: "Algorithms";
+    }
+    &::after{
+        content: "Pawan Kumar";
+    }
+}
+.c326 {
+    background-color: yellow;
+    color: black;
+    &::before{
+        content: "Digital Circuits and Systems";
+    }
+    &::after{
+        content: "Santanu Talukder";
+    }
+}
+.non {
+    background-color: transparent;
+    color: black;
+}
+td {
+    border-color: transparent;
+    text-align: center;
+}
+tbody {
+    border-color: transparent;
+}

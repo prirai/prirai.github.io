@@ -1,0 +1,20 @@
+---
+layout: layouts/home.njk
+title: 📖 rsrc
+tags: main
+---
+
+<h1>Resources</h1>
+<hr>
+    <div class="p-space-10"></div>
+    {% for post in collections.rsrc %}
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+        <br>
+        {% endfor %}
+        <div class="p-space-10"></div>
+        <h2>Coding</h2>
+        <hr>
+            {% for post in collections.coding %}
+                <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time> - 
+                <a href="{{ post.url }}">{{ post.data.title }}</a> <br>
+            {% endfor %}

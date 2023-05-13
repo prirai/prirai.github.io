@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-post
+---
+
+<h1>{{ title }}</h1>
+<time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+{%- for tag in tags | filterTagList %}
+    {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+    <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+{%- endfor %}
+
+{% if cover %}
+<div class="cover-img"><img src="{{cover}}"></div>
+{% endif %}
+
+<div class="p-space-10"></div>
+{% if content | toc %}
+    <aside>
+        <h2>Table of Contents</h2>
+        {{ content | toc | safe }}
+    </aside>
+{% endif %}
+<hr>
+    {{ content | safe }}
+    {%- if collections.blog %}
+        {%- set nextPost = collections.blog | getNextCollectionItem(page) %}
+        {%- set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+        {%- if nextPost or previousPost %}
+            <hr>
+                <div class="navigate-post">
+                    {%- if previousPost %}
+                        <a href="{{ previousPost.url | url }}"><div><i class="la la-angle-left"></i> {{ previousPost.data.title }}</div></a>
+                    {% endif %}
+                    {%- if nextPost %}
+                        <a href="{{ nextPost.url | url }}"><div>{{ nextPost.data.title }} <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        {% endif %}
+                    {%- endif %}
+                </div>
+            {%- endif %}

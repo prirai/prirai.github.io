@@ -1,0 +1,67 @@
+---
+layout: layouts/home.njk
+title: 🌐 Contact
+tags:
+---
+
+<h1>Find me here</h1>
+<hr>
+    <div class="p-space-10"></div>
+    <script src="/assets/js/jquery.js"></script>
+    <h2 class="pgp-trigger">PGP Fingerprint ⬇️</h2>
+    <pre class="pgp-details"> 
+B9C6 4C55 F8B5 6225 A14A  00F3 B61B CA5D 7D24 AD99
+uid           [ultimate] Priyanshu Rai <idealpriyanshu@gmail.com>
+</pre>
+    <div>
+        <a href="gpg-pubkey.txt">Get public key here</a>
+    </div>
+    <h2>IRC</h2>
+    <div>
+        <a>prs on irc.libera.chat</a>
+        <br>
+            <a>prs on irc.ircnow.org</a>
+        </div>
+        <h2>XMPP</h2>
+        <div>
+            <a>prs@lightwitch.org</a>
+        </div>
+        <h2>Mastodon</h2>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">@prs@fosstodon.org</a>
+            <br>
+                <a>@prirai@mastodon.social</a>
+            </div>
+            <h2>MATRIX</h2>
+            <div>
+                <a>@prs:kde.org</a>
+            </div>
+            <h2>Git</h2>
+            <div>
+                <a href="https://gitlab.com/prirai">Gitlab</a>
+                <br>
+                    <a href="https://github.com/prirai">GitHub</a>
+                </div>
+                <h2>Other social media</h2>
+                <div>
+                    <a href="https://t.me/prirai">Telegram</a>
+                    <br>
+                        <a href="https://old.reddit.com/user/PriRai/">Reddit</a>
+                        <br>
+                            <a href="https://www.linkedin.com/in/prirai/">LinkedIN</a>
+                            <br>
+                                <a href="https://lemmy.ml/u/prirai">Lemmy</a>
+                                <script>
+                                    $(".pgp-trigger").click(function () {
+                                        $header = $(this);
+                                        $content = $header.next();
+                                        $content.slideToggle(500, function () {
+                                            $header.text(function () {
+                                                return $content.is(":visible")
+                                                    ? "PGP Fingerprint ⬇️"
+                                                    : "PGP Fingerprint ⬇️";
+                                            });
+                                        });
+                                    });
+                                </script>
+                            </div>
