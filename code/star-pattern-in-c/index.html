@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>C program to generate star pattern</title>
+        <meta name="description" content="In this tutorial we will create a program in C which generate a star pattern.">
+        <link rel="canonical" href="/code/star-pattern-in-c/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="C program to generate star pattern"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C which generate a star pattern."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+        <main >
+            <h1>C program to generate star pattern</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#algorithm">Algorithm</a></li><li><a href="#problem-description">Problem description</a></li><li><a href="#examples">Examples</a></li><li><a href="#problem-solution">Problem Solution</a></li><li><a href="#naive-approach">Naive Approach</a><ul><li><a href="#approach">Approach</a></li><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#methods-used">Methods used</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#optimized-approach">Optimized Approach</a></li><li><a href="#recursion-method">Recursion method</a></li><li><a href="#problem-description-1">Problem description</a></li><li><a href="#problem-solution-1">Problem Solution</a></li><li><a href="#naive-approach-1">Naive Approach</a><ul><li><a href="#program-source-code-1">Program/Source code</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#time-complexity-1">Time complexity</a></li><li><a href="#space-complexity-1">Space Complexity</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#while-loop-approach">While loop approach</a><ul><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#time-complexity-2">Time complexity</a></li><li><a href="#space-complexity-2">Space Complexity</a></li><li><a href="#output-2">Output</a></li></ul></li><li><a href="#function-approach">Function approach</a><ul><li><a href="#program-source-code-3">Program/Source code</a></li><li><a href="#methods-used-1">Methods used</a></li><li><a href="#explanation-3">Explanation</a></li><li><a href="#time-complexity-3">Time complexity</a></li><li><a href="#space-complexity-3">Space Complexity</a></li><li><a href="#output-3">Output</a></li></ul></li><li><a href="#rhombus-star-pattern">Rhombus Star Pattern</a><ul><li><a href="#program-source-code-4">Program/Source code</a></li><li><a href="#explanation-4">Explanation</a></li><li><a href="#time-complexity-4">Time complexity</a></li><li><a href="#space-complexity-4">Space Complexity</a></li><li><a href="#output-4">Output</a></li></ul></li><li><a href="#hollow-star-pyramid-pattern">Hollow Star pyramid pattern</a><ul><li><a href="#program-source-code-5">Program/Source code</a></li><li><a href="#explanation-5">Explanation</a></li><li><a href="#time-complexity-5">Time complexity</a></li><li><a href="#space-complexity-5">Space Complexity</a></li><li><a href="#output-5">Output</a></li></ul></li><li><a href="#plus-star-pattern">Plus star pattern</a><ul><li><a href="#program-source-code-6">Program/Source code</a></li><li><a href="#explanation-6">Explanation</a></li><li><a href="#time-complexity-6">Time complexity</a></li><li><a href="#space-complexity-6">Space Complexity</a></li><li><a href="#output-6">Output</a></li></ul></li></ul>
+      </div>
+            </aside>
+            <p>/* The article has the following sections # Title
+some definition</p>
+<h2 id="algorithm" tabindex="-1">Algorithm <a class="direct-link" href="#algorithm" aria-hidden="true">#</a></h2>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<h2 id="examples" tabindex="-1">Examples <a class="direct-link" href="#examples" aria-hidden="true">#</a></h2>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<h2 id="naive-approach" tabindex="-1">Naive Approach <a class="direct-link" href="#naive-approach" aria-hidden="true">#</a></h2>
+<h3 id="approach" tabindex="-1">Approach <a class="direct-link" href="#approach" aria-hidden="true">#</a></h3>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<h2 id="optimized-approach" tabindex="-1">Optimized Approach <a class="direct-link" href="#optimized-approach" aria-hidden="true">#</a></h2>
+<h2 id="recursion-method" tabindex="-1">Recursion method <a class="direct-link" href="#recursion-method" aria-hidden="true">#</a></h2>
+<p>*/</p>
+<p>In this tutorial we will create a program in C which will generate a star pattern.</p>
+<h1 id="star-pattern" tabindex="-1">Star pattern <a class="direct-link" href="#star-pattern" aria-hidden="true">#</a></h1>
+<p>A star pattern is a pattern that shows up as a staircase of stars. It is a very common pattern in programming.</p>
+<h1 id="example" tabindex="-1">Example <a class="direct-link" href="#example" aria-hidden="true">#</a></h1>
+<pre><code>input:
+  - 5
+
+output:
+*
+**
+***
+****
+*****
+</code></pre>
+<h2 id="problem-description-1" tabindex="-1">Problem description <a class="direct-link" href="#problem-description-1" aria-hidden="true">#</a></h2>
+<p>Given a number, print a star pattern.</p>
+<h2 id="problem-solution-1" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution-1" aria-hidden="true">#</a></h2>
+<ol>
+<li>Ask the user to enter a number.</li>
+<li>Print the stars using a nested for loop.</li>
+</ol>
+<h2 id="naive-approach-1" tabindex="-1">Naive Approach <a class="direct-link" href="#naive-approach-1" aria-hidden="true">#</a></h2>
+<p>In this approach, we will use a nested for loop to print the stars.</p>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> n<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>In this program, we are using two for loops. The outer for loop is used to print the rows and the inner for loop is used to print the stars in each row. The outer for loop is executed n times where n is the number of rows. The inner for loop is executed i times where i is the number of stars in each row.</p>
+<h3 id="time-complexity-1" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-1" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n^2). The outer for loop is executed n times and the inner for loop is executed i times where i is the number of stars in each row. So the time complexity is O(n^2).</p>
+<h3 id="space-complexity-1" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-1" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1). No extra space is used.</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre><code>./star-pattern
+
+Enter the number of rows: 5
+*
+**
+***
+****
+*****
+</code></pre>
+<h2 id="while-loop-approach" tabindex="-1">While loop approach <a class="direct-link" href="#while-loop-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we will use while loop to print the stars.</p>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">,</span> n<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><br>        <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;=</span> i<span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>            j<span class="token operator">++</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        i<span class="token operator">++</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>In this program, we are using two while loops. The outer while loop is used to print the rows and the inner while loop is used to print the stars in each row. The outer while loop is executed n times where n is the number of rows. The inner while loop is executed i times where i is the number of stars in each row.</p>
+<h3 id="time-complexity-2" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-2" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n^2). The outer while loop is executed n times and the inner while loop is executed i times where i is the number of stars in each row. So the time complexity is O(n^2).</p>
+<h3 id="space-complexity-2" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-2" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1). No extra space is used.</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre><code>./star-pattern
+
+Enter the number of rows: 3
+*
+**
+***
+</code></pre>
+<h2 id="function-approach" tabindex="-1">Function approach <a class="direct-link" href="#function-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we will make use of functions to print the stars.</p>
+<h3 id="program-source-code-3" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-3" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">void</span> <span class="token function">printN</span><span class="token punctuation">(</span><span class="token keyword">char</span> ch<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">,</span> n<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="methods-used-1" tabindex="-1">Methods used <a class="direct-link" href="#methods-used-1" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>printN(char ch, int n)</code>: This function prints the character ch n times.</li>
+</ul>
+<h3 id="explanation-3" tabindex="-1">Explanation <a class="direct-link" href="#explanation-3" aria-hidden="true">#</a></h3>
+<p>In this program, we are using a function to print the stars. The function <code>printN(char ch, int n)</code> prints the character ch n times. The outer for loop is executed n times where n is the number of rows. The inner for loop is executed i times where i is the number of stars in each row.</p>
+<h3 id="time-complexity-3" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-3" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n^2). The outer for loop is executed n times and the inner for loop is executed i times where i is the number of stars in each row. So the time complexity is O(n^2).</p>
+<h3 id="space-complexity-3" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-3" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1). No extra space is used.</p>
+<h3 id="output-3" tabindex="-1">Output <a class="direct-link" href="#output-3" aria-hidden="true">#</a></h3>
+<pre><code>./star-pattern
+
+Enter the number of rows: 7
+*
+**
+***
+****
+*****
+******
+*******
+</code></pre>
+<h2 id="rhombus-star-pattern" tabindex="-1">Rhombus Star Pattern <a class="direct-link" href="#rhombus-star-pattern" aria-hidden="true">#</a></h2>
+<p>In this approach, we will print a rhombus star pattern.</p>
+<p>eg.</p>
+<pre><code>input:
+  - 5
+
+output:
+    *
+   ***
+  *****
+   ***
+    *
+</code></pre>
+<h3 id="program-source-code-4" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-4" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">void</span> <span class="token function">printN</span><span class="token punctuation">(</span><span class="token keyword">char</span> ch<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">,</span> n<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">,</span> n <span class="token operator">-</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> <span class="token punctuation">(</span>n <span class="token operator">-</span> i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br></code></pre>
+<h3 id="explanation-4" tabindex="-1">Explanation <a class="direct-link" href="#explanation-4" aria-hidden="true">#</a></h3>
+<p>In this program, we are using a function to print the spaces and stars. The function <code>printN(char ch, int n)</code> prints the character ch n times.</p>
+<p>In the main function inside the first for loop, i goes from 1 to (n + 1)/2. Here, we are printing the upper half of the rhombus. For every iteration, there are n - i spaces and 2 * i - 1 stars. For n = 5, this will be 5 - i = 4, 3, and 2 spaces and 2 * i - 1 = 1, 3, and 5 stars.</p>
+<p>In the second for loop, i goes from (n + 1)/2 to n. Here, we are printing the lower half of the rhombus. For every iteration, there are i - 1 spaces and 2 * (n - i) + 1 stars. For n = 5, this will be i - 1 = 2, 3 and 4 spaces and 2 * (n - i) + 1 = 3 and 1 stars.</p>
+<h3 id="time-complexity-4" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-4" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n^2). For every iteration, the function <code>printN(char ch, int n)</code> is executed n times. So the time complexity is O(n^2).</p>
+<h3 id="space-complexity-4" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-4" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1). No extra space is used.</p>
+<h3 id="output-4" tabindex="-1">Output <a class="direct-link" href="#output-4" aria-hidden="true">#</a></h3>
+<pre><code>./rhombus      
+Enter the number of rows: 5
+    *
+   ***
+  *****
+   ***
+    *
+</code></pre>
+<pre><code>./rhombus      
+Enter the number of rows: 10
+         *
+        ***
+       *****
+      *******
+     *********
+    ***********
+     *********
+      *******
+       *****
+        ***
+         *
+</code></pre>
+<h2 id="hollow-star-pyramid-pattern" tabindex="-1">Hollow Star pyramid pattern <a class="direct-link" href="#hollow-star-pyramid-pattern" aria-hidden="true">#</a></h2>
+<p>In this approach, we will print a hollow star pyramid pattern.</p>
+<p>eg.</p>
+<pre><code>input:
+  - 5
+
+output:
+    *
+   * *
+  *   *
+ *     *
+</code></pre>
+<h3 id="program-source-code-5" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-5" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">void</span> <span class="token function">printN</span><span class="token punctuation">(</span><span class="token keyword">char</span> ch<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">,</span> n<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">,</span> n <span class="token operator">-</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> i <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>            <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-5" tabindex="-1">Explanation <a class="direct-link" href="#explanation-5" aria-hidden="true">#</a></h3>
+<p>In this program, we are using a function to print the spaces and stars. The function <code>printN(char ch, int n)</code> prints the character ch n times.</p>
+<p>In the main function, the outer for loop is executed n times where n is the number of rows. The inner if statement checks if i is greater than 1. If it is, then it prints the spaces and stars. For n = 5, this will be 2 * i - 3 = -1, 1, 3, and 5 spaces and 1 star every time.</p>
+<h3 id="time-complexity-5" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-5" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n^2). For every iteration, the function <code>printN(char ch, int n)</code> is executed n times. So the time complexity is O(n^2).</p>
+<h3 id="space-complexity-5" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-5" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1). No extra space is used.</p>
+<h3 id="output-5" tabindex="-1">Output <a class="direct-link" href="#output-5" aria-hidden="true">#</a></h3>
+<pre><code>./hollow-pyramid 
+Enter the number of rows: 5
+    *
+   * *
+  *   *
+ *     *
+*       *
+
+./hollow-pyramid
+Enter the number of rows: 10
+         *
+        * *
+       *   *
+      *     *
+     *       *
+    *         *
+   *           *
+  *             *
+ *               *
+</code></pre>
+<h2 id="plus-star-pattern" tabindex="-1">Plus star pattern <a class="direct-link" href="#plus-star-pattern" aria-hidden="true">#</a></h2>
+<p>In this approach, we will print a plus star pattern.</p>
+<p>eg.</p>
+<pre><code>input:
+  - 5
+
+output:
+     *
+     *
+     *
+     *
+     *
+***********
+     *
+     *
+     *
+     *
+     *
+</code></pre>
+<h3 id="program-source-code-6" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-6" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">void</span> <span class="token function">printN</span><span class="token punctuation">(</span><span class="token keyword">char</span> ch<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">,</span> n<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printN</span><span class="token punctuation">(</span><span class="token char">'*'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-6" tabindex="-1">Explanation <a class="direct-link" href="#explanation-6" aria-hidden="true">#</a></h3>
+<p>In this program, we are using a function to print the spaces and stars. The function <code>printN(char ch, int n)</code> prints the character ch n times.</p>
+<p>The first for loop goes from 1 to n. Here, we are printing the first half of the plus. For every iteration, there are n spaces and 1 star. For n = 5, this will be 5 spaces and 1 star.</p>
+<p>In the next line we print 2 * n + 1 stars. For n = 5, this will be 2 * 5 + 1 = 11 stars.</p>
+<p>The second for loop goes from 1 to n. Here, we are printing the second half of the plus. For every iteration, there are n spaces and 1 star. For n = 5, this will be 5 spaces and 1 star.</p>
+<h3 id="time-complexity-6" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-6" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n^2). For every iteration, the function <code>printN(char ch, int n)</code> is executed n times. So the time complexity is O(n^2).</p>
+<h3 id="space-complexity-6" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-6" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1). No extra space is used.</p>
+<h3 id="output-6" tabindex="-1">Output <a class="direct-link" href="#output-6" aria-hidden="true">#</a></h3>
+<pre><code>./plus-star
+Enter the number of rows: 5
+     *
+     *
+     *
+     *
+     *
+***********
+     *
+     *
+     *
+     *
+     *
+
+./plus-star      
+Enter the number of rows: 10
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+*********************
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+</code></pre>
+
+        </main>
+    </body>
+</html>

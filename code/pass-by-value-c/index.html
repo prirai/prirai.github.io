@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demonstration of pass by value in C</title>
+        <meta name="description" content="In this tutorial we will know how pass by value works in C.">
+        <link rel="canonical" href="/code/pass-by-value-c/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Demonstration of pass by value in C"/>
+        <meta property="og:description" content="In this tutorial we will know how pass by value works in C."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+        <main >
+            <h1>Demonstration of pass by value in C</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#problem-solution">Problem Solution</a></li><li><a href="#program-source-code">Program Source Code</a></li><li><a href="#program-explanation">Program explanation</a></li><li><a href="#output">Output</a></li></ul>
+      </div>
+            </aside>
+            <p>This is a C program to illustrate pass by value in C.</p>
+<h1 id="pass-by-value" tabindex="-1">Pass by value <a class="direct-link" href="#pass-by-value" aria-hidden="true">#</a></h1>
+<p>Pass by value is a way to pass a variable to a function. The variable is passed by value, not by reference. This means that the function does not have access to the variable's memory address. The function can only access the variable's value.</p>
+<p>It is the opposite of pass by reference where the function has access to the variable's memory address and can modify the variable's value.</p>
+<p>In the case of pass by value, the space allocated for the variable is copied to the function's memory space. This means that the function can modify the variable's value without affecting the variable's memory address.</p>
+<p>However in the case of pass by reference, the function can modify the variable's memory address and the variable's value.</p>
+<p>So what should we prefer when we want to pass a variable to a function?
+We should use pass by value.</p>
+<p>Individual variables are always passed by value. However, arrays, structs, and unions are passed by reference.</p>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<ol>
+<li>Create a function that takes a variable as an argument.</li>
+<li>The function should print the variable's value.</li>
+<li>Call the function.</li>
+<li>Modify the variable's value.</li>
+<li>Print in the main function the variable's value.</li>
+</ol>
+<h2 id="program-source-code" tabindex="-1">Program Source Code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h2>
+<p>Here is the source code of the program in C. The program is successfully compiled and executed on Linux system with GCC 12.1.0.</p>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br><span class="token keyword">void</span> <span class="token function">swap</span> <span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">;</span><br>  a <span class="token operator">=</span> b<span class="token punctuation">;</span><br>  b <span class="token operator">=</span> temp<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">int</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><br>  <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span><br>  <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"Before swap, a = %d, b = %d\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token function">swap</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"After swap, a = %d, b = %d\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="program-explanation" tabindex="-1">Program explanation <a class="direct-link" href="#program-explanation" aria-hidden="true">#</a></h2>
+<ol>
+<li>The function <code>swap</code> takes two variables as arguments.</li>
+<li>The function prints the values of the variables before the swap.</li>
+<li>The function swaps the values of the variables.</li>
+<li>The main function prints the values of the variables.</li>
+</ol>
+<h2 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h2>
+<pre><code>Before swap, a = 10, b = 20
+After swap, a = 20, b = 10
+</code></pre>
+
+        </main>
+    </body>
+</html>

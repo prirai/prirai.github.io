@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Learn Lisp with me</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blogs/lisp/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Learn Lisp with me"/>
+        <meta property="og:url" content="/blogs/lisp/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blogs/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/home/">
+                <i class="lab la-searchengin"></i>
+                Search</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Learn Lisp with me</h1>
+<time datetime="2022-03-10">10 Mar 2022</time>
+    <a href="/tags/programming/" class="post-tag">programming</a>
+    <a href="/tags/lisp/" class="post-tag">lisp</a>
+
+
+<div class="cover-img"><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Lisp_logo.svg"></div>
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#basic-syntax">Basic syntax</a></li><li><a href="#the-cons-function">The cons function</a></li><li><a href="#the-car-function">The car function</a></li><li><a href="#the-cdr-function">The cdr function</a></li><li><a href="#the-list-function">The list function</a></li><li><a href="#nested-lists">Nested lists</a></li><li><a href="#decision-making">Decision making</a></li><li><a href="#what-if">What if?</a></li><li><a href="#false-values">False values</a></li><li><a href="#when-and-unless">when and unless</a></li><li><a href="#cond-the-one-true-lisp-conditional">cond, the one true LISP conditional</a></li><li><a href="#the-case-of-case">The case of case</a></li><li><a href="#stealth-mode-on-with-and-and-or">Stealth mode on 👾 with and and or</a></li><li><a href="#we-retrieve-we-check-find-if">We retrieve, we check - find-if</a></li><li><a href="#eq-and-equal-dilemma">eq and equal dilemma</a></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <p><strong>Lisp</strong> (historically <strong>LISP</strong>) is a family of programming languages with a long history and a distinctive, fully parenthesized prefix notation. Originally specified in 1958, Lisp is the second-oldest high-level programming language still in common use. Only Fortran is older, by one year. Lisp has changed since its early days, and many dialects have existed over its history. Today, the best-known general-purpose Lisp dialects are Racket, Common Lisp, Scheme, and Clojure.</p>
+<p>Lisp was originally created as a practical mathematical notation for computer programs, influenced by (though not originally derived from) the notation of Alonzo Church's lambda calculus. It quickly became the favored programming language for artificial intelligence (AI) research. As one of the earliest programming languages, Lisp pioneered many ideas in computer science, including tree data structures, automatic storage management, dynamic typing, conditionals, higher-order functions, recursion, the self-hosting compiler, and the read–eval–print loop.</p>
+<p>The name LISP derives from &quot;LISt Processor&quot;. Linked lists are one of Lisp's major data structures, and Lisp source code is made of lists. Thus, Lisp programs can manipulate source code as a data structure, giving rise to the macro systems that allow programmers to create new syntax or new domain-specific languages embedded in Lisp.</p>
+<p>The interchangeability of code and data gives Lisp its instantly recognizable syntax. All program code is written as s-expressions, or parenthesized lists. A function call or syntactic form is written as a list with the function or operator's name first, and the arguments following; for instance, a function <code>f</code> that takes three arguments would be called as <code>(f arg1 arg2 arg3)</code>.</p>
+<h2 id="basic-syntax" tabindex="-1">Basic syntax <a class="direct-link" href="#basic-syntax" aria-hidden="true">#</a></h2>
+<ul>
+<li>Define a changeable global variable.</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">defparameter</span> *small* <span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>Defines a unchangeable global variable.</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defvar"><span class="token keyword">defvar</span> <span class="token variable">*foo*</span></span> <span class="token number">20</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>Change the value of a preassigned variable.</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">setf</span> *big* <span class="token number">20</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>The function below returns 1.</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">funname</span> <span class="token punctuation">(</span><span class="token arguments"></span><span class="token punctuation">)</span></span> <span class="token punctuation">(</span>..<span class="token punctuation">)</span>..<span class="token punctuation">(</span>.. <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>Assigns values and returns 11 (ie, a + b)</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">a</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">b</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">+</span> a b<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li><code>flet</code> lets you define local functions. The code below returns 12</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">flet</span> <span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token car">f</span><span class="token punctuation">(</span><span class="token car">n</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">+</span> n <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">g</span><span class="token punctuation">(</span><span class="token car">n</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">-</span> n <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">g</span> <span class="token punctuation">(</span><span class="token car">f</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span></code></pre>
+<ul>
+<li><code>labels</code> lets you call one function inside another. //Recursion</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">labels</span> <span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token car">a</span><span class="token punctuation">(</span><span class="token car">n</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">+</span> n <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">b</span><span class="token punctuation">(</span><span class="token car">n</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">+</span> <span class="token punctuation">(</span><span class="token car">a</span> n<span class="token punctuation">)</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token car">b</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>LISP is case insensitive</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">eq</span> <span class="token quoted-symbol variable symbol">'fooo</span> <span class="token quoted-symbol variable symbol">'FoOo</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>Strings in LISP</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">princ</span> <span class="token string">"He yelled \"Stop that thief!\" from the busy street."</span><span class="token punctuation">)</span></code></pre>
+<h2 id="the-cons-function" tabindex="-1">The <code>cons</code> function <a class="direct-link" href="#the-cons-function" aria-hidden="true">#</a></h2>
+<ul>
+<li><code>cons</code> links two pieces of data together</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'chicken</span> <span class="token quoted-symbol variable symbol">'cat</span><span class="token punctuation">)</span></code></pre>
+<p>(CHICKEN.CAT)</p>
+<p><em>In <code>cons</code>, the first value is a separate symbol while the second value can optionally be a list.</em></p>
+<ul>
+<li><code>'nil</code> marks the end of a list.</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'chicken</span> <span class="token quoted-symbol variable symbol">'nil</span><span class="token punctuation">)</span></code></pre>
+<p>(CHICKEN)</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'chicken</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>-&gt; <em>gives the same output</em></p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'pork</span> <span class="token punctuation">'(</span><span class="token car">beef</span> chicken<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>(PORK BEEF CHICKEN)</p>
+<p><em>which is the same as doing</em></p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'pork</span> <span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'beef</span> <span class="token punctuation">(</span><span class="token keyword">cons</span> <span class="token quoted-symbol variable symbol">'chicken</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h2 id="the-car-function" tabindex="-1">The <code>car</code> function <a class="direct-link" href="#the-car-function" aria-hidden="true">#</a></h2>
+<p><em><code>car</code> is used to extract the first value from a list.</em></p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">car</span> <span class="token punctuation">'(</span><span class="token car">pork</span> beef chicken<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>PORK</p>
+<h2 id="the-cdr-function" tabindex="-1">The <code>cdr</code> function <a class="direct-link" href="#the-cdr-function" aria-hidden="true">#</a></h2>
+<p><em><code>cdr</code> takes out the remaining values of a list.</em></p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">cdr</span> <span class="token punctuation">'(</span><span class="token car">pork</span> beef chicken<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>(BEEF CHICKEN)</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">car</span> <span class="token punctuation">(</span><span class="token car">cdr</span> <span class="token punctuation">'(</span><span class="token car">pork</span> beef chicken<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>BEEF</p>
+<p><em>which is the same as,</em></p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">cadr</span> <span class="token punctuation">'(</span><span class="token car">pork</span> beef chicken<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>BEEF</p>
+<h2 id="the-list-function" tabindex="-1">The <code>list</code> function <a class="direct-link" href="#the-list-function" aria-hidden="true">#</a></h2>
+<p>For convenience, Common Lisp has many functions built on top of the basic
+three — <code>cons</code>, <code>car</code>, and <code>cdr</code>.</p>
+<p>A useful one is <code>list</code>.</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">list</span> <span class="token quoted-symbol variable symbol">'pork</span> <span class="token quoted-symbol variable symbol">'beef</span> <span class="token quoted-symbol variable symbol">'chicken</span><span class="token punctuation">)</span></code></pre>
+<p>(PORK BEEF CHICKEN)</p>
+<p>Thus the below three lines mean essentially the same.</p>
+<ul>
+<li><code>(cons 'pork (cons 'beef (cons 'chicken ())))</code></li>
+<li><code>(list 'pork 'beef 'chicken)</code></li>
+<li><code>'(pork beef chicken)</code></li>
+</ul>
+<h2 id="nested-lists" tabindex="-1">Nested lists <a class="direct-link" href="#nested-lists" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">'(</span><span class="token car">cat</span> <span class="token punctuation">(</span><span class="token car">duck</span> bat<span class="token punctuation">)</span> ant<span class="token punctuation">)</span></code></pre>
+<p>Lists can contain other lists.</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">cdar</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">peas</span> carrots tomatoes<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">pork</span> beef chicken<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>(CARROTS TOMATOES)</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">cadadr</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">peas</span> carrots tomatoes<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">pork</span> beef chicken<span class="token punctuation">)</span> duck<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>BEEF</p>
+<p>You could go on writing to your heart's content but here's the catch: The <code>c*r</code> allows maximum depth of four so if you write <code>cadadar</code>, you'll have to define the function yourself.</p>
+<h2 id="decision-making" tabindex="-1">Decision making <a class="direct-link" href="#decision-making" aria-hidden="true">#</a></h2>
+<h2 id="what-if" tabindex="-1">What if? <a class="direct-link" href="#what-if" aria-hidden="true">#</a></h2>
+<p>Whenever an empty list is passed, its interpreted as being empty.</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">'(</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'i-am-true</span><br><span class="token quoted-symbol variable symbol">'i-am-false</span><span class="token punctuation">)</span></code></pre>
+<p>I-AM-FALSE</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">'(</span><span class="token number">1</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'i-am-true</span><br><span class="token quoted-symbol variable symbol">'i-am-false</span><span class="token punctuation">)</span> </code></pre>
+<p>I-AM-TRUE</p>
+<ul>
+<li>Finding th length of a list:</li>
+</ul>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">my-length</span> <span class="token punctuation">(</span><span class="token arguments"><span class="token argument variable">list</span></span><span class="token punctuation">)</span></span><br>	<span class="token punctuation">(</span><span class="token keyword">if</span> list<br>		<span class="token punctuation">(</span>1+ <span class="token punctuation">(</span><span class="token car">my-length</span> <span class="token punctuation">(</span><span class="token car">cdr</span> list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>		<span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">my-length</span> <span class="token punctuation">'(</span><span class="token car">list</span> with four symbols<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>4</p>
+<h2 id="false-values" tabindex="-1">False values <a class="direct-link" href="#false-values" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">eq</span> <span class="token punctuation">'(</span><span class="token punctuation">)</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>	==> T<br><span class="token punctuation">(</span><span class="token car">eq</span> <span class="token punctuation">'(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>	==> T<br><span class="token punctuation">(</span><span class="token car">eq</span> <span class="token punctuation">'(</span><span class="token punctuation">)</span> <span class="token quoted-symbol variable symbol">'nil</span><span class="token punctuation">)</span>	==> T</code></pre>
+<p>Checking whether the given number is odd:</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">5</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'odd-number</span><br><span class="token quoted-symbol variable symbol">'even-number</span><span class="token punctuation">)</span></code></pre>
+<p>ODD-NUMBER</p>
+<p>Conditional commands in LISP are special forms which do not need to execute all the statements included within them.</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">5</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'odd-number</span><br><span class="token punctuation">(</span><span class="token car">/</span> <span class="token number">1</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>ODD-NUMBER</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defvar"><span class="token keyword">defvar</span> <span class="token variable">*number-was-odd*</span></span> <span class="token boolean">nil</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">5</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">progn</span> <span class="token punctuation">(</span><span class="token car">setf</span> *number-was-odd* <span class="token boolean">t</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'odd-number</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'even-number</span><span class="token punctuation">)</span></code></pre>
+<p>ODD-NUMBER</p>
+<pre class="language-lisp"><code class="language-lisp">*number-was-odd*</code></pre>
+<p>T</p>
+<h2 id="when-and-unless" tabindex="-1"><code>when</code> and <code>unless</code> <a class="direct-link" href="#when-and-unless" aria-hidden="true">#</a></h2>
+<p>With <code>when</code>, all the enclosed expressions are evaluated when the condition
+is true. With <code>unless</code>, all the enclosed expressions are evaluated when the
+condition is false.</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defvar"><span class="token keyword">defvar</span> <span class="token variable">*number-is-odd*</span></span> <span class="token boolean">nil</span><span class="token punctuation">)</span><br>> <span class="token punctuation">(</span><span class="token keyword">when</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">5</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">setf</span> *number-is-odd* <span class="token boolean">t</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'odd-number</span><span class="token punctuation">)</span></code></pre>
+<p>ODD-NUMBER</p>
+<pre class="language-lisp"><code class="language-lisp">*number-is-odd*</code></pre>
+<p>T</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">unless</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">4</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">setf</span> *number-is-odd* <span class="token boolean">nil</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'even-number</span><span class="token punctuation">)</span></code></pre>
+<p>EVEN-NUMBER</p>
+<pre class="language-lisp"><code class="language-lisp">*number-is-odd*</code></pre>
+<p>NIL</p>
+<h2 id="cond-the-one-true-lisp-conditional" tabindex="-1"><code>cond</code>, <em>the one true LISP conditional</em> <a class="direct-link" href="#cond-the-one-true-lisp-conditional" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defvar"><span class="token keyword">defvar</span> <span class="token variable">*arch-enemy*</span></span> <span class="token boolean">nil</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">pudding-eater</span> <span class="token punctuation">(</span><span class="token arguments"><span class="token argument variable">person</span></span><span class="token punctuation">)</span></span><br>    <span class="token punctuation">(</span><span class="token keyword">cond</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">eq</span> person <span class="token quoted-symbol variable symbol">'henry</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">setf</span> *arch-enemy* <span class="token quoted-symbol variable symbol">'stupid-lisp-alien</span><span class="token punctuation">)</span><br>                              <span class="token punctuation">'(</span><span class="token car">curse</span> you lisp alien – you ate my pudding<span class="token punctuation">)</span><span class="token punctuation">)</span><br>          <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">eq</span> person <span class="token quoted-symbol variable symbol">'johnny</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">setf</span> *arch-enemy* <span class="token quoted-symbol variable symbol">'useless-old-johnny</span><span class="token punctuation">)</span><br>                               <span class="token punctuation">'(</span><span class="token car">i</span> hope you choked on my pudding johnny<span class="token punctuation">)</span><span class="token punctuation">)</span><br>          <span class="token punctuation">(</span><span class="token boolean">t</span>                   <span class="token punctuation">'(</span><span class="token car">why</span> you eat my pudding stranger ?<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">pudding-eater</span> <span class="token quoted-symbol variable symbol">'johnny</span><span class="token punctuation">)</span></code></pre>
+<p>(I HOPE YOU CHOKED ON MY PUDDING JOHNNY)</p>
+<h2 id="the-case-of-case" tabindex="-1">The case of <code>case</code> <a class="direct-link" href="#the-case-of-case" aria-hidden="true">#</a></h2>
+<p>In a similar way we can use <code>case</code></p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token defun"><span class="token keyword">defun</span> <span class="token function">pudding-eater</span> <span class="token punctuation">(</span><span class="token arguments"><span class="token argument variable">person</span></span><span class="token punctuation">)</span></span><br><span class="token punctuation">(</span><span class="token car">case</span> person<br><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">henry</span><span class="token punctuation">)</span><br> <span class="token punctuation">(</span><span class="token car">setf</span> *arch-enemy* <span class="token quoted-symbol variable symbol">'stupid-lisp-alien</span><span class="token punctuation">)</span><br><span class="token punctuation">'(</span><span class="token car">curse</span> you lisp alien – you ate my pudding<span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token car">johnny</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">setf</span> *arch-enemy* <span class="token quoted-symbol variable symbol">'useless-old-johnny</span><span class="token punctuation">)</span><br><span class="token punctuation">'(</span><span class="token car">i</span> hope you choked on my pudding johnny<span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">otherwise</span> <span class="token punctuation">'(</span><span class="token car">why</span> you eat my pudding stranger ?<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h2 id="stealth-mode-on-with-and-and-or" tabindex="-1">Stealth mode on 👾 with <code>and</code> and <code>or</code> <a class="direct-link" href="#stealth-mode-on-with-and-and-or" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>T</p>
+<pre class="language-lisp"><code class="language-lisp"> <span class="token punctuation">(</span><span class="token keyword">or</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">oddp</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>T</p>
+<p>If a statement is found out to be true, <code>or</code> doesn't bother about checking the other statements; similarly for <code>and</code> in the case of false statement. This helps when we want to run a specific command only when some expected condition is not met.</p>
+<h2 id="we-retrieve-we-check-find-if" tabindex="-1">We retrieve, we check - <code>find-if</code> <a class="direct-link" href="#we-retrieve-we-check-find-if" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">find-if</span> <span class="token quoted-symbol variable symbol">#'oddp</span> <span class="token punctuation">'(</span><span class="token number">2</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>5</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token car">find-if</span> <span class="token quoted-symbol variable symbol">#'oddp</span> <span class="token punctuation">'(</span><span class="token number">2</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token quoted-symbol variable symbol">'there-is-an-odd-number</span><br><span class="token quoted-symbol variable symbol">'there-is-no-odd-number</span><span class="token punctuation">)</span></code></pre>
+<p>'there-is-an-odd-number</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">find-if</span> <span class="token quoted-symbol variable symbol">#'null</span> <span class="token punctuation">'(</span><span class="token number">2</span> <span class="token number">4</span> <span class="token boolean">nil</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>NIL</p>
+<h2 id="eq-and-equal-dilemma" tabindex="-1"><code>eq</code> and <code>equal</code> dilemma <a class="direct-link" href="#eq-and-equal-dilemma" aria-hidden="true">#</a></h2>
+<ul>
+<li>Use <code>eq</code> to compare symbols</li>
+<li>Use <code>equal</code> for everything else</li>
+</ul>
+<p>The <code>eql</code> command is similar to the <code>eq</code> command, but unlike <code>eq</code> , it also handles comparisons of numbers and characters.</p>
+<p>The <code>equalp</code> command is essentially the same as the <code>equal</code> command, except that it can handle some difficult comparison cases with a bit of extra sophisti-cation.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>eq</th>
+<th>eql</th>
+<th>equal</th>
+<th>equalp</th>
+<th>=</th>
+<th>string-equal</th>
+<th>char-equal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>symbols</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>lists</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>list-diff</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>floating-point</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes*</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>string</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes*</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>character</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p><em>* <code>equalp</code> can compare case sensitives and floating points and integers.</em></p>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blogs/sorting-algos/"><div><i class="la la-angle-left"></i> Sorting algorithms in C</div></a>
+                    
+                        <a href="/blogs/lisp2/"><div>Learn Lisp with me - 2 <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        
+                </div>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+    </div>
+    <div class="text-content">
+        Have fun and explore</div>
+</div>
+        </footer>
+    </body>
+</html>

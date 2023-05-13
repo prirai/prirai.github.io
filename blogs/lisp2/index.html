@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Learn Lisp with me - 2</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blogs/lisp2/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Learn Lisp with me - 2"/>
+        <meta property="og:url" content="/blogs/lisp2/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blogs/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/home/">
+                <i class="lab la-searchengin"></i>
+                Search</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Learn Lisp with me - 2</h1>
+<time datetime="2022-03-12">12 Mar 2022</time>
+    <a href="/tags/programming/" class="post-tag">programming</a>
+    <a href="/tags/lisp/" class="post-tag">lisp</a>
+
+
+<div class="cover-img"><img src="https://www.lisperati.com/lisplogo.svg"></div>
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#creating-an-alist-association-list">Creating an alist - association list</a></li><li><a href="#function-mapping-with-mapcar">Function mapping with mapcar</a></li><li><a href="#the-append-function">The append function</a></li><li><a href="#the-apply-function">The apply function</a></li><li><a href="#the-find-function">The find function</a></li><li><a href="#push-but-gently">push, but gently</a></li><li><a href="#are-you-even-a-member">Are you even a member?</a></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <h2 id="creating-an-alist-association-list" tabindex="-1">Creating an <code>alist</code> - association list <a class="direct-link" href="#creating-an-alist-association-list" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">defparameter</span> *nodes* <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">living-room</span> <span class="token punctuation">(</span><span class="token car">you</span> are in the living-room.<br>a wizard is snoring loudly on the couch.<span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">garden</span> <span class="token punctuation">(</span><span class="token car">you</span> are in a beautiful garden.<br>there is a well in front of you.<span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">attic</span> <span class="token punctuation">(</span><span class="token car">you</span> are in the attic.<br>there is a giant welding torch in the corner.<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h2 id="function-mapping-with-mapcar" tabindex="-1">Function mapping with <code>mapcar</code> <a class="direct-link" href="#function-mapping-with-mapcar" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">mapcar</span> <span class="token quoted-symbol variable symbol">#'describe-path</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">GARDEN</span> WEST DOOR<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">ATTIC</span> UPSTAIRS LADDER<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>((THERE IS A DOOR GOING WEST FROM HERE.)
+(THERE IS A LADDER GOING UPSTAIRS FROM HERE.))</p>
+</blockquote>
+<p><code>mapcar</code> takes one function and maps it to every member of the list.</p>
+<p>Functions that take other functions as parameters, such as <code>mapcar</code> , are very
+useful and a distinguishing feature of Lisp. Such functions are called <em>higher-
+order functions</em>.</p>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">mapcar</span> <span class="token quoted-symbol variable symbol">#'car</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">foo</span> bar<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">baz</span> qux<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>is the same as<br><span class="token punctuation">(</span><span class="token car">mapcar</span> <span class="token punctuation">(</span><span class="token car">function</span> car<span class="token punctuation">)</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">foo</span> bar<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token car">baz</span> qux<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>(foo baz)</p>
+</blockquote>
+<h2 id="the-append-function" tabindex="-1">The <code>append</code> function <a class="direct-link" href="#the-append-function" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token keyword">append</span> <span class="token punctuation">'(</span><span class="token car">mary</span> had<span class="token punctuation">)</span> <span class="token punctuation">'(</span><span class="token car">a</span><span class="token punctuation">)</span> <span class="token punctuation">'(</span><span class="token car">little</span> lamb<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>(MARY HAD A LITTLE LAMB)</p>
+</blockquote>
+<h2 id="the-apply-function" tabindex="-1">The <code>apply</code> function <a class="direct-link" href="#the-apply-function" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">apply</span> <span class="token quoted-symbol variable symbol">#'append</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token car">THERE</span> IS A DOOR GOING WEST FROM HERE.<span class="token punctuation">)</span><br><span class="token punctuation">(</span><span class="token car">THERE</span> IS A LADDER GOING UPSTAIRS FROM HERE.<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>(THERE IS A DOOR GOING WEST FROM HERE. THERE IS A LADDER GOING UPSTAIRS FROM
+HERE.)</p>
+</blockquote>
+<h2 id="the-find-function" tabindex="-1">The <code>find</code> function <a class="direct-link" href="#the-find-function" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">find</span> <span class="token quoted-symbol variable symbol">'y</span> <span class="token punctuation">'(</span><span class="token punctuation">(</span><span class="token number">5</span> x<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span> y<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">7</span> z<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token lisp-property property">:key</span> <span class="token quoted-symbol variable symbol">#'cadr</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>(3 Y)</p>
+</blockquote>
+<h2 id="push-but-gently" tabindex="-1"><code>push</code>, but gently <a class="direct-link" href="#push-but-gently" aria-hidden="true">#</a></h2>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">defparameter</span> *foo* <span class="token punctuation">'(</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p><em>FOO</em></p>
+</blockquote>
+<pre class="language-lisp"><code class="language-lisp"><span class="token punctuation">(</span><span class="token car">push</span> <span class="token number">7</span> *foo*<span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>(7 1 2 3)</p>
+</blockquote>
+<pre class="language-lisp"><code class="language-lisp">*foo*</code></pre>
+<blockquote>
+<p>(7 1 2 3)</p>
+</blockquote>
+<h2 id="are-you-even-a-member" tabindex="-1">Are you even a <code>member</code>? <a class="direct-link" href="#are-you-even-a-member" aria-hidden="true">#</a></h2>
+<p><em>It's still not over. Stay tuned for updates.</em></p>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blogs/lisp/"><div><i class="la la-angle-left"></i> Learn Lisp with me</div></a>
+                    
+                        <a href="/blogs/c-code-styles/"><div>C coding styles <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        
+                </div>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+    </div>
+    <div class="text-content">
+        Have fun and explore</div>
+</div>
+        </footer>
+    </body>
+</html>

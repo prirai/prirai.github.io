@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 3-1 - Writing Functions &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 3-2 - More Functions" href="../lesson-3-2-more-functions/" />
+    <link rel="prev" title="Elisp is a Lisp" href="../elisp-is-a-lisp/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-3-2-more-functions/" title="Lesson 3-2 - More Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../elisp-is-a-lisp/" title="Elisp is a Lisp"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3-1 - Writing Functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-3-1-writing-functions">
+<h1>Lesson 3-1 - Writing Functions<a class="headerlink" href="#lesson-3-1-writing-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="script-mode-elisp">
+<h2>Script Mode Elisp<a class="headerlink" href="#script-mode-elisp" title="Permalink to this headline">¶</a></h2>
+<p>In order to write functions it is necessary to change the way in which Elisp expressions will be evaluated. Instead of invoking expressions in the *scratch* buffer it is time to switch to running Elisp as a script.</p>
+<p>To do this an Elisp file has to be invoked from the command line. If you had some Elisp expressions in a file called <em>first_programme.el</em> the following command would be run it as a script <code class="docutils literal notranslate"><span class="pre">emacs</span> <span class="pre">--no-site-file</span> <span class="pre">--script</span> <span class="pre">first_programme.el</span></code></p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">--no-site-file</span></code> means that emacs doesn’t load any Elisp from the site libraries. By default the <code class="docutils literal notranslate"><span class="pre">--script</span></code> option also includes option <code class="docutils literal notranslate"><span class="pre">--no-init-file</span></code>. Normally emacs starts and executes a init file. In Ubuntu this file is <code class="docutils literal notranslate"><span class="pre">.emacs</span></code> in the users home directory.</p>
+<p>Start by creating a new directory, and in that create a file called <em>message.el</em>. The contents of that file is a single Elisp expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">message</span> <span class="s2">&quot;Bonjour Tout Le Monde&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The file should be executed by running this batch command in the directory in which you have created <em>message.el</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">emacs</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">site</span><span class="o">-</span><span class="n">file</span> <span class="o">--</span><span class="n">script</span> <span class="n">message</span><span class="o">.</span><span class="n">el</span>
+</pre></div>
+</div>
+<p>The output should be <code class="docutils literal notranslate"><span class="pre">Bonjour</span> <span class="pre">Tout</span> <span class="pre">Le</span> <span class="pre">Monde</span></code></p>
+</div>
+<div class="section" id="defining-a-simple-function">
+<h2>Defining A Simple Function<a class="headerlink" href="#defining-a-simple-function" title="Permalink to this headline">¶</a></h2>
+<p>We will start by defining a function. Create a file with the following code in it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">defun</span> <span class="n">bonjour</span> <span class="p">()</span> <span class="p">(</span><span class="n">message</span> <span class="s2">&quot;Bonjour Tout Le Monde&quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="n">bonjour</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On executing this file the output will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bonjour</span> <span class="n">Tout</span> <span class="n">Le</span> <span class="n">Monde</span>
+</pre></div>
+</div>
+<p>Let’s understand what we are seeing. Consider the first line - the operator <code class="docutils literal notranslate"><span class="pre">defun</span></code> indicates that we are defining a function. Here it is taking 3 parameters:</p>
+<div class="line-block">
+<div class="line"><em>1</em> <code class="docutils literal notranslate"><span class="pre">bonjour</span></code> which is the name of the function</div>
+<div class="line"><em>2</em> <code class="docutils literal notranslate"><span class="pre">()</span></code> which is a list of the parameters that the function will take</div>
+<div class="line"><em>3</em> <code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">&quot;Bonjour</span> <span class="pre">Tout</span> <span class="pre">Le</span> <span class="pre">Monde&quot;)</span></code> is the body of code that will executed when the function is run</div>
+</div>
+<p>The second line simply executes the fuction <code class="docutils literal notranslate"><span class="pre">bonjour</span></code>. The function definition states that <code class="docutils literal notranslate"><span class="pre">bonjour</span></code> takes no parameters (the list of parameters is empty).</p>
+</div>
+<div class="section" id="defining-a-more-complex-function">
+<h2>Defining A More Complex Function<a class="headerlink" href="#defining-a-more-complex-function" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create a function that takes multiple arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">defun</span> <span class="n">tough_maths</span> <span class="p">(</span><span class="n">i</span> <span class="n">j</span> <span class="n">k</span><span class="p">)</span>
+  <span class="s2">&quot;jeepers maths is tough!&quot;</span>
+  <span class="p">(</span><span class="n">message</span> <span class="p">(</span><span class="n">number</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">string</span> <span class="p">(</span><span class="o">+</span> <span class="n">i</span> <span class="n">j</span> <span class="n">k</span><span class="p">))))</span>
+<span class="p">(</span><span class="n">tough_maths</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When executed this will return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span>
+</pre></div>
+</div>
+<p>In this case (unlike the simple case) <code class="docutils literal notranslate"><span class="pre">defun</span></code> takes 4 parameters and not three. The second paramater <code class="docutils literal notranslate"><span class="pre">`(i</span> <span class="pre">j</span> <span class="pre">k)</span></code> is a list of parameters that the function takes. The third parameter is the documentation - it can be a string broken over many lines. The fourth parameter is the body of the function as in the previous example. Notice that in order to write the output the value of the expression <code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">i</span> <span class="pre">j</span> <span class="pre">k)</span></code> must be cast to a string with the operator <code class="docutils literal notranslate"><span class="pre">number-to-string</span></code>.</p>
+</div>
+<div class="section" id="functions-with-variable-numbers-of-arguments">
+<h2>Functions With Variable Numbers Of Arguments<a class="headerlink" href="#functions-with-variable-numbers-of-arguments" title="Permalink to this headline">¶</a></h2>
+<p>We have seen that the function <code class="docutils literal notranslate"><span class="pre">defun</span></code> has variable arity - that is to say it can take 3 or 4 arguments - we will see later that it can actually take 5 parameters.</p>
+<p>Let’s write a variable arity function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">defun</span> <span class="n">variable_arity</span> <span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span><span class="n">optional</span> <span class="n">b</span> <span class="o">&amp;</span><span class="n">rest</span> <span class="n">c</span><span class="p">)</span>
+   <span class="s2">&quot;This is a function which has variable arity&quot;</span>
+   <span class="p">(</span><span class="n">message</span> <span class="p">(</span><span class="n">concat</span> <span class="s2">&quot;variable a is &quot;</span> <span class="n">a</span><span class="p">))</span>
+   <span class="p">(</span><span class="n">message</span> <span class="p">(</span><span class="n">concat</span> <span class="s2">&quot;variable b is &quot;</span> <span class="n">b</span><span class="p">))</span>
+   <span class="p">(</span><span class="k">if</span> <span class="n">c</span> <span class="p">(</span><span class="n">message</span> <span class="s2">&quot;c is not an empty list&quot;</span><span class="p">)</span> <span class="p">(</span><span class="n">message</span> <span class="s2">&quot;c is an empty list&quot;</span><span class="p">)))</span>
+<span class="p">(</span><span class="n">message</span> <span class="s2">&quot;run the fn with 1 variable&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">variable_arity</span> <span class="s2">&quot;eh&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">message</span> <span class="s2">&quot;run the fn with 2 variables&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">variable_arity</span> <span class="s2">&quot;eh&quot;</span> <span class="s2">&quot;bee&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">message</span> <span class="s2">&quot;run the fn with 3 variables&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">variable_arity</span> <span class="s2">&quot;eh&quot;</span> <span class="s2">&quot;bee&quot;</span> <span class="s2">&quot;see&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">message</span> <span class="s2">&quot;run the fn with 4 variables&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">variable_arity</span> <span class="s2">&quot;eh&quot;</span> <span class="s2">&quot;bee&quot;</span> <span class="s2">&quot;see&quot;</span> <span class="s2">&quot;dee&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">message</span> <span class="s2">&quot;run the fn with 5 variables&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">variable_arity</span> <span class="s2">&quot;eh&quot;</span> <span class="s2">&quot;bee&quot;</span> <span class="s2">&quot;see&quot;</span> <span class="s2">&quot;dee&quot;</span> <span class="s2">&quot;eee&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="n">the</span> <span class="n">fn</span> <span class="k">with</span> <span class="mi">1</span> <span class="n">variable</span>
+<span class="n">variable</span> <span class="n">a</span> <span class="ow">is</span> <span class="n">eh</span>
+<span class="n">variable</span> <span class="n">b</span> <span class="ow">is</span>
+<span class="n">c</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">list</span>
+<span class="n">run</span> <span class="n">the</span> <span class="n">fn</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">variables</span>
+<span class="n">variable</span> <span class="n">a</span> <span class="ow">is</span> <span class="n">eh</span>
+<span class="n">variable</span> <span class="n">b</span> <span class="ow">is</span> <span class="n">bee</span>
+<span class="n">c</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">list</span>
+<span class="n">run</span> <span class="n">the</span> <span class="n">fn</span> <span class="k">with</span> <span class="mi">3</span> <span class="n">variables</span>
+<span class="n">variable</span> <span class="n">a</span> <span class="ow">is</span> <span class="n">eh</span>
+<span class="n">variable</span> <span class="n">b</span> <span class="ow">is</span> <span class="n">bee</span>
+<span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">list</span>
+<span class="n">run</span> <span class="n">the</span> <span class="n">fn</span> <span class="k">with</span> <span class="mi">4</span> <span class="n">variables</span>
+<span class="n">variable</span> <span class="n">a</span> <span class="ow">is</span> <span class="n">eh</span>
+<span class="n">variable</span> <span class="n">b</span> <span class="ow">is</span> <span class="n">bee</span>
+<span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">list</span>
+<span class="n">run</span> <span class="n">the</span> <span class="n">fn</span> <span class="k">with</span> <span class="mi">5</span> <span class="n">variables</span>
+<span class="n">variable</span> <span class="n">a</span> <span class="ow">is</span> <span class="n">eh</span>
+<span class="n">variable</span> <span class="n">b</span> <span class="ow">is</span> <span class="n">bee</span>
+<span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>The important part of this is the first part of the function definition <code class="docutils literal notranslate"><span class="pre">(defun</span> <span class="pre">variable_arity</span> <span class="pre">(a</span> <span class="pre">&amp;optional</span> <span class="pre">b</span> <span class="pre">&amp;rest</span> <span class="pre">c)...</span></code>. <code class="docutils literal notranslate"><span class="pre">a</span></code> is a required option - calling <code class="docutils literal notranslate"><span class="pre">variable_arity</span></code> with zero parameters will result in an error. The marker <code class="docutils literal notranslate"><span class="pre">&amp;optional</span> <span class="pre">b</span></code> indicates that the subsequent parameter <code class="docutils literal notranslate"><span class="pre">b</span></code> is optional. In this function there is only one optional function but a clause like <code class="docutils literal notranslate"><span class="pre">(i</span> <span class="pre">j</span> <span class="pre">&amp;optional</span> <span class="pre">k</span> <span class="pre">l</span> <span class="pre">m)</span></code> would have three optional arguments. The final clause <code class="docutils literal notranslate"><span class="pre">&amp;rest</span> <span class="pre">c</span></code> indicates that all parameters from 3 onwards will be collected into the variable <code class="docutils literal notranslate"><span class="pre">c</span></code> as a list. You can have either <code class="docutils literal notranslate"><span class="pre">&amp;optional</span></code> or <code class="docutils literal notranslate"><span class="pre">&amp;rest</span></code> or both together as in this function.</p>
+</div>
+<div class="section" id="what-you-have-learned">
+<h2>What You Have Learned<a class="headerlink" href="#what-you-have-learned" title="Permalink to this headline">¶</a></h2>
+<p>You have learned how to run Elisp programmes in batch mode, and also how to define simple, more complex and variable arity functions and invoke them.</p>
+</div>
+<div class="section" id="additional-reading">
+<h2>Additional Reading<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h2>
+<p>There is a section of the Elisp Reference Manual entitled <a class="reference external" href="http://www.gnu.org/software/emacs/elisp/html_node/Functions.html#Functions">Functions</a>.</p>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>Write a function with multiple line documentation.</p>
+<p>The <em>required</em>, <em>optional</em> and <em>rest</em> clauses must be specified in that order. Can you work out why?</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 3-1 - Writing Functions</a><ul>
+<li><a class="reference internal" href="#script-mode-elisp">Script Mode Elisp</a></li>
+<li><a class="reference internal" href="#defining-a-simple-function">Defining A Simple Function</a></li>
+<li><a class="reference internal" href="#defining-a-more-complex-function">Defining A More Complex Function</a></li>
+<li><a class="reference internal" href="#functions-with-variable-numbers-of-arguments">Functions With Variable Numbers Of Arguments</a></li>
+<li><a class="reference internal" href="#what-you-have-learned">What You Have Learned</a></li>
+<li><a class="reference internal" href="#additional-reading">Additional Reading</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../elisp-is-a-lisp/"
+                          title="previous chapter">Elisp is a Lisp</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-3-2-more-functions/"
+                          title="next chapter">Lesson 3-2 - More Functions</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-3-2-more-functions/" title="Lesson 3-2 - More Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../elisp-is-a-lisp/" title="Elisp is a Lisp"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3-1 - Writing Functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

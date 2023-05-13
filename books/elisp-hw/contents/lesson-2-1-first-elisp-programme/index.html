@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2-1 - First Elisp Programme &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 2-2 - Primitive Data Types (1)" href="../lesson-2-2-primitive-data-types-1/" />
+    <link rel="prev" title="Lesson 1-1 - Using Emacs" href="../lesson-1-1-using-emacs/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-2-2-primitive-data-types-1/" title="Lesson 2-2 - Primitive Data Types (1)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-1-1-using-emacs/" title="Lesson 1-1 - Using Emacs"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 2-1 - First Elisp Programme</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-2-1-first-elisp-programme">
+<h1>Lesson 2-1 - First Elisp Programme<a class="headerlink" href="#lesson-2-1-first-elisp-programme" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="let-s-get-started">
+<h2>Let’s Get Started<a class="headerlink" href="#let-s-get-started" title="Permalink to this headline">¶</a></h2>
+<p>This lesson will show you how to execute your first Elisa programme.</p>
+<ul class="simple">
+<li><p>start Emacs</p></li>
+<li><p>go to the scratch buffer by using the menu <cite>Buffers -&gt; *scratch*</cite></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">1</span> <span class="pre">2)</span></code></p>
+</dd>
+</dl>
+<p>Then put the cursor at the <strong>end</strong> of the expression - that is to say after the right bracket and type <code class="docutils literal notranslate"><span class="pre">Control-j</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Result</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p>
+</dd>
+</dl>
+<p>What you typed in consists of an expression <code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">1</span> <span class="pre">2)</span></code> and a command to Emacs to execute it <code class="docutils literal notranslate"><span class="pre">[Control-j]</span></code>. Expressions are sometimes called <em>forms</em>.</p>
+<p>Elisp is a dialect of Lisp - which stands for List Processing. A list is any thing between two brackets <code class="docutils literal notranslate"><span class="pre">(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code></p>
+<p>The programme that was executed consisted of an operator <code class="docutils literal notranslate"><span class="pre">+</span></code> and two constants <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">Control-j</span></code> in Emacs is applied at the point where the cursor is - it evaluates all the Elisp in the window up to that point and prints the output.</p>
+<p>Let’s look at executing the same expression in a different way. Delete the expression in the *scratch* buffer and type in a new one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">1.0</span> <span class="pre">2.0)</span></code></p>
+</dd>
+</dl>
+<p>Now put the cursor in the <strong>middle</strong> of the expression - that is to say between the brackets and type <code class="docutils literal notranslate"><span class="pre">Control-Alt-x</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Result</dt>
+<dd class="field-odd"><p>In the window nothing will change. The result of the expression is now put in the <em>minibuffer</em> <code class="docutils literal notranslate"><span class="pre">3.0</span></code></p>
+</dd>
+</dl>
+<p>It seems as if the way in which you evaluate the expression determines where the output goes - that is a bit of a simplification. See the <em>Advanced</em> sub-section for a deeper discussion. Also notice that the previous examples used integers like <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code> and returned an integer value. This expression uses floating point numbers like <code class="docutils literal notranslate"><span class="pre">1.0</span></code> and returns a float as the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">1.0e+3</span> <span class="pre">2.0e-2)</span></code></p>
+</dd>
+</dl>
+<p>Now put the cursor at the <strong>end</strong> of the expression and type <code class="docutils literal notranslate"><span class="pre">Control-x</span> <span class="pre">Control-e</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Result</dt>
+<dd class="field-odd"><p>In the window nothing will change by the value is now placed in the <em>minibuffer</em> <code class="docutils literal notranslate"><span class="pre">1000.02</span></code></p>
+</dd>
+</dl>
+<p>You can express floating point numbers in scientific notation.</p>
+</div>
+<div class="section" id="what-you-have-learnt">
+<h2>What You Have Learnt<a class="headerlink" href="#what-you-have-learnt" title="Permalink to this headline">¶</a></h2>
+<p>You have learnt how to evaluate a basic Elisp expression (or form) in the scratch buffer.</p>
+<p><strong>In future lessons you will not be told how to evaluate an expression - be sure to remember the key sequences to do it.</strong></p>
+</div>
+<div class="section" id="additional-reading">
+<h2>Additional Reading<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h2>
+<p>There is a section on data types in the <a class="reference external" href="http://www.gnu.org/software/emacs/emacs-lisp-intro/elisp/Numbers.html#Numbers">GNU Emacs Lisp Reference Manual</a>.</p>
+</div>
+<div class="section" id="advanced">
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
+<p>Elisp, like all the Lisp family, is a functional language. In functional languages there is a strict differences between a pure function and a function which has side effects.</p>
+<p>A pure function is one which takes some parameters and returns a value - the same input parameters reliably returning the same value.</p>
+<p>A function with side-effects interacts with the outside world: it writes to a file, or it sets a global variable. Sometimes it lets the outside world in - for instance a function that returns a random number.</p>
+<p>In this section we talk about evaluating expression and them returning values to the *scratch* buffer or the modeline. In fact, we evaluate a function which evaluates an expression and then, as a side effect, writes the return value to *scratch* or the modeline.</p>
+<p>This might seem an esoteric distinction now, but it is important and will become even more later on.</p>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>Try some expressions that add integers to floats. What is the result?</p>
+<p>What happens if you use scientific integers like <code class="docutils literal notranslate"><span class="pre">1e+10</span></code>?</p>
+<p>Can you add negative numbers?</p>
+<p>What do you think the following expressions will return?</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(-</span> <span class="pre">3</span> <span class="pre">4)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(*</span> <span class="pre">4</span> <span class="pre">5)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(/</span> <span class="pre">1.0</span> <span class="pre">4.0)</span></code></div>
+</div>
+<p>Evaluate the following expressions and try and work out why they return what they do?</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(/</span> <span class="pre">1</span> <span class="pre">4)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(/</span> <span class="pre">1</span> <span class="pre">4.)</span></code></div>
+</div>
+<p>What do you think these symbols represent?</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">#b10101010</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">#o127</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">#x12DE</span></code></div>
+<div class="line">(<strong>Tip</strong>: try using them in arithmetic expressions)</div>
+</div>
+<p>What do you think these symbols represent?</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">1.0e+INF</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-1.0e+INF</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">0.0e+NaN</span></code> or <code class="docutils literal notranslate"><span class="pre">-0.0e+NaN</span></code></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 2-1 - First Elisp Programme</a><ul>
+<li><a class="reference internal" href="#let-s-get-started">Let’s Get Started</a></li>
+<li><a class="reference internal" href="#what-you-have-learnt">What You Have Learnt</a></li>
+<li><a class="reference internal" href="#additional-reading">Additional Reading</a></li>
+<li><a class="reference internal" href="#advanced">Advanced</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../lesson-1-1-using-emacs/"
+                          title="previous chapter">Lesson 1-1 - Using Emacs</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-2-2-primitive-data-types-1/"
+                          title="next chapter">Lesson 2-2 - Primitive Data Types (1)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-2-2-primitive-data-types-1/" title="Lesson 2-2 - Primitive Data Types (1)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-1-1-using-emacs/" title="Lesson 1-1 - Using Emacs"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 2-1 - First Elisp Programme</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

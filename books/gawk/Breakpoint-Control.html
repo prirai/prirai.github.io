@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 1989, 1991, 1992, 1993, 1996-2005, 2007, 2009-2020 
+
+Free Software Foundation, Inc.
+
+
+
+This is Edition 5.1 of GAWK: Effective AWK Programming: A User's Guide for GNU Awk,
+for the 5.1.0 (or later) version of the GNU
+implementation of AWK.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "GNU General Public License", with the
+Front-Cover Texts being "A GNU Manual", and with the Back-Cover Texts
+as in (a) below.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License".
+
+a. The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual." -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Breakpoint Control (The GNU Awk User&rsquo;s Guide)</title>
+
+<meta name="description" content="Breakpoint Control (The GNU Awk User&rsquo;s Guide)">
+<meta name="keywords" content="Breakpoint Control (The GNU Awk User&rsquo;s Guide)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Index.html" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="List-of-Debugger-Commands.html" rel="up" title="List of Debugger Commands">
+<link href="Debugger-Execution-Control.html" rel="next" title="Debugger Execution Control">
+<link href="List-of-Debugger-Commands.html" rel="prev" title="List of Debugger Commands">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
+<link rel="stylesheet" type="text/css" href="../bookstyle.css"></head>
+
+<body lang="en">
+<span id="Breakpoint-Control"></span><div class="header">
+<p>
+Next: <a href="Debugger-Execution-Control.html" accesskey="n" rel="next">Debugger Execution Control</a>, Up: <a href="List-of-Debugger-Commands.html" accesskey="u" rel="up">List of Debugger Commands</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Control-of-Breakpoints"></span><h4 class="subsection">14.3.1 Control of Breakpoints</h4>
+
+<p>As we saw earlier, the first thing you probably want to do in a debugging
+session is to get your breakpoints set up, because your program
+will otherwise just run as if it was not under the debugger.  The commands for
+controlling breakpoints are:
+</p>
+<dl compact="compact">
+<dd><span id="index-debugger-20"></span>
+<span id="index-debugger-21"></span>
+<span id="index-break-debugger-command"></span>
+<span id="index-b-debugger-command-_0028alias-for-break_0029"></span>
+<span id="index-set-breakpoint"></span>
+<span id="index-breakpoint-1"></span>
+</dd>
+<dt><code>break</code> [[<var>filename</var><code>:</code>]<var>n</var> | <var>function</var>] [<code>&quot;<var>expression</var>&quot;</code>]</dt>
+<dt><code>b</code> [[<var>filename</var><code>:</code>]<var>n</var> | <var>function</var>] [<code>&quot;<var>expression</var>&quot;</code>]</dt>
+<dd><p>Without any argument, set a breakpoint at the next instruction
+to be executed in the selected stack frame.
+Arguments can be one of the following:
+</p>
+<dl compact="compact">
+<dt><var>n</var></dt>
+<dd><p>Set a breakpoint at line number <var>n</var> in the current source file.
+</p>
+</dd>
+<dt><var>filename</var><code>:</code><var>n</var></dt>
+<dd><p>Set a breakpoint at line number <var>n</var> in source file <var>filename</var>.
+</p>
+</dd>
+<dt><var>function</var></dt>
+<dd><p>Set a breakpoint at entry to (the first instruction of)
+function <var>function</var>.
+</p></dd>
+</dl>
+
+<p>Each breakpoint is assigned a number that can be used to delete it from
+the breakpoint list using the <code>delete</code> command.
+</p>
+<p>With a breakpoint, you may also supply a condition.  This is an
+<code>awk</code> expression (enclosed in double quotes) that the debugger
+evaluates whenever the breakpoint is reached. If the condition is true,
+then the debugger stops execution and prompts for a command. Otherwise,
+it continues executing the program.
+</p>
+<span id="index-debugger-22"></span>
+<span id="index-clear-debugger-command"></span>
+<span id="index-delete-breakpoint"></span>
+<span id="index-breakpoint-2"></span>
+</dd>
+<dt><code>clear</code> [[<var>filename</var><code>:</code>]<var>n</var> | <var>function</var>]</dt>
+<dd><p>Without any argument, delete any breakpoint at the next instruction
+to be executed in the selected stack frame. If the program stops at
+a breakpoint, this deletes that breakpoint so that the program
+does not stop at that location again.  Arguments can be one of the following:
+</p>
+<dl compact="compact">
+<dt><var>n</var></dt>
+<dd><p>Delete breakpoint(s) set at line number <var>n</var> in the current source file.
+</p>
+</dd>
+<dt><var>filename</var><code>:</code><var>n</var></dt>
+<dd><p>Delete breakpoint(s) set at line number <var>n</var> in source file <var>filename</var>.
+</p>
+</dd>
+<dt><var>function</var></dt>
+<dd><p>Delete breakpoint(s) set at entry to function <var>function</var>.
+</p></dd>
+</dl>
+
+<span id="index-debugger-23"></span>
+<span id="index-condition-debugger-command"></span>
+<span id="index-breakpoint-3"></span>
+</dd>
+<dt><code>condition</code> <var>n</var> <code>&quot;<var>expression</var>&quot;</code></dt>
+<dd><p>Add a condition to existing breakpoint or watchpoint <var>n</var>. The
+condition is an <code>awk</code> expression <em>enclosed in double quotes</em>
+that the debugger evaluates
+whenever the breakpoint or watchpoint is reached. If the condition is true, then
+the debugger stops execution and prompts for a command. Otherwise,
+the debugger continues executing the program. If the condition expression is
+not specified, any existing condition is removed (i.e., the breakpoint or
+watchpoint is made unconditional).
+</p>
+<span id="index-debugger-24"></span>
+<span id="index-debugger-25"></span>
+<span id="index-delete-debugger-command"></span>
+<span id="index-d-debugger-command-_0028alias-for-delete_0029"></span>
+<span id="index-delete-breakpoint-1"></span>
+<span id="index-breakpoint-4"></span>
+</dd>
+<dt><code>delete</code> [<var>n1 n2</var> &hellip;] [<var>n</var>&ndash;<var>m</var>]</dt>
+<dt><code>d</code> [<var>n1 n2</var> &hellip;] [<var>n</var>&ndash;<var>m</var>]</dt>
+<dd><p>Delete specified breakpoints or a range of breakpoints. Delete
+all defined breakpoints if no argument is supplied.
+</p>
+<span id="index-debugger-26"></span>
+<span id="index-disable-debugger-command"></span>
+<span id="index-disable-breakpoint"></span>
+<span id="index-breakpoint-5"></span>
+</dd>
+<dt><code>disable</code> [<var>n1 n2</var> &hellip; | <var>n</var>&ndash;<var>m</var>]</dt>
+<dd><p>Disable specified breakpoints or a range of breakpoints. Without
+any argument, disable all breakpoints.
+</p>
+<span id="index-debugger-27"></span>
+<span id="index-debugger-28"></span>
+<span id="index-enable-debugger-command"></span>
+<span id="index-e-debugger-command-_0028alias-for-enable_0029"></span>
+<span id="index-enable-breakpoint"></span>
+</dd>
+<dt><code>enable</code> [<code>del</code> | <code>once</code>] [<var>n1 n2</var> &hellip;] [<var>n</var>&ndash;<var>m</var>]</dt>
+<dt><code>e</code> [<code>del</code> | <code>once</code>] [<var>n1 n2</var> &hellip;] [<var>n</var>&ndash;<var>m</var>]</dt>
+<dd><p>Enable specified breakpoints or a range of breakpoints. Without
+any argument, enable all breakpoints.
+Optionally, you can specify how to enable the breakpoints:
+</p>
+<dl compact="compact">
+<dt><code>del</code></dt>
+<dd><p>Enable the breakpoints temporarily, then delete each one when
+the program stops at it.
+</p>
+</dd>
+<dt><code>once</code></dt>
+<dd><p>Enable the breakpoints temporarily, then disable each one when
+the program stops at it.
+</p></dd>
+</dl>
+
+<span id="index-debugger-29"></span>
+<span id="index-ignore-debugger-command"></span>
+<span id="index-ignore-breakpoint"></span>
+</dd>
+<dt><code>ignore</code> <var>n</var> <var>count</var></dt>
+<dd><p>Ignore breakpoint number <var>n</var> the next <var>count</var> times it is
+hit.
+</p>
+<span id="index-debugger-30"></span>
+<span id="index-debugger-31"></span>
+<span id="index-tbreak-debugger-command"></span>
+<span id="index-t-debugger-command-_0028alias-for-tbreak_0029"></span>
+<span id="index-temporary-breakpoint"></span>
+</dd>
+<dt><code>tbreak</code> [[<var>filename</var><code>:</code>]<var>n</var> | <var>function</var>]</dt>
+<dt><code>t</code> [[<var>filename</var><code>:</code>]<var>n</var> | <var>function</var>]</dt>
+<dd><p>Set a temporary breakpoint (enabled for only one stop).
+The arguments are the same as for <code>break</code>.
+</p></dd>
+</dl>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Debugger-Execution-Control.html" accesskey="n" rel="next">Debugger Execution Control</a>, Up: <a href="List-of-Debugger-Commands.html" accesskey="u" rel="up">List of Debugger Commands</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

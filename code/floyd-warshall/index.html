@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Floyd-Warshall algorithm in C</title>
+        <meta name="description" content="In this tutorial we will create a program in C which will find the shortest path between two vertices in a graph using the Floyd-Warshall algorithm.">
+        <link rel="canonical" href="/code/floyd-warshall/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Floyd-Warshall algorithm in C"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C which will find the shortest path between two vertices in a graph using the Floyd-Warshall algorithm."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+        <main >
+            <h1>Floyd-Warshall algorithm in C</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#floyd-warshall-algorithm">Floyd-Warshall algorithm</a></li><li><a href="#example">Example</a></li><li><a href="#problem-description">Problem description</a></li><li><a href="#problem-solution">Problem Solution</a><ul><li><a href="#methods-used">Methods used</a></li><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#output">Output</a></li></ul></li></ul>
+      </div>
+            </aside>
+            <h1 id="floyd-warshall-algorithm-in-c" tabindex="-1">Floyd-Warshall algorithm in C <a class="direct-link" href="#floyd-warshall-algorithm-in-c" aria-hidden="true">#</a></h1>
+<p>This C program will find the shortest path between two vertices in a graph using the Floyd-Warshall algorithm.</p>
+<h2 id="floyd-warshall-algorithm" tabindex="-1">Floyd-Warshall algorithm <a class="direct-link" href="#floyd-warshall-algorithm" aria-hidden="true">#</a></h2>
+<p>The Floyd-Warshall algorithm is a graph algorithm that finds the shortest path between two vertices in a graph in a weighted graph with positive or negative edge weights but without negative cycles. The algorithm is named after the British mathematician Floyd Warshall. The algorithm is also known as the all-pairs shortest path algorithm.</p>
+<p>The algorithm compares all possible paths between two vertices in a graph and finds the shortest path. It does so in O(V^3) time even when the graph is sparse.</p>
+<p>In this algorithm, we will use a matrix to represent the graph. The matrix will have the following structure:</p>
+<pre><code>[
+  [0, 1, 2, 3, 4],
+  [1, 0, 5, 6, 7],
+  [2, 5, 0, 8, 9],
+  [3, 6, 8, 0, 10],
+  [4, 7, 9, 10, 0]
+]
+</code></pre>
+<p>Then, we will use the following formula to find the shortest path between two vertices:</p>
+<pre><code>d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+</code></pre>
+<h2 id="example" tabindex="-1">Example <a class="direct-link" href="#example" aria-hidden="true">#</a></h2>
+<p>The matrix input is as follows:</p>
+<pre><code>4 2 5 2 
+4 3 1 4 
+2 5 2 1 
+5 3 1 4 
+</code></pre>
+<p>The shortest path matrix is:</p>
+<pre><code>4 2 3 2 
+3 3 1 2 
+2 4 2 1 
+3 3 1 2 
+</code></pre>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>Given a matrix representing the graph, this program will find the shortest path between two vertices in the graph and print the shortest path matrix.</p>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<ol>
+<li>Ask the user to enter the edges of the graph as a matrix representation.</li>
+<li>Print the original matrix.</li>
+<li>Pass the matrix to the function <code>floydWarshall</code> to find the shortest path matrix.</li>
+<li>Print the shortest path matrix.</li>
+</ol>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>void floydWarshall(int **, int)</code> - This function will find the shortest path between two vertices in a graph using the Floyd-Warshall algorithm. The parameters are the graph represented as a matrix and the number of rows.</li>
+</ul>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<p>This C program will find the shortest path between two vertices in a graph using the Floyd-Warshall algorithm. It has been tested on Linux using GCC 12.1.0.</p>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span><br><br><span class="token keyword">void</span> <span class="token function">floydWarshall</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>graph<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> k<span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><br>            <span class="token punctuation">{</span><br>                <span class="token keyword">if</span> <span class="token punctuation">(</span>graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span> graph<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><br>                    graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span> graph<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><br><span class="token punctuation">{</span><br>    <span class="token keyword">int</span> n<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of vertices: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>graph <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">unsigned</span><span class="token punctuation">)</span> n <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">unsigned</span><span class="token punctuation">)</span> n <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> j<span class="token punctuation">)</span><br>                graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><br>            <span class="token keyword">else</span><br>                graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the edges: \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%d][%d]: "</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span><br>            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The original graph is:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token function">floydWarshall</span><span class="token punctuation">(</span>graph<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The shortest path matrix is:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><br>        <span class="token punctuation">{</span><br>            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>The program begins with asking the user to input the edges of the graph and represents them as a matrix representation. Pass the matrix and the number of vertices <code>n</code> as input to the function <code>floydWarshall</code>. In the function, loop nest from 0 to size and inside that make another loop from 0 to size where we compare the weights respectively as seen in the program.</p>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>The time complexity of the algorithm is O(V^3) where V is the number of vertices in the graph.</p>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>The space complexity of the algorithm is O(V^2) where V is the number of vertices in the graph.</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./floyd_warshall
+Enter the number of vertices: 4
+Enter the edges: 
+[0][0]: 0
+[0][1]: 12
+[0][2]: 45
+[0][3]: 2
+[1][0]: 1
+[1][1]: 0
+[1][2]: 45
+[1][3]: 32
+[2][0]: 77
+[2][1]: 43
+[2][2]: 0
+[2][3]: 2
+[3][0]: 42
+[3][1]: 3
+[3][2]: 88
+[3][3]: 0
+The original graph is:
+0 12 45 2 
+1 0 45 32 
+77 43 0 2 
+42 3 88 0 
+The shortest path matrix is:
+0 5 45 2 
+1 0 45 3 
+6 5 0 2 
+4 3 48 0 
+</code></pre>
+
+        </main>
+    </body>
+</html>

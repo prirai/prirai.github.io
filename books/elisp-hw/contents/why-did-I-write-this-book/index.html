@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why Did I Write This Book? &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Contributors" href="../contributors/" />
+    <link rel="prev" title="Learning Elisp" href="../learning-elisp/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../contributors/" title="Contributors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../learning-elisp/" title="Learning Elisp"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Why Did I Write This Book?</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="why-did-i-write-this-book">
+<h1>Why Did I Write This Book?<a class="headerlink" href="#why-did-i-write-this-book" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-elisp">
+<h2>Why Elisp?<a class="headerlink" href="#why-elisp" title="Permalink to this headline">¶</a></h2>
+<p>I am writing this book to learn Elisp myself. I use Emacs every day because it is the IDE of choice for Erlang and I am an Erlang programmer.</p>
+<p>My relationship with Emacs is that of Simson Garfinkel, Daniel Weise and Steven Strassmann to <a class="reference external" href="http://www.amazon.com/UNIX-Haters-Handbook-Daniel-Weise/dp/1568842031/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1290297419&amp;sr=1-1">Unix</a> - I genuinely loathe it.</p>
+<p>Emacs is the most prominent piece of software in the <em>apostolic</em> tradition. You are supposed to learn it by being instructed by someone who learnt it by being instructed by someone recursively all the way back to the original authors in a continuous apostolic succession.</p>
+<p>I would fain be the John Knox, the Calvin, the Luther, and hell mend them.</p>
+<p>By writing this book I hope to be able to write Elisp to configure and extend Emacs in my working environment.</p>
+</div>
+<div class="section" id="why-choose-this-format">
+<h2>Why Choose This Format?<a class="headerlink" href="#why-choose-this-format" title="Permalink to this headline">¶</a></h2>
+<p>I have chosen to use a format based on <em>Learn X The Hard Way</em>. That format is specifically aimed at writing books for non-programmers. My target audience is programmers with no functional programming experiences. Funtional Programming Languages in general (and Lisp in particular) are far enough from Object Orientated or Procedural languages that learning them is like starting to programme again - so the <em>beginners</em> format is quite appropriate.</p>
+<p>I have not called the book <em>Learn Elisp The Hard Way</em> because this slightly hybrid formula would confuse that core brand.</p>
+<p>I occasionally have to dip into Elisp in the form of .emacs files which are executed on startup and are how you configure Emacs to do specific stuff for your particular requirements.</p>
+<p>One of the reasons why the <em>Learn X The Hard Way</em> books work is that the format of forcing people to type in code is a great way to teach them how to read the syntax. Elisp still looks like line noise to me and I have been programming since the late 70s in languages as diverse as Fortran, VB, C++, Java, Perl, Python, PHP, Ruby and Erlang. Writing this book has been a good way to learn how to <em>read</em> Elisp for me, and I hope it will work for the readers.</p>
+<p>The transition from Fortran to the Obect Orientated paradigm of C++ was enormously painful. The shift from the OO paradigm (Ruby was my language <em>de jour</em> then) to functional programming in the form of Erlang was also horrendous.</p>
+<p>I may be wrong, but I think that many experienced programmers who have no previous exposure to functional programming would benefit from a pretty brutal beginners style book about Elisp.</p>
+<p>I have copies of <a class="reference external" href="http://www.amazon.com/LISP-Advanced-Techniques-Common/dp/0130305529/ref=sr_1_1?ie=UTF8&amp;qid=1290295941&amp;sr=8-1">On Lisp</a> by Paul Graham and <a class="reference external" href="http://www.amazon.com/Common-Lisp-Introduction-Symbolic-Computation/dp/0805304924/ref=sr_1_8?s=books&amp;ie=UTF8&amp;qid=1290296197&amp;sr=1-8">Common Lisp A Gentle Introduction To Symbolic Computing</a> but have never been able to learn Lisp because of the very basic problem that Zed Shaw identified in <a class="reference external" href="http://sheddingbikes.com/posts/1288945508.html">his article</a> on <em>How To Write A LxTHW</em> - I could never work out how to get to a basic working shell to type the code examples into. It’s not that I didn’t try, its just that after a summer of trying to start learning Lisp I had gotten nowhere. If you think that that’s my fault, then it falls to you to explain how I managed to learn a bazillion other languages successfully.</p>
+<p>The other appealing part of this format is that it isn’t a reference book. To make clear just how unsuited I am to write a reference book about Lisp, let me enumerate ATTIDNK (All The Things I Do Not Know):</p>
+<ul class="simple">
+<li><p>the difference between Emacs and XEmacs</p></li>
+<li><p>the difference between Elisp and Lisp</p></li>
+<li><p>how Common Lisp is related to Clojure or any other Lisp</p></li>
+<li><p>how Lisp does package management</p></li>
+<li><p>pretty much everything else I would need to know to write a reference book</p></li>
+</ul>
+</div>
+<div class="section" id="on-learning-functional-programming">
+<h2>On Learning Functional Programming<a class="headerlink" href="#on-learning-functional-programming" title="Permalink to this headline">¶</a></h2>
+<p>If you just want to learn <strong>a functional programming language</strong> you really should learn Erlang and I recommend <a class="reference external" href="http://www.amazon.com/Programming-Erlang-Software-Concurrent-World/dp/193435600X/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1290296292&amp;sr=1-2">Joe’s book</a> or <a class="reference external" href="http://www.amazon.com/ERLANG-Programming-Francesco-Cesarini/dp/0596518188/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1290296292&amp;sr=1-1">Franceso and Simon’s one</a>.</p>
+</div>
+<div class="section" id="big-up-for-zed-shaw">
+<h2>Big Up For Zed Shaw<a class="headerlink" href="#big-up-for-zed-shaw" title="Permalink to this headline">¶</a></h2>
+<p>Zed Shaw? <a class="reference external" href="http://www.zedshaw.com/">Who?</a> <a class="reference external" href="http://sheddingbikes.com/posts/1288945508.html">Why?</a></p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Why Did I Write This Book?</a><ul>
+<li><a class="reference internal" href="#why-elisp">Why Elisp?</a></li>
+<li><a class="reference internal" href="#why-choose-this-format">Why Choose This Format?</a></li>
+<li><a class="reference internal" href="#on-learning-functional-programming">On Learning Functional Programming</a></li>
+<li><a class="reference internal" href="#big-up-for-zed-shaw">Big Up For Zed Shaw</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../learning-elisp/"
+                          title="previous chapter">Learning Elisp</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../contributors/"
+                          title="next chapter">Contributors</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../contributors/" title="Contributors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../learning-elisp/" title="Learning Elisp"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Why Did I Write This Book?</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>
