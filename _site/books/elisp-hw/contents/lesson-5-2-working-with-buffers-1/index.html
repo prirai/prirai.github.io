@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 5-2 - Working With Buffers (1) &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 5-3 - Scope Of Variables (set, setq, let, let* etc)" href="../lesson-5-3-scope-of-variables-set-setq-let-etc/" />
+    <link rel="prev" title="Lesson 5-1 - Elisp In Files" href="../lesson-5-1-elisp-in-files/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-5-3-scope-of-variables-set-setq-let-etc/" title="Lesson 5-3 - Scope Of Variables (set, setq, let, let* etc)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-5-1-elisp-in-files/" title="Lesson 5-1 - Elisp In Files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 5-2 - Working With Buffers (1)</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-5-2-working-with-buffers-1">
+<h1>Lesson 5-2 - Working With Buffers (1)<a class="headerlink" href="#lesson-5-2-working-with-buffers-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>We need to learn how to programme Elisp a bit better, and the best way to do that is to write some programmes that add functionality to Emacs itself.</p>
+<p>In this lesson we are going to:</p>
+<ul class="simple">
+<li><p>add a menu to Emacs</p></li>
+<li><p>call functions from that menu which operate on the current buffer</p></li>
+</ul>
+<p>To do that we will create a file of Elisp which will:</p>
+<ul class="simple">
+<li><p>define some functions</p></li>
+<li><p>add an Emacs menu bound to those functions</p></li>
+</ul>
+<p>We will then edit the <cite>.emacs</cite> file to load our Elisp file at start up.</p>
+</div>
+<div class="section" id="preparing-our-elisp-file">
+<h2>Preparing Our Elisp File<a class="headerlink" href="#preparing-our-elisp-file" title="Permalink to this headline">¶</a></h2>
+<p>Create a new file called <code class="docutils literal notranslate"><span class="pre">omarmenu.el</span></code> in the directory <code class="docutils literal notranslate"><span class="pre">~/.emacs.d/omars-dir/</span></code> and type the following code in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">defun</span> <span class="n">omar</span><span class="o">-</span><span class="n">count</span> <span class="p">()</span>
+  <span class="p">(</span><span class="n">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">message</span> <span class="s2">&quot;When we have finished this will count the number of words in the current buffer&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="n">defvar</span> <span class="n">menu</span><span class="o">-</span><span class="n">bar</span><span class="o">-</span><span class="n">omar</span><span class="o">-</span><span class="n">menu</span> <span class="p">(</span><span class="n">make</span><span class="o">-</span><span class="n">sparse</span><span class="o">-</span><span class="n">keymap</span> <span class="s2">&quot;Omar&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="n">define</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="n">after</span> <span class="k">global</span><span class="o">-</span><span class="nb">map</span> <span class="p">[</span><span class="n">menu</span><span class="o">-</span><span class="n">bar</span> <span class="n">omar</span><span class="p">]</span>
+  <span class="p">(</span><span class="n">cons</span> <span class="s2">&quot;Omar&#39;s Menu&quot;</span> <span class="p">(</span><span class="n">make</span><span class="o">-</span><span class="n">sparse</span><span class="o">-</span><span class="n">keymap</span> <span class="s2">&quot;Omar&quot;</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="n">define</span><span class="o">-</span><span class="n">key</span> <span class="k">global</span><span class="o">-</span><span class="nb">map</span> <span class="p">[</span><span class="n">menu</span><span class="o">-</span><span class="n">bar</span> <span class="n">omar</span> <span class="n">omar</span><span class="o">-</span><span class="n">count</span><span class="p">]</span>
+  <span class="s1">&#39;(menu-item &quot;Count&quot; omar-count</span>
+             <span class="p">:</span><span class="n">help</span> <span class="s2">&quot;Will eventually count words in the current buffer!&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">global</span><span class="o">-</span><span class="nb">set</span><span class="o">-</span><span class="n">key</span> <span class="p">(</span><span class="n">kbd</span> <span class="s2">&quot;C-c a&quot;</span><span class="p">)</span> <span class="s1">&#39;omar-count)</span>
+
+<span class="p">(</span><span class="n">provide</span> <span class="s1">&#39;omarmenu)</span>
+</pre></div>
+</div>
+<p>Then open your <code class="docutils literal notranslate"><span class="pre">.emacs</span></code> file in your home directory add the following lines - You might want to delete everything that is in it first:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(add-to-list</span> <span class="pre">'load-path</span> <span class="pre">&quot;~/.emacs.d/omars-dir&quot;)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(require</span> <span class="pre">'omarmenu)</span></code></div>
+</div>
+<p>All we have done is create an empty function (it prints <em>When we have finished this will count the number of words in the current buffer</em> into the modeline).</p>
+<p>We have then created a menu called <em>Omar’s Menu</em> with one item <em>Count</em>. We have then bound <em>Count</em> to the approved user key-shortcut <em>[C]-c a</em>.</p>
+<p>Finally <code class="docutils literal notranslate"><span class="pre">omarmenu.el</span></code> announes to the world that it provied <code class="docutils literal notranslate"><span class="pre">omarmenu</span></code>.</p>
+<p>We have then edited the <code class="docutils literal notranslate"><span class="pre">.emacs</span></code> file telling it to look for Elisp programmes in the directory <code class="docutils literal notranslate"><span class="pre">~/.emacs.d/omars-dir/</span></code> and asking it to load the functionality of <code class="docutils literal notranslate"><span class="pre">omarmenu</span></code>.</p>
+<p>If you have been editing these files (or any files) in Emacs then close it and reopen it.</p>
+<p>Emacs should load its <code class="docutils literal notranslate"><span class="pre">.emacs</span></code> file and add a menu item to the menubar.</p>
+<p>Click on the menu-item <em>Count</em> and the message should print in the modeline.</p>
+<p>What we will do in this and subsequent lessons is fill in the <em>empty function</em> <em>Count</em> until it can count the words in the current buffer.</p>
+</div>
+<div class="section" id="examining-our-function">
+<h2>Examining Our Function<a class="headerlink" href="#examining-our-function" title="Permalink to this headline">¶</a></h2>
+<p>We are going to use a lot of Emacs functions to write our function <cite>omar-count</cite> so we need to learn how to look up their documentation.</p>
+<p>Let’s start by examining our own function. We will use the built-in Emacs function <cite>describe-function</cite>. It can be called in the usual way:</p>
+<ul class="simple">
+<li><p><em>[M]-x</em> <cite>describe-function</cite></p></li>
+<li><p>then enter <cite>omar-count</cite> into the modeline.</p></li>
+</ul>
+<p>You should see something like this:</p>
+<img alt="../../_images/emacs-using-describe-function.png" src="../../_images/emacs-using-describe-function.png" />
+<p>Let’s add a proper function definition for our function. Edit <cite>omarmenu.el</cite>:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(defun</span> <span class="pre">omar-count</span> <span class="pre">()</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(interactive)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;This</span> <span class="pre">function</span> <span class="pre">counts</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">words</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">buffer&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">&quot;When</span> <span class="pre">we</span> <span class="pre">have</span> <span class="pre">finished</span> <span class="pre">this</span> <span class="pre">will</span> <span class="pre">count</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">words</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">buffer&quot;))</span></code></div>
+</div>
+</div>
+<p>To see this help string in action you will need to either select the menu item <em>Emacs-Lisp -&gt; Evaluate Buffer</em> or close and re-open emacs before typing <em>[M]-x</em> <cite>describe-function</cite></p>
+</div>
+<div class="section" id="implementing-the-function">
+<h2>Implementing The Function<a class="headerlink" href="#implementing-the-function" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have the function wired in, lets make it do what it says on the tin. Edit the function to look like this:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(defun</span> <span class="pre">omar-count</span> <span class="pre">()</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;This</span> <span class="pre">function</span> <span class="pre">will</span> <span class="pre">count</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">words</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">buffer.&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(interactive)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(let</span> <span class="pre">((count</span> <span class="pre">0))</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(goto-char</span> <span class="pre">(point-min))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(while</span> <span class="pre">(&lt;</span> <span class="pre">(point)</span> <span class="pre">(point-max))</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(forward-word</span> <span class="pre">1)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(setq</span> <span class="pre">count</span> <span class="pre">(1+</span> <span class="pre">count)))</span></code></div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">&quot;Buffer</span> <span class="pre">has</span> <span class="pre">%d</span> <span class="pre">words.&quot;</span> <span class="pre">count)))</span></code></div>
+</div>
+</div>
+</div>
+<p>Let’s see what this function does. It starts by defining a local variable <cite>count</cite> using the <cite>let</cite> operator. Note that the brackets which include <cite>let</cite> cover the whole rest of the function. We will look at local and global scope of variables in the next lesson.</p>
+<p>The next function call is <code class="docutils literal notranslate"><span class="pre">(goto-char</span> <span class="pre">(point-min))</span></code>. We can use <cite>describe-function</cite> to work what that does. Executing <em>[M]-x</em> <cite>describe-function</cite> for <cite>goto-char</cite> and it prints the following:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">goto-char</span> <span class="pre">is</span> <span class="pre">an</span> <span class="pre">interactive</span> <span class="pre">built-in</span> <span class="pre">function</span> <span class="pre">in</span> <span class="pre">`C</span> <span class="pre">source</span> <span class="pre">code'.</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">It</span> <span class="pre">is</span> <span class="pre">bound</span> <span class="pre">to</span> <span class="pre">&lt;menu-bar&gt;</span> <span class="pre">&lt;edit&gt;</span> <span class="pre">&lt;goto&gt;</span> <span class="pre">&lt;go-to-pos&gt;.</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(goto-char</span> <span class="pre">position)</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">point</span> <span class="pre">to</span> <span class="pre">position,</span> <span class="pre">a</span> <span class="pre">number</span> <span class="pre">or</span> <span class="pre">marker.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Beginning</span> <span class="pre">of</span> <span class="pre">buffer</span> <span class="pre">is</span> <span class="pre">position</span> <span class="pre">(point-min),</span> <span class="pre">end</span> <span class="pre">is</span> <span class="pre">(point-max).</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">return</span> <span class="pre">value</span> <span class="pre">is</span> <span class="pre">position.</span></code></div>
+</div>
+<p>We can repeat this exercise and see that <cite>point</cite>, <cite>point-min</cite> and <cite>point-max</cite> are all functions that evaluate, respectively, to:</p>
+<ul class="simple">
+<li><p>the current position of the cursor in integer characters from the start of the buffer</p></li>
+<li><p>the position of the start of the buffer - (usually 1 but you can monkey about with where you can start editing the buffer from)</p></li>
+<li><p>the position of the end of the buffer</p></li>
+</ul>
+<p>Note that there are functions that return values, but not the names of variables. The only way to tell them apart is to try and evaluate <cite>point</cite> as both a variable and a function in the <em>scratch</em> buffer:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">point</span>&#160;&#160; <span class="pre">;;this</span> <span class="pre">is</span> <span class="pre">how</span> <span class="pre">you</span> <span class="pre">evaluate</span> <span class="pre">a</span> <span class="pre">variable</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(point)</span> <span class="pre">;;this</span> <span class="pre">is</span> <span class="pre">how</span> <span class="pre">you</span> <span class="pre">evaluate</span> <span class="pre">a</span> <span class="pre">function</span></code></div>
+</div>
+<p>Attempting to evaluate it as a variable will drop you into the debugger.</p>
+<p>The function is then pretty straight forward to understand. Step through the buffer, word-by-word, incrementing the value of <cite>count</cite> every time you do. At the end print out the value of <cite>count</cite>.</p>
+<p>Open a file on your system and try out the function. You will notice that that the <cite>omar-count</cite> actually moves the cursor - it is not some sort of virtual cursor, <cite>got-char</cite> and <cite>forward-word</cite> actually move the cursor. This behaviour is sub-optimal from a user perspective.</p>
+<p>It can be cured by using a special function <cite>save-excursion</cite>. Edit the function to add wrap the body our count function in it as shown below:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(defun</span> <span class="pre">omar-count</span> <span class="pre">()</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;This</span> <span class="pre">function</span> <span class="pre">will</span> <span class="pre">count</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">words</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">buffer.&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(interactive)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(save-excursion</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(let</span> <span class="pre">((count</span> <span class="pre">0))</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(goto-char</span> <span class="pre">(point-min))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(while</span> <span class="pre">(&lt;</span> <span class="pre">(point)</span> <span class="pre">(point-max))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(forward-word</span> <span class="pre">1)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(setq</span> <span class="pre">count</span> <span class="pre">(1+</span> <span class="pre">count)))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">&quot;Buffer</span> <span class="pre">has</span> <span class="pre">%d</span> <span class="pre">words.&quot;</span> <span class="pre">count))))</span></code></div>
+</div>
+</div>
+</div>
+</div>
+<p>Running <cite>describe-function</cite> tells us:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">save-excursion</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">special</span> <span class="pre">form</span> <span class="pre">in</span> <span class="pre">'C</span> <span class="pre">source</span> <span class="pre">code'.</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(save-excursion</span> <span class="pre">&amp;rest</span> <span class="pre">body)</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">point,</span> <span class="pre">mark,</span> <span class="pre">and</span> <span class="pre">current</span> <span class="pre">buffer;</span> <span class="pre">execute</span> <span class="pre">body;</span> <span class="pre">restore</span> <span class="pre">those</span> <span class="pre">things.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Executes</span> <span class="pre">body</span> <span class="pre">just</span> <span class="pre">like</span> <span class="pre">'progn'.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">values</span> <span class="pre">of</span> <span class="pre">point,</span> <span class="pre">mark</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">buffer</span> <span class="pre">are</span> <span class="pre">restored</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">even</span> <span class="pre">in</span> <span class="pre">case</span> <span class="pre">of</span> <span class="pre">abnormal</span> <span class="pre">exit</span> <span class="pre">(throw</span> <span class="pre">or</span> <span class="pre">error).</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">state</span> <span class="pre">of</span> <span class="pre">activation</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">mark</span> <span class="pre">is</span> <span class="pre">also</span> <span class="pre">restored.</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">construct</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">save</span> <span class="pre">`deactivate-mark',</span> <span class="pre">and</span> <span class="pre">therefore</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">functions</span> <span class="pre">that</span> <span class="pre">change</span> <span class="pre">the</span> <span class="pre">buffer</span> <span class="pre">will</span> <span class="pre">still</span> <span class="pre">cause</span> <span class="pre">deactivation</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">of</span> <span class="pre">the</span> <span class="pre">mark</span> <span class="pre">at</span> <span class="pre">the</span> <span class="pre">end</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">command.</span>&#160; <span class="pre">To</span> <span class="pre">prevent</span> <span class="pre">that,</span> <span class="pre">bind</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">'deactivate-mark'</span> <span class="pre">with</span> <span class="pre">'let'.</span></code></div>
+</div>
+</div>
+<div class="section" id="what-you-have-learned">
+<h2>What You Have Learned<a class="headerlink" href="#what-you-have-learned" title="Permalink to this headline">¶</a></h2>
+<p>You have learned:</p>
+<ul class="simple">
+<li><p>how to build and plumb in a function from end-to-end</p></li>
+<li><p>how to interrogate source code in Elisp to try and work out what things do</p></li>
+<li><p>some basic cursor operations</p></li>
+<li><p>how to restore the users state once you have manipulated it</p></li>
+</ul>
+</div>
+<div class="section" id="additional-reading">
+<h2>Additional Reading<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h2>
+<p>When writing this lesson I decided on a function which counted the words in a buffer. Whilst trying to work out how to do it I stumbled upon Chapter 11 of <a class="reference external" href="http://oreilly.com/catalog/9781565921528">Learning GNU Emacs</a> which has a function to do precisely this.</p>
+<p>The rest of Chapter 11 is worth reading.</p>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>Try and work out how to count the paragraphs and sentences in a buffer.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 5-2 - Working With Buffers (1)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#preparing-our-elisp-file">Preparing Our Elisp File</a></li>
+<li><a class="reference internal" href="#examining-our-function">Examining Our Function</a></li>
+<li><a class="reference internal" href="#implementing-the-function">Implementing The Function</a></li>
+<li><a class="reference internal" href="#what-you-have-learned">What You Have Learned</a></li>
+<li><a class="reference internal" href="#additional-reading">Additional Reading</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../lesson-5-1-elisp-in-files/"
+                          title="previous chapter">Lesson 5-1 - Elisp In Files</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-5-3-scope-of-variables-set-setq-let-etc/"
+                          title="next chapter">Lesson 5-3 - Scope Of Variables (set, setq, let, let* etc)</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-5-3-scope-of-variables-set-setq-let-etc/" title="Lesson 5-3 - Scope Of Variables (set, setq, let, let* etc)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-5-1-elisp-in-files/" title="Lesson 5-1 - Elisp In Files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 5-2 - Working With Buffers (1)</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2-3 - Lists (At Last) &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 2-4 - Symbols And Variables" href="../lesson-2-4-symbols-and-variables/" />
+    <link rel="prev" title="Lesson 2-2 - Primitive Data Types (1)" href="../lesson-2-2-primitive-data-types-1/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-2-4-symbols-and-variables/" title="Lesson 2-4 - Symbols And Variables"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-2-2-primitive-data-types-1/" title="Lesson 2-2 - Primitive Data Types (1)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 2-3 - Lists (At Last)</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-2-3-lists-at-last">
+<h1>Lesson 2-3 - Lists (At Last)<a class="headerlink" href="#lesson-2-3-lists-at-last" title="Permalink to this headline">¶</a></h1>
+<p><strong>Prerequesite:</strong> This lesson presumes you know how to invoke Elisp expression as shown in Lesson 2-1.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Elisp is a dialect of Lisp - the LISt Processing language.</p>
+<p>You will have noticed that all the expressions we have used so far have been of the form <code class="docutils literal notranslate"><span class="pre">(something</span> <span class="pre">somethingelse</span> <span class="pre">anotherthing)</span></code>. That basic form is a list - defined by the opening and closing brackets. All the expressions we have looked at so far have been the simplest sort of programmes - lists where the first element is an operator and the remaining elements are data. But a list can also be simple data.</p>
+</div>
+<div class="section" id="data-lists">
+<h2>Data Lists<a class="headerlink" href="#data-lists" title="Permalink to this headline">¶</a></h2>
+<p>The Elisp interpreter has to be told that it is a data list. This is done by <strong>quoting</strong> it with a single quote.</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+<p>The apostrophe <code class="docutils literal notranslate"><span class="pre">'</span></code> is syntactic sugar for the quote operator which can be invoked like a normal operator:</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(quote</span> <span class="pre">(1</span> <span class="pre">2</span> <span class="pre">3))</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+<p>You can also make a list with the list operator:</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(list</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+<p>It all seems so reasonable, but wait, lets try that again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">`(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+<p>“<em>Ah, we have just done that</em>” sez you - except we haven’t. This last example has a <strong>backtick</strong> <code class="docutils literal notranslate"><span class="pre">`</span></code> and not a <strong>single quote</strong> <code class="docutils literal notranslate"><span class="pre">'</span></code>. The backtick is a different operator which, in this instance, just produces a list. In other circumstances it behaves very differently to the single quote operator.</p>
+</div>
+<div class="section" id="nested-expressions">
+<h2>Nested Expressions<a class="headerlink" href="#nested-expressions" title="Permalink to this headline">¶</a></h2>
+<p>You can nest expressions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">1</span> <span class="pre">(*</span> <span class="pre">2</span> <span class="pre">3))</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p>
+</dd>
+</dl>
+<p>The inner expression is evaluated first:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Inner</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(*</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p>
+</dd>
+</dl>
+<p>This is then put into the outer expression which is then evaluated:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Outer</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(+</span> <span class="pre">1</span> <span class="pre">6)</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="what-you-have-learned">
+<h2>What You Have Learned<a class="headerlink" href="#what-you-have-learned" title="Permalink to this headline">¶</a></h2>
+<p>One of the great simplicities of Lisp is that data and programmes are very similar - both are lists - and that you can manipulate programmes as if they were data.</p>
+<p>We have previously seen <em>lists-as-programmes</em> and this section has looked at <em>lists-as-data</em> and the nesting of lists.</p>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>There are three additional functions that can be used to make and break lists <code class="docutils literal notranslate"><span class="pre">cons</span></code>, <code class="docutils literal notranslate"><span class="pre">car</span></code> and <code class="docutils literal notranslate"><span class="pre">cdr</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cons</span></code> is short for constructs and is used to build lists. <code class="docutils literal notranslate"><span class="pre">car</span></code> and <code class="docutils literal notranslate"><span class="pre">cdr</span></code> take their name from assembly code instructions whose meanings may as well be lost in the mists of time.</p>
+<p>You build a lists with <code class="docutils literal notranslate"><span class="pre">cons</span></code> like this:</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(cons</span> <span class="pre">1</span> <span class="pre">'(2</span> <span class="pre">3))</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">2</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">cons</span></code> adds a new value to the start or <em>head</em> of a list. Note that the list to which you are adding it has to be quoted.</p>
+<p>You can split a list into two parts - the first value (the <em>head</em>) and the remaining ones (the <em>tail</em>). The head is extracted with <code class="docutils literal notranslate"><span class="pre">car</span></code>:</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(car</span> <span class="pre">'(1</span> <span class="pre">2</span> <span class="pre">3))</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+</dd>
+</dl>
+<p>The tail is extracted with <code class="docutils literal notranslate"><span class="pre">cdr</span></code>:</p>
+<dl class="field-list simple">
+<dt class="field-odd">You Type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(cdr</span> <span class="pre">'(1</span> <span class="pre">2</span> <span class="pre">3))</span></code></p>
+</dd>
+<dt class="field-even">Result</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 2-3 - Lists (At Last)</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#data-lists">Data Lists</a></li>
+<li><a class="reference internal" href="#nested-expressions">Nested Expressions</a></li>
+<li><a class="reference internal" href="#what-you-have-learned">What You Have Learned</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../lesson-2-2-primitive-data-types-1/"
+                          title="previous chapter">Lesson 2-2 - Primitive Data Types (1)</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-2-4-symbols-and-variables/"
+                          title="next chapter">Lesson 2-4 - Symbols And Variables</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-2-4-symbols-and-variables/" title="Lesson 2-4 - Symbols And Variables"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-2-2-primitive-data-types-1/" title="Lesson 2-2 - Primitive Data Types (1)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 2-3 - Lists (At Last)</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

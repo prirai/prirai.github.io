@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 4-4 - Adding Buttons To The Tool-bar &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Emacs And The .emacs File" href="../emacs-and-the-dot-emacs-file/" />
+    <link rel="prev" title="Lesson 4-3 - Emacs Menus" href="../lesson-4-3-emacs-menus/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../emacs-and-the-dot-emacs-file/" title="Emacs And The .emacs File"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-4-3-emacs-menus/" title="Lesson 4-3 - Emacs Menus"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 4-4 - Adding Buttons To The Tool-bar</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-4-4-adding-buttons-to-the-tool-bar">
+<h1>Lesson 4-4 - Adding Buttons To The Tool-bar<a class="headerlink" href="#lesson-4-4-adding-buttons-to-the-tool-bar" title="Permalink to this headline">¶</a></h1>
+<p><strong>Prerequisite:</strong> this lesson presumes you know how to use the <code class="docutils literal notranslate"><span class="pre">.emacs</span></code> file as outlined in Lessons 4-1 and 4-2.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Adding buttons to the tool-bar is conceptually similar to adding menu items - binding in a ‘non-key’ keymap to the <code class="docutils literal notranslate"><span class="pre">global=map</span></code>.</p>
+<p>Before you do it you will need to create a new button image. Emacs buttons are stored in the directory <code class="docutils literal notranslate"><span class="pre">usr/share/emacs/23.1/etc/images/</span></code>. Copy one out to a directory under your home directory. Fire up the Gimp, edit the image and resave it as <code class="docutils literal notranslate"><span class="pre">omar.xmp</span></code>. Sudo to root and copy the new icon back to <code class="docutils literal notranslate"><span class="pre">usr/share/emacs/23.1/etc/images/</span></code>.</p>
+<p>We will use the functions <code class="docutils literal notranslate"><span class="pre">omar-hip</span></code> and <code class="docutils literal notranslate"><span class="pre">omar-hotel</span></code> which we defined for the previous lesson.</p>
+</div>
+<div class="section" id="the-basics-of-the-toolbar">
+<h2>The Basics Of The Toolbar<a class="headerlink" href="#the-basics-of-the-toolbar" title="Permalink to this headline">¶</a></h2>
+<p>Add the following line to your <code class="docutils literal notranslate"><span class="pre">.emacs</span></code> file and re-evaluate the buffer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">define</span><span class="o">-</span><span class="n">key</span> <span class="k">global</span><span class="o">-</span><span class="nb">map</span> <span class="p">[</span><span class="n">tool</span><span class="o">-</span><span class="n">bar</span> <span class="n">omar</span><span class="o">-</span><span class="n">button</span><span class="p">]</span>
+<span class="s1">&#39;(menu-item &quot;Hotel&quot; omar-hotel</span>
+   <span class="p">:</span><span class="n">help</span> <span class="s2">&quot;OMG Omar!&quot;</span>
+   <span class="p">:</span><span class="n">image</span> <span class="p">(</span><span class="n">image</span> <span class="p">:</span><span class="nb">type</span> <span class="n">xpm</span> <span class="p">:</span><span class="n">file</span> <span class="s2">&quot;omar.xpm&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>We are binding in a <code class="docutils literal notranslate"><span class="pre">menu-item</span></code> onto the tool-bar - the <code class="docutils literal notranslate"><span class="pre">menu-item</span></code> has a paired-list with an image description.</p>
+</div>
+<div class="section" id="what-you-have-learned">
+<h2>What You Have Learned<a class="headerlink" href="#what-you-have-learned" title="Permalink to this headline">¶</a></h2>
+<p>You have learned:</p>
+<ul class="simple">
+<li><p>where tool-bar icons are</p></li>
+<li><p>how to edit them</p></li>
+<li><p>how to bind them in</p></li>
+</ul>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>The tool-bar button we created was added at the start of the tool-bar. How would you add it to the end of the toolbar?</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 4-4 - Adding Buttons To The Tool-bar</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#the-basics-of-the-toolbar">The Basics Of The Toolbar</a></li>
+<li><a class="reference internal" href="#what-you-have-learned">What You Have Learned</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../lesson-4-3-emacs-menus/"
+                          title="previous chapter">Lesson 4-3 - Emacs Menus</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../emacs-and-the-dot-emacs-file/"
+                          title="next chapter">Emacs And The .emacs File</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../emacs-and-the-dot-emacs-file/" title="Emacs And The .emacs File"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-4-3-emacs-menus/" title="Lesson 4-3 - Emacs Menus"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 4-4 - Adding Buttons To The Tool-bar</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

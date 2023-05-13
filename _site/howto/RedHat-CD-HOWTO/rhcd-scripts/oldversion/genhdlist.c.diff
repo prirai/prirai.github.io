@@ -1,0 +1,55 @@
+*** genhdlist.c.orig    Fri Nov 27 12:08:13 1998
+--- genhdlist.c Fri Nov 27 12:08:20 1998
+***************
+*** 12,23 ****
+--- 12,26 ----
+  
+  #define FILENAME_TAG 1000000
+  
++ /* Not used apparently...
++ 
+  int tags[] =  { RPMTAG_NAME, RPMTAG_VERSION, RPMTAG_RELEASE, RPMTAG_SERIAL,
+                RPMTAG_FILENAMES, RPMTAG_FILESIZES, RPMTAG_GROUP,
+                RPMTAG_REQUIREFLAGS, RPMTAG_REQUIRENAME, RPMTAG_REQUIREVERSION,
+                RPMTAG_DESCRIPTION, RPMTAG_SUMMARY, RPMTAG_PROVIDES,
+                RPMTAG_SIZE, RPMTAG_OBSOLETES };
+  int numTags = sizeof(tags) / sizeof(int);
++ */
+  
+  int main(int argc, char ** argv) {
+      char buf[300];
+***************
+*** 26,34 ****
+--- 29,39 ----
+      struct dirent * ent;
+      int fd, rc, isSource;
+      Header h;
++     /* not used 
+      int count, type;
+      int i;
+      void * ptr;
++     */
+  
+      if (argc != 2) {
+        fprintf(stderr, "usage: genhdlist <dir>\n");
+***************
+*** 74,79 ****
+--- 79,85 ----
+  
+            rc = rpmReadPackageHeader(fd, &h, &isSource, NULL, NULL);
+  
++           if (!rc) {
+            headerRemoveEntry(h, RPMTAG_POSTIN);
+            headerRemoveEntry(h, RPMTAG_POSTUN);
+            headerRemoveEntry(h, RPMTAG_PREIN);
+***************
+*** 110,115 ****
+--- 116,122 ----
+            headerWrite(outfd, h, HEADER_MAGIC_YES);
+            headerFree(h);
+            close(fd);
++           }
+        }
+  
+        errno = 0;
+

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1-1 - Using Emacs &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 2-1 - First Elisp Programme" href="../lesson-2-1-first-elisp-programme/" />
+    <link rel="prev" title="Getting Started" href="../getting-started/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-2-1-first-elisp-programme/" title="Lesson 2-1 - First Elisp Programme"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../getting-started/" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 1-1 - Using Emacs</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-1-1-using-emacs">
+<h1>Lesson 1-1 - Using Emacs<a class="headerlink" href="#lesson-1-1-using-emacs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="learning-emacs">
+<h2>Learning Emacs<a class="headerlink" href="#learning-emacs" title="Permalink to this headline">¶</a></h2>
+<p>This book is not designed to teach you how to use Emacs. It will teach you enough Emacs to complete the work in this book, but not more.</p>
+<p>If you want to learn to use Emacs then you should consider buying a book - I recommend <a class="reference external" href="http://oreilly.com/catalog/9781565921528">Learning Gnu Emacs</a>.</p>
+</div>
+<div class="section" id="emacs-components">
+<h2>Emacs Components<a class="headerlink" href="#emacs-components" title="Permalink to this headline">¶</a></h2>
+<p>The version of Emacs we are using has 5 components on it:</p>
+<ul class="simple">
+<li><p>a menubar</p></li>
+<li><p>a toolbar</p></li>
+<li><p>a window area (it is possible to have multiple window views)</p></li>
+<li><p>a mode line</p></li>
+<li><p>a minibuffer</p></li>
+</ul>
+<p>These are used for different things and are marked on the diagram below:</p>
+<img alt="../../_images/emacs-components.png" src="../../_images/emacs-components.png" />
+<p>A file is referred to as a buffer - and a window is therefore a view of a buffer.</p>
+</div>
+<div class="section" id="emacs-keys">
+<h2>Emacs Keys<a class="headerlink" href="#emacs-keys" title="Permalink to this headline">¶</a></h2>
+<p>Emacs is primarily a keyboard-focused editor. The version we are using has mouse-friendly components (the menu bar, the toolbar) but they are very much tacked on. In a lot of environments the non-X Windows version isn’t supported so learning the key short cuts for <strong>all</strong> menu actions is essential.</p>
+<p>In this book the various keyboard short cuts will be introduced as needed. There are two keys that you will need to know about.</p>
+<p>Emacs uses so-called key modifiers to implement keyboard shortcuts. The two important ones are the Control Key (<cite>[Ctrl]</cite> on your keyboard) and the Meta Key (<cite>[Alt]</cite> on your keyboard). Some keyboard shortcuts require you to use both of them at the same time.</p>
+<p>The most common key modifier on the keyboard is the Shift Key <cite>[Shift]</cite>. Control and Meta/Alt work in the same way. You implement Control-x by pressing <cite>[Ctrl]</cite> first, and then, whilst holding it down, pressing <cite>x</cite> - the same way as you do Shift-x.</p>
+<p>Where keyboard commands are required in this book they will be spelled out, but in other publications online (or the Emacs help) they are often written in a contracted form like C-x or M-x.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 1-1 - Using Emacs</a><ul>
+<li><a class="reference internal" href="#learning-emacs">Learning Emacs</a></li>
+<li><a class="reference internal" href="#emacs-components">Emacs Components</a></li>
+<li><a class="reference internal" href="#emacs-keys">Emacs Keys</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../getting-started/"
+                          title="previous chapter">Getting Started</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-2-1-first-elisp-programme/"
+                          title="next chapter">Lesson 2-1 - First Elisp Programme</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-2-1-first-elisp-programme/" title="Lesson 2-1 - First Elisp Programme"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../getting-started/" title="Getting Started"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 1-1 - Using Emacs</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

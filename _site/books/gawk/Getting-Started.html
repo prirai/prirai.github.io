@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 1989, 1991, 1992, 1993, 1996-2005, 2007, 2009-2020 
+
+Free Software Foundation, Inc.
+
+
+
+This is Edition 5.1 of GAWK: Effective AWK Programming: A User's Guide for GNU Awk,
+for the 5.1.0 (or later) version of the GNU
+implementation of AWK.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "GNU General Public License", with the
+Front-Cover Texts being "A GNU Manual", and with the Back-Cover Texts
+as in (a) below.
+A copy of the license is included in the section entitled
+"GNU Free Documentation License".
+
+a. The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual." -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Getting Started (The GNU Awk User&rsquo;s Guide)</title>
+
+<meta name="description" content="Getting Started (The GNU Awk User&rsquo;s Guide)">
+<meta name="keywords" content="Getting Started (The GNU Awk User&rsquo;s Guide)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Index.html" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Running-gawk.html" rel="next" title="Running gawk">
+<link href="Acknowledgments.html" rel="prev" title="Acknowledgments">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="/software/gnulib/manual.css">
+
+
+<link rel="stylesheet" type="text/css" href="../bookstyle.css"></head>
+
+<body lang="en">
+<span id="Part-I_003a-The-awk-Language"></span><div class="header">
+<p>
+Next: <a href="Invoking-Gawk.html" accesskey="n" rel="next">Invoking Gawk</a>, Previous: <a href="Preface.html" accesskey="p" rel="prev">Preface</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h1 class="part">Part I:<br>The <code>awk</code> Language</h1>
+<hr>
+
+
+<span id="Getting-Started"></span><span id="Getting-Started-with-awk"></span><h2 class="chapter">1 Getting Started with <code>awk</code></h2>
+<span id="index-awk-9"></span>
+
+<p>The basic function of <code>awk</code> is to search files for lines (or other
+units of text) that contain certain patterns.  When a line matches one
+of the patterns, <code>awk</code> performs specified actions on that line.
+<code>awk</code> continues to process input lines in this way until it reaches
+the end of the input files.
+</p>
+<span id="index-awk-10"></span>
+<span id="index-programming-languages"></span>
+<span id="index-awk-programs"></span>
+<p>Programs in <code>awk</code> are different from programs in most other languages,
+because <code>awk</code> programs are <em>data driven</em> (i.e., you describe
+the data you want to work with and then what to do when you find it).
+Most other languages are <em>procedural</em>; you have to describe, in great
+detail, every step the program should take.  When working with procedural
+languages, it is usually much
+harder to clearly describe the data your program will process.
+For this reason, <code>awk</code> programs are often refreshingly easy to
+read and write.
+</p>
+<span id="index-program_002c-definition-of"></span>
+<span id="index-rule_002c-definition-of"></span>
+<p>When you run <code>awk</code>, you specify an <code>awk</code> <em>program</em> that
+tells <code>awk</code> what to do.  The program consists of a series of
+<em>rules</em> (it may also contain <em>function definitions</em>,
+an advanced feature that we will ignore for now;
+see section <a href="User_002ddefined.html">User-Defined Functions</a>).  Each rule specifies one
+pattern to search for and one action to perform
+upon finding the pattern.
+</p>
+<p>Syntactically, a rule consists of a <em>pattern</em> followed by an
+<em>action</em>.  The action is enclosed in braces to separate it from the
+pattern.  Newlines usually separate rules.  Therefore, an <code>awk</code>
+program looks like this:
+</p>
+<div class="example">
+<pre class="example"><var>pattern</var> { <var>action</var> }
+<var>pattern</var> { <var>action</var> }
+&hellip;
+</pre></div>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Running-gawk.html" accesskey="1">Running gawk</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to run <code>gawk</code> programs; includes
+                                command-line syntax.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Sample-Data-Files.html" accesskey="2">Sample Data Files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Sample data files for use in the <code>awk</code>
+                                programs illustrated in this Web page.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Very-Simple.html" accesskey="3">Very Simple</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A very simple example.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Two-Rules.html" accesskey="4">Two Rules</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A less simple one-line example using two
+                                rules.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="More-Complex.html" accesskey="5">More Complex</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">A more complex example.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Statements_002fLines.html" accesskey="6">Statements/Lines</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Subdividing or combining statements into
+                                lines.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Other-Features.html" accesskey="7">Other Features</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Other Features of <code>awk</code>.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="When.html" accesskey="8">When</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">When to use <code>gawk</code> and when to use
+                                other things.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Intro-Summary.html" accesskey="9">Intro Summary</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Summary of the introduction.
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Invoking-Gawk.html" accesskey="n" rel="next">Invoking Gawk</a>, Previous: <a href="Preface.html" accesskey="p" rel="prev">Preface</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

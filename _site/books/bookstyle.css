@@ -1,0 +1,240 @@
+a.summary-letter {
+    text-decoration: none
+}
+
+blockquote.smallquotation {
+    font-size: smaller
+}
+
+div.display {
+    margin-left: 3.2em
+}
+
+div.example {
+    margin-left: 3.2em
+}
+
+div.indentedblock {
+    margin-left: 3.2em
+}
+
+div.lisp {
+    margin-left: 3.2em
+}
+
+div.smalldisplay {
+    margin-left: 3.2em
+}
+
+div.smallexample {
+    margin-left: 3.2em
+}
+
+div.smallindentedblock {
+    margin-left: 3.2em;
+    font-size: smaller
+}
+
+div.smalllisp {
+    margin-left: 3.2em
+}
+
+kbd {
+    font-style: oblique
+}
+
+pre.display {
+    font-family: inherit
+}
+
+pre.format {
+    font-family: inherit
+}
+
+pre.menu-comment {
+    font-family: serif
+}
+
+pre.menu-preformatted {
+    font-family: serif
+}
+
+pre.smalldisplay {
+    font-family: inherit;
+    font-size: smaller
+}
+
+pre.smallexample {
+    font-size: normal
+}
+
+pre.smallformat {
+    font-family: inherit;
+    font-size: smaller
+}
+
+pre.smalllisp {
+    font-size: smaller
+}
+
+span.nocodebreak {
+    white-space: nowrap
+}
+
+span.nolinebreak {
+    white-space: nowrap
+}
+
+span.roman {
+    font-family: serif;
+    font-weight: normal
+}
+
+span.sansserif {
+    font-family: sans-serif;
+    font-weight: normal
+}
+
+ul.no-bullet {
+    list-style: none
+}
+
+.example {
+    font-size: large
+}
+
+body {
+    text-align: justify;
+    max-width: 100%;
+    padding: 2% 10% 0 10%;
+    background-image: none;
+    background-color: #292323;
+    color: #fdfde3;
+    font-family: Caladea, serif;
+}
+
+@media screen and (min-width: 1000px) {
+
+    html {
+        font-size: 170%;
+    }
+
+    li a:link {
+        color: #d4ac27;
+        border-color: #d44a27;
+        border: 1px solid;
+        border-radius: 8px;
+        text-decoration: none;
+        padding: 2px;
+    }
+
+    li a:visited {
+        color: #AFCBF0;
+        border-color: #0A346B;
+        text-decoration: solid;
+    }
+
+    li a:hover {
+        color: #0A346B;
+        background-color: #AFCBF0;
+        text-decoration: dashed;
+        text-decoration-color: #0A346B;
+    }
+
+    li a:active {
+        color: yellow;
+        border-color: #AFCBF0;
+        text-decoration: line-through;
+        transition: 0.5s;
+    }
+
+    li {
+        padding: 10px;
+    }
+
+    li {
+        font-size: 95%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        max-width: 100%;
+        padding: 3%;
+    }
+
+    .font-size-adjust {
+        font-size: 100%;
+    }
+}
+
+table {
+    overflow: visible;
+}
+
+@font-face {
+    font-family: 'Hack';
+    src: url('../assets/fonts/Hack/Hack-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+pre {
+    margin: 0;
+    padding: 0;
+    max-width: calc(93vw);
+    font-family: Hack;
+    overflow-x: scroll;
+    display: block;
+    color: white;
+    box-sizing: border-box;
+    background-color: black;
+    padding: auto;
+    border: 2px solid green;
+}
+
+
+.book {
+    max-width: 100%;
+}
+
+.example {
+    font-size: large;
+}
+
+/* Imported from root style.css file.*/
+a:link {
+    font-style: oblique;
+    color: #d4ac27;
+}
+
+a:visited {
+    color: #d4ac27;
+}
+
+a:hover {
+    background-color: #d4ac27;
+    color: black;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+.pg-active {
+    color: #0A346B;
+    background-color: #AFCBF0;
+}
+
+
+.bu:hover {
+    background-color: #AFCBF0;
+}
+
+.mobile-nav {
+    visibility: collapse;
+    height: 0px;
+}
+
+.related {
+    visibility: collapse;
+    height: 0px;
+}

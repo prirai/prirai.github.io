@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 3-2 - More Functions &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 4-1 - Writing Elisp In Emacs" href="../lesson-4-1-writing-elisp-in-emacs/" />
+    <link rel="prev" title="Lesson 3-1 - Writing Functions" href="../lesson-3-1-writing-functions/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-4-1-writing-elisp-in-emacs/" title="Lesson 4-1 - Writing Elisp In Emacs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-3-1-writing-functions/" title="Lesson 3-1 - Writing Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3-2 - More Functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-3-2-more-functions">
+<h1>Lesson 3-2 - More Functions<a class="headerlink" href="#lesson-3-2-more-functions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Prerequisite:</strong> This lesson presumes you know how to invoke Elisp expression as scripts as shown in Lesson 3-1.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The functions we built in the previous lesson were a bit useless. This lesson will look at some more sophisticated functions:</p>
+<ul class="simple">
+<li><p>ones which can use local variables</p></li>
+<li><p>recursive functions</p></li>
+</ul>
+</div>
+<div class="section" id="functions-with-local-variables">
+<h2>Functions With Local Variables<a class="headerlink" href="#functions-with-local-variables" title="Permalink to this headline">¶</a></h2>
+<p>We have seen how to use <code class="docutils literal notranslate"><span class="pre">set</span></code> and <code class="docutils literal notranslate"><span class="pre">setq</span></code> to set <em>global</em> variables. Global variables are very ugly to use as they can be changed from anywhere and at anytime. This makes them very hard to reason about, and hence to use safely and debug.</p>
+<p>It is important to be able to define <em>local</em> variables - variables which can only be set and changed locally from a small number of defined and known places.</p>
+<p>The function used to do this is <code class="docutils literal notranslate"><span class="pre">let</span></code>. It works like <code class="docutils literal notranslate"><span class="pre">set</span></code>.</p>
+<p>Type the following expressions in a file:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(let</span> <span class="pre">((first</span> <span class="pre">&quot;hey&quot;)</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(second</span> <span class="pre">&quot;ho&quot;))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">first)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">second))</span></code></div>
+</div>
+</div>
+<p>The output should be:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">hey</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ho</span></code></div>
+</div>
+<p>If you carefully count the brackets you will see that <code class="docutils literal notranslate"><span class="pre">(first</span> <span class="pre">&quot;hey&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">(second</span> <span class="pre">&quot;ho&quot;)</span></code> are both within a list that is the first parameter of <code class="docutils literal notranslate"><span class="pre">let</span></code>. The scope of those variables is then the list that makes up the rest of the expression that has <code class="docutils literal notranslate"><span class="pre">let</span></code> as its operator.</p>
+<p>We can see that this is the case by adding another message line:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(let</span> <span class="pre">((first</span> <span class="pre">&quot;hey&quot;)</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(second</span> <span class="pre">&quot;ho&quot;))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">first)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">second))</span></code></div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">first)</span></code></div>
+</div>
+<p>When we try and run this we get an error message printed out:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">hey</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ho</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Symbol's</span> <span class="pre">value</span> <span class="pre">as</span> <span class="pre">variable</span> <span class="pre">is</span> <span class="pre">void:</span> <span class="pre">first</span></code></div>
+</div>
+<p>This can now be used to make functions which are safe to use. Type in the following function:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(defun</span> <span class="pre">myfun</span> <span class="pre">(a</span> <span class="pre">b</span> <span class="pre">c</span> <span class="pre">d)</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">nonce</span> <span class="pre">function</span> <span class="pre">designed</span> <span class="pre">to</span> <span class="pre">show</span> <span class="pre">how</span> <span class="pre">to</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">local</span> <span class="pre">variables</span> <span class="pre">safely&quot;</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(let</span> <span class="pre">((e</span> <span class="pre">(+</span> <span class="pre">a</span> <span class="pre">b))</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(f</span> <span class="pre">(*</span> <span class="pre">c</span> <span class="pre">d)))</span></code></div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(-</span> <span class="pre">e</span> <span class="pre">f)))</span></code></div>
+</div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">(number-to-string</span> <span class="pre">(myfun</span> <span class="pre">7</span> <span class="pre">5</span> <span class="pre">3</span> <span class="pre">1)))</span></code></div>
+</div>
+<p>The result should be:</p>
+<p><code class="docutils literal notranslate"><span class="pre">9</span></code></p>
+<p>Check that result yourself by working through the arithmetic.</p>
+</div>
+<div class="section" id="recursive-functions">
+<h2>Recursive Functions<a class="headerlink" href="#recursive-functions" title="Permalink to this headline">¶</a></h2>
+<p>Recursive functions are an important part of functional programming. A recursive function is simply one that calls itself</p>
+<p>Create the following file:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(defun</span> <span class="pre">print_int</span> <span class="pre">(n)</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;This</span> <span class="pre">function</span> <span class="pre">prints</span> <span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">integers</span> <span class="pre">in</span> <span class="pre">reverse</span> <span class="pre">order&quot;</span></code></div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(message</span> <span class="pre">(number-to-string</span> <span class="pre">n))</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(if</span> <span class="pre">(=</span> <span class="pre">n</span> <span class="pre">0)</span> <span class="pre">(message</span> <span class="pre">&quot;That's</span> <span class="pre">all</span> <span class="pre">folks!&quot;)</span> <span class="pre">(print_int</span> <span class="pre">(-</span> <span class="pre">n</span> <span class="pre">1))))</span></code></div>
+</div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(print_int</span> <span class="pre">5)</span></code></div>
+</div>
+<p>Your output should be:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">5</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">4</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">3</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">2</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">1</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">0</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">That's</span> <span class="pre">all</span> <span class="pre">folks!</span></code></div>
+</div>
+<p>The key is the <code class="docutils literal notranslate"><span class="pre">if</span></code> expression. The first expression is <em>the terminal test</em>. If it is true the function prints “<em>That’s all folks!</em>”. If the terminal test is not met (ie it is false) the function calls itself with a value of the current value of <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+</div>
+<div class="section" id="what-you-have-learned">
+<h2>What You Have Learned<a class="headerlink" href="#what-you-have-learned" title="Permalink to this headline">¶</a></h2>
+<p>You have learned how to build basic functions with local variables and then how to build functions that call themselves.</p>
+</div>
+<div class="section" id="additional-reading">
+<h2>Additional Reading<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h2>
+<p>There is a section on <a class="reference external" href="http://www.gnu.org/software/emacs/emacs-lisp-intro/html_node/Recursive-Definition-Parts.html#Recursive-Definition-Parts">Recursive Functions</a> in the Gnu Emacs Lisp Intro.</p>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>Write a recursive function to calculate the factorial of an integer.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 3-2 - More Functions</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#functions-with-local-variables">Functions With Local Variables</a></li>
+<li><a class="reference internal" href="#recursive-functions">Recursive Functions</a></li>
+<li><a class="reference internal" href="#what-you-have-learned">What You Have Learned</a></li>
+<li><a class="reference internal" href="#additional-reading">Additional Reading</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../lesson-3-1-writing-functions/"
+                          title="previous chapter">Lesson 3-1 - Writing Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-4-1-writing-elisp-in-emacs/"
+                          title="next chapter">Lesson 4-1 - Writing Elisp In Emacs</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-4-1-writing-elisp-in-emacs/" title="Lesson 4-1 - Writing Elisp In Emacs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-3-1-writing-functions/" title="Lesson 3-1 - Writing Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 3-2 - More Functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

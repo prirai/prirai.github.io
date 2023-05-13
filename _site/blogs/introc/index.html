@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introduction to C Programming</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blogs/introc/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Introduction to C Programming"/>
+        <meta property="og:url" content="/blogs/introc/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blogs/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/home/">
+                <i class="lab la-searchengin"></i>
+                Search</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Introduction to C Programming</h1>
+<time datetime="2021-08-15">15 Aug 2021</time>
+    <a href="/tags/programming/" class="post-tag">programming</a>
+    <a href="/tags/c/" class="post-tag">c</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#why-learn-c">Why learn C?</a></li><li><a href="#why-c-and-not-any-other-language">Why C and not any other language?</a></li><li><a href="#what-will-you-need">What will you need</a><ul><li><a href="#compilers">Compilers</a></li><li><a href="#text-editors-and-ides">Text editors and IDEs</a></li><li><a href="#some-other-popular-ides-compilers-include">Some other popular IDEs/compilers include:</a></li></ul></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <blockquote>
+<p>C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators. C is not a &quot;very high level&quot; language, nor a &quot;big&quot; one, and is not specialized to any particular area of application. But its absence of restrictions and its generality make it more convenient and effective for many tasks than supposedly more powerful languages.</p>
+</blockquote>
+<h2 id="why-learn-c" tabindex="-1">Why learn C? <a class="direct-link" href="#why-learn-c" aria-hidden="true">#</a></h2>
+<p>C is a popular programming language that is known for its efficiency and versatility. It is used in a wide range of applications, including operating systems, embedded systems, and high-level programming languages like Perl, PHP, Python, and Ruby.</p>
+<p>One of the main reasons to learn C is its widespread use in operating systems. Many popular operating systems, such as Unix and Linux, are written in C, and knowledge of C can give you a deeper understanding of how these systems work. C is also a good choice for low-level programming tasks, such as those that require direct interaction with hardware or need to be highly optimized for performance.</p>
+<p>Another reason to learn C is its portability. C code can be compiled for a wide range of platforms, making it a good choice for applications that need to run on multiple devices. It is also a stable and mature language that is unlikely to disappear any time soon, which means that the skills you learn in C will remain useful for a long time.</p>
+<h2 id="why-c-and-not-any-other-language" tabindex="-1">Why C and not any other language? <a class="direct-link" href="#why-c-and-not-any-other-language" aria-hidden="true">#</a></h2>
+<p>The primary design of C is to produce portable code while maintaining performance and minimizing footprint (CPU time, memory usage, disk I/O, etc.). This is useful for operating systems, embedded systems or other programs where performance matters a lot (“high-level” interface would affect performance). With C it’s relatively easy to keep a mental picture of what a given line really does, because most of the things are written explicitly in the code. C has a big codebase for low level applications. It is the “native” language of UNIX, which makes it flexible and portable. It is a stable and mature language which is unlikely to disappear for a long time and has been ported to most, if not all, platforms.</p>
+<p>Let's start with the traditional hello world program:</p>
+<pre class="language-c"><code class="language-c"> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br> <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, World\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br><br><span class="token operator">*</span> <span class="token operator">*</span> <span class="token operator">*</span><br><br>OUTPUT<br><br>Hello<span class="token punctuation">,</span> World<br><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> Exited normally <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span></code></pre>
+<p>OK, so let's dive in and look at the first line in our program:</p>
+<p><code>#include &lt;stdio.h&gt;</code></p>
+<p>So, in order to understand what's happening here, you need to know that your machine comes with some already established utilities in order to relieve you from doing stuff from the bare basics. In this case we are invoking a standard library defined in the C language called the 'stdio' which is basically a utility for taking input from the user and flashing back the output. Having a library in hand always saves us from the burden of diving into the extreme low level code which we don't even have to go on and about tweaking.<br>
+Therefore we tell the compiler beforehand to include library code by using <a href="https://en.wikipedia.org/wiki/preprocessor_directive">preprocessor directives</a>. One of the very first tasks your compiler will perform is to search through your source code for preprocessor directives which modify your source code in some way. In our case, the #include preprocessor directive tells the compiler to copy source code from a library and insert it directly into the code where the preprocessor directive is found. Since our directive is at the very top of the file, the library code will be inserted at the top of the source file. (Note that this all happens in the computer's memory, so the original file on your disk never actually gets altered.)</p>
+<p><code>int main()</code></p>
+<p>Here we create a <strong>function</strong> named <code>main</code> that is the starting point for all C programs. All C programs require a function called &quot;main&quot; or they will not compile. Our function name is surrounded by two mysterious symbols, <strong>int</strong> and <strong>(void)</strong>. The &quot;int&quot; bit tells the compiler what kind of value our function will return while the &quot;(void)&quot; bit tells our compiler what kind of values we will &quot;pass&quot; into our function. We'll skip over what exactly this means for now as these values will be covered in more detail later in the book. The most important thing to understand right now is that together, these symbols <strong>declare</strong> our function to the compiler and tell it that it exists.</p>
+<p>So what is a function? In computer science, the term “function” is used a bit more loosely than in mathematics, since functions often express imperative ideas (as in the case of C) - that is, <em>how-to</em> process, instead of declarations. For now, suffice it to say, functions define a set of computer statements that work together to carry out a specific task. In C, the statements associated with a function are placed between a set of curly braces, <code>{ }</code>, which mark the beginning and end of the statements. Together, the curly braces and the statements are called a <strong>block.</strong> Let's take a look at the first line in our function's block:</p>
+<p><code>printf(&quot;Hello, World\n&quot;);</code></p>
+<h2 id="what-will-you-need" tabindex="-1">What will you need <a class="direct-link" href="#what-will-you-need" aria-hidden="true">#</a></h2>
+<p>No one ever became a musician just by reading sheet music. Musicians have to constantly play and practice on their instruments to get good. Similarly, the only way to become a programmer is to write and execute lots of code. To do that, you will need two different pieces of software: a <strong>compiler</strong> and a <strong>text editor</strong>. Both can be had for no cost.</p>
+<h3 id="compilers" tabindex="-1">Compilers <a class="direct-link" href="#compilers" aria-hidden="true">#</a></h3>
+<p>The compiler used in this course will be the GNU C Compiler (GCC).</p>
+<h3 id="text-editors-and-ides" tabindex="-1">Text editors and IDEs <a class="direct-link" href="#text-editors-and-ides" aria-hidden="true">#</a></h3>
+<p>Aside from a compiler, the only other software requirement is a <a href="https://en.wikipedia.org/wiki/Text_Editor">text editor</a> for writing and saving your C code. Note that a text editor is different from a <a href="https://en.wikipedia.org/wiki/Word_Processor">word processor</a>, a piece of software with many features for creating visually appealing documents. Unlike word processors, text editors are primarily designed to create plain text files. On Windows, the Notepad text editor can be used but it does not offer any advanced capabilities such as syntax highlighting and code completion. There are hundreds of text editors (see <a href="https://en.wikipedia.org/wiki/List_of_text_editors">List of Text Editors</a>). Among the most popular are <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">Vim</a> and <a href="https://en.wikipedia.org/wiki/Emacs">Emacs</a> as well as <a href="https://en.wikipedia.org/wiki/Notepad%2B%2B">Notepad++</a>, <a href="https://atom.io/">Atom</a>, <a href="https://en.wikipedia.org/wiki/Sublime_Text">Sublime Text</a>, <a href="https://en.wikipedia.org/wiki/gedit">gedit</a>, which are also available on other operating systems (“cross-platform”). These text editors come with <a href="https://en.wikipedia.org/wiki/syntax_highlighting">syntax highlighting</a> and line numbers, which makes code easier to read at a glance, and to spot syntax errors. Many text editors have features for increasing your coding speed, such as keystroke macros and code snippets, that you can take advantage of as you gain skill as a programmer.</p>
+<h3 id="some-other-popular-ides-compilers-include" tabindex="-1">Some other popular IDEs/compilers include: <a class="direct-link" href="#some-other-popular-ides-compilers-include" aria-hidden="true">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Website</th>
+<th>Platform</th>
+<th>License</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Eclipse_(software)" title="w:Eclipse (software)">Eclipse CDT</a></td>
+<td><a href="https://www.eclipse.org/downloads/packages/all">Eclipse</a></td>
+<td>Windows, Mac OS X, GNU/Linux</td>
+<td>Free/Libre and Open Source</td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Netbeans" title="w:Netbeans">Netbeans</a></td>
+<td><a href="https://netbeans.org">Netbeans</a></td>
+<td>Cross-platform</td>
+<td><a href="https://en.wikipedia.org/wiki/Common_Development_and_Distribution_License" title="w:Common Development and Distribution License">CDDL</a> and <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/GNOME_Builder" title="w:GNOME Builder">GNOME Builder</a></td>
+<td><a href="https://wiki.gnome.org/Apps/Builder">Builder</a></td>
+<td>GNU/Linux</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Anjuta" title="w:Anjuta">Anjuta</a></td>
+<td><a href="http://anjuta.org">Anjuta</a></td>
+<td>GNU/Linux</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Geany" title="w:Geany">Geany</a></td>
+<td><a href="http://www.geany.org">geany</a></td>
+<td>Cross-platform</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/KDevelop" title="w:KDevelop">KDevelop</a></td>
+<td><a href="https://www.kdevelop.org/">KDevelop</a></td>
+<td>Cross-platform</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/LCC_(compiler)" title="w:LCC (compiler)">Little C Compiler (LCC)</a></td>
+<td><a href="https://www.cs.virginia.edu/%5Clcc-win32">lcc</a></td>
+<td>Windows</td>
+<td>Open Source but not Libre</td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Pelles_C" title="w:Pelles C">Pelles C</a></td>
+<td><a href="http://smorgasbordet.com/pellesc">Pelles C</a></td>
+<td>Windows, Pocket PC</td>
+<td>Proprietary, free of charge</td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Dev-C%2B%2B" title="w:Dev-C++">Dev-C++</a></td>
+<td><a href="https://sourceforge.net/projects/orwelldevcpp/">Dev C++</a></td>
+<td>Windows</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/CodeLite" title="w:CodeLite">CodeLite</a></td>
+<td><a href="https://codelite.org/">CodeLite</a></td>
+<td>Cross-platform</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Code::Blocks" title="w:Code::Blocks">Code::Blocks</a></td>
+<td><a href="http://codeblocks.org/">Code::Blocks</a></td>
+<td>Cross-platform</td>
+<td><a href="https://en.wikipedia.org/wiki/GNU_General_Public_License" title="w:GNU General Public License">GPL</a></td>
+</tr>
+</tbody>
+</table>
+<p>The next program uses the formula <code>C=(5/9)(F-32)</code> to print the following table of Fahrenheit temperatures and their centigrade or Celsius equivalents:</p>
+<pre class="language-c"><code class="language-c"> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br> <span class="token comment">/* print Fahrenheit-Celsius table<br> for fahr = 0, 20, ..., 300 */</span><br><br> <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">int</span> f<span class="token punctuation">,</span> c<span class="token punctuation">;</span><br>     <span class="token keyword">int</span> lower<span class="token punctuation">,</span> upper<span class="token punctuation">,</span> step<span class="token punctuation">;</span><br>     lower <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">/* lower limit of temperature scale */</span><br>     upper <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span>    <span class="token comment">/* upper limit */</span><br>     step <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>  <span class="token comment">/* step size */</span><br>     f <span class="token operator">=</span> lower<span class="token punctuation">;</span><br>     <span class="token keyword">while</span> <span class="token punctuation">(</span>f <span class="token operator">&lt;=</span> upper<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>         c <span class="token operator">=</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token punctuation">(</span>f <span class="token operator">-</span> <span class="token number">32</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">9</span><span class="token punctuation">;</span><br>         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%dt%dn"</span><span class="token punctuation">,</span> f<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span><br>         f <span class="token operator">=</span> f <span class="token operator">+</span> step<span class="token punctuation">;</span><br>     <span class="token punctuation">}</span><br> <span class="token punctuation">}</span><br><br><br><br><span class="token operator">*</span> <span class="token operator">*</span> <span class="token operator">*</span><br><br>OUTPUT<br><br><span class="token number">0</span>	<span class="token operator">-</span><span class="token number">17</span><br><span class="token number">20</span>	<span class="token operator">-</span><span class="token number">6</span><br><span class="token number">40</span>	<span class="token number">4</span><br><span class="token number">60</span>	<span class="token number">15</span><br><span class="token number">80</span>	<span class="token number">26</span><br><span class="token number">100</span>	<span class="token number">37</span><br><span class="token number">120</span>	<span class="token number">48</span><br><span class="token number">140</span>	<span class="token number">60</span><br><span class="token number">160</span>	<span class="token number">71</span><br><span class="token number">180</span>	<span class="token number">82</span><br><span class="token number">200</span>	<span class="token number">93</span><br><span class="token number">220</span>	<span class="token number">104</span><br><span class="token number">240</span>	<span class="token number">115</span><br><span class="token number">260</span>	<span class="token number">126</span><br><span class="token number">280</span>	<span class="token number">137</span><br><span class="token number">300</span>	<span class="token number">148</span><br><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> Exited normally <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span></code></pre>
+<p>Program to simulate different logic gates and to contruct a new gate FIN_GATE using the given truth table condition:</p>
+<pre class="language-c"><code class="language-c"> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span><br><br> <span class="token keyword">int</span> <span class="token function">AND</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> b <span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><br>         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><br>     <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br> <span class="token keyword">int</span> <span class="token function">OR</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">||</span> b <span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><br>         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><br>     <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br> <span class="token keyword">int</span> <span class="token function">NOT</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><br>         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br>     <span class="token keyword">else</span><br>         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br> <span class="token keyword">int</span> <span class="token function">NAND</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">return</span><span class="token punctuation">(</span><span class="token function">NOT</span><span class="token punctuation">(</span><span class="token function">OR</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br> <span class="token keyword">int</span> <span class="token function">NOR</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">return</span><span class="token punctuation">(</span><span class="token function">NOT</span><span class="token punctuation">(</span><span class="token function">AND</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br> <span class="token keyword">int</span> <span class="token function">FIN_GATE</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">NOR</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">NAND</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><br>         <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><br>     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br> <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br> <span class="token punctuation">{</span><br>     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\t%s\t%s\n%d\t%d\t%d\n%d\t%d\t%d\n%d\t%d\t%d\n%d\t%d\t%d"</span><span class="token punctuation">,</span> <span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token string">"Output"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">FIN_GATE</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">FIN_GATE</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">FIN_GATE</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">FIN_GATE</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><br><br><br><span class="token operator">*</span> <span class="token operator">*</span> <span class="token operator">*</span><br><br>OUTPUT<br><br>A	B	Output<br><span class="token number">0</span>	<span class="token number">0</span>	<span class="token number">1</span><br><span class="token number">0</span>	<span class="token number">1</span>	<span class="token number">0</span><br><span class="token number">1</span>	<span class="token number">0</span>	<span class="token number">0</span><br><span class="token number">1</span>	<span class="token number">1</span>	<span class="token number">1</span><br><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> Exited normally <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><br><br><br><span class="token operator">*</span> <span class="token operator">*</span> <span class="token operator">*</span></code></pre>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blogs/hack-air/"><div>Wifi hacking with Airmon-ng <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        
+                </div>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+    </div>
+    <div class="text-content">
+        Have fun and explore</div>
+</div>
+        </footer>
+    </body>
+</html>

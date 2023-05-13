@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 4-1 - Writing Elisp In Emacs &#8212; Learn Elisp For Emacs (Draft In Progress)</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Lesson 4-2 - Adding Custom Functions To Emacs" href="../lesson-4-2-adding-custom-functions-to-emacs/" />
+    <link rel="prev" title="Lesson 3-2 - More Functions" href="../lesson-3-2-more-functions/" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../lesson-4-2-adding-custom-functions-to-emacs/" title="Lesson 4-2 - Adding Custom Functions To Emacs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-3-2-more-functions/" title="Lesson 3-2 - More Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 4-1 - Writing Elisp In Emacs</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lesson-4-1-writing-elisp-in-emacs">
+<h1>Lesson 4-1 - Writing Elisp In Emacs<a class="headerlink" href="#lesson-4-1-writing-elisp-in-emacs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Emacs as an editor provides a host of specific tools to help software developers in a wide range of languages. Not surprisingly the support for the Elisp language in Emacs is very good.</p>
+<p>This lesson will explore Emacs as an editor for Elisp.</p>
+<p>Emacs switches into a special mode for a particular programming language by looking at the extension on the filename - the extension for Elisp is <code class="docutils literal notranslate"><span class="pre">.el</span></code>. If you create a file called <em>something</em>.el and open it with Emacs you will see that the editor has changed itself.</p>
+<img alt="../../_images/emacs-lisp.png" src="../../_images/emacs-lisp.png" />
+<p>The modeline now contains the expression (Emacs-Lisp) which indicates that it is in <em>the Emacs Lisp Major Mode</em>. The menu bar now has an <em>Emacs-Lisp</em> menu.</p>
+<p>A new menu has appeared. Let’s look at some of the commands on it. There are indenting commands that can be used to pretty up the source code and lay it out consistently. (<em>Indent Line</em> uses the [Tab] key to indent a line. Regions commands can be used on regions - blocks of code which have been selected by marking their starts with [Control][Space] and the moving the cursor point.</p>
+<p>There are menu commands for evaluating expressions and the contents of the buffer as well as various profiling and tracing tools.</p>
+<p>If you execute expressions now, the operator <code class="docutils literal notranslate"><span class="pre">message</span></code> will now output to the <em>minibuffer</em> at the bottom of Emacs.</p>
+<p>One of the most important features in the debugger - which is triggered when you instrument a function for debugging using the menu command <em>Instrument Functions for Debugger</em>.</p>
+<img alt="../../_images/emacs-debugger.png" src="../../_images/emacs-debugger.png" />
+<p>Detailed instructions on using the Emacs debugger can be found in the <a class="reference external" href="http://www.gnu.org/software/emacs/manual/html_node/elisp/Using-Edebug.html#Using-Edebug">Emacs Manual</a></p>
+<p>Load an Elisp file, and execute it under the debugger. The diagram below shows it working. You can step through the code line-by-line. The debugger shows the values of the last expression executed in the minibuffer at the bottom. In the picture the last expression executed is <code class="docutils literal notranslate"><span class="pre">a</span></code> (as shown by the debugger cursor which is placed after it) - its current value (<code class="docutils literal notranslate"><span class="pre">7</span></code>) is shown in the minibuffer.</p>
+<img alt="../../_images/emacs-debugger2.png" src="../../_images/emacs-debugger2.png" />
+<p>Read the manual section and try out the debugger until you have mastered it - it will be necessary to use it to develop more complex functionality.</p>
+</div>
+<div class="section" id="what-you-have-learned">
+<h2>What You Have Learned<a class="headerlink" href="#what-you-have-learned" title="Permalink to this headline">¶</a></h2>
+<p>This lesson has covered the operations of the Emacs debugger Edebug.</p>
+</div>
+<div class="section" id="extra-activities">
+<h2>Extra Activities<a class="headerlink" href="#extra-activities" title="Permalink to this headline">¶</a></h2>
+<p>Run the menu item <em>Check Document Strings</em> in the <em>Emacs-Lisp</em> menu - can you work out what does the operator <code class="docutils literal notranslate"><span class="pre">provide</span></code> does?</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Lesson 4-1 - Writing Elisp In Emacs</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#what-you-have-learned">What You Have Learned</a></li>
+<li><a class="reference internal" href="#extra-activities">Extra Activities</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../lesson-3-2-more-functions/"
+                          title="previous chapter">Lesson 3-2 - More Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../lesson-4-2-adding-custom-functions-to-emacs/"
+                          title="next chapter">Lesson 4-2 - Adding Custom Functions To Emacs</a></p>
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../lesson-4-2-adding-custom-functions-to-emacs/" title="Lesson 4-2 - Adding Custom Functions To Emacs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lesson-3-2-more-functions/" title="Lesson 3-2 - More Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../">Learn Elisp For Emacs (Draft In Progress)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Lesson 4-1 - Writing Elisp In Emacs</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2010, Gordon Guthrie.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>
