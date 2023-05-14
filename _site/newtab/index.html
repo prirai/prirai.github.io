@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>🔍 Search</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/newtab/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="🔍 Search"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+        <main >
+            
+<style>
+main {
+    margin: 0;
+    max-height: 100vh;
+}
+.clock {
+    position: fixed;
+    z-index: 100;
+}
+.clock__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+.searchpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.searchpage form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.searchpage input {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin: 10px;
+    transition: all 0.2s ease-in-out;
+}
+.searchpage input:focus {
+    outline: none;
+    border: 1px solid #aaa;
+}
+.searchpage .buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.query {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+</style>
+<div class="clock">
+    <div class="clock__inner">
+        <div class="clock__time">
+            <span class="clock__hours"></span> : 
+            <span class="clock__minutes"></span>
+        </div>
+        <div class="clock__date">
+            <span class="clock__day"></span>
+            <span class="clock__month"></span>
+            <span class="clock__year"></span>
+        </div>
+    </div>
+</div>
+<script>
+    const clock = document.querySelector('.clock');
+    const clockHours = clock.querySelector('.clock__hours');
+    const clockMinutes = clock.querySelector('.clock__minutes');
+    const clockDay = clock.querySelector('.clock__day');
+    const clockMonth = clock.querySelector('.clock__month');
+    const clockYear = clock.querySelector('.clock__year');
+
+    function getTime() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const day = now.getDate();
+        const month = now.getMonth() + 1;
+        const year = now.getFullYear();
+
+        clockHours.textContent = hours;
+        clockMinutes.textContent = minutes;
+        clockDay.textContent = day;
+        clockMonth.textContent = month;
+        clockYear.textContent = year;
+    }
+
+    setInterval(getTime, 1000);
+</script>
+</div>
+
+<div class="searchpage">
+<form id="formquery" method="get" action="https://example.com">
+    <input id="query" maxlength="2048" name="q" type="text" title="Search" placeholder="Search" autocomplete="off"/>
+</form>
+    
+<div class="buttoncontainer">
+    <button id="annas" form="formquery" formaction="https://annas-archive.org/search">Anna's Archive</button>
+    <button id="kagi" form="formquery" formaction="https://kagi.com/search">Kagi</button>
+    <button id="searx" form="formquery" formaction="https://search.disroot.org">Searx</button>
+    <button id="duckduckgo" form="formquery" formaction="https://duckduckgo.com">DuckDuckGo</button>
+    <button id="you" form="formquery" formaction="https://you.com/search?q=jquery">you</button>
+    <button id="brave" form="formquery" formaction="https://search.brave.com/search">Brave</button>
+    <button id="mojeek" form="formquery" formaction="https://www.mojeek.com/search">Mojeek</button>
+    <button id="bing" form="formquery" formaction="https://www.bing.com/search">Bing</button>
+    <button id="google" form="formquery" formaction="https://www.google.com/search">Google</button>
+    <button id="scholar" form="formquery" formaction="https://scholar.google.com/scholar">Google Scholar</button>
+    <button id="urban" form="formquery" formaction="https://www.urbandictionary.com/define.php">Urban Dictionary</button>
+</div>
+
+<script>
+    document.getElementById("annas").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("kagi").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("searx").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("duckduckgo").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("you").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("brave").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("mojeek").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("bing").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("google").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("scholar").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("urban").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+</script>
+</div>
+        </main>
+    </body>
+</html>

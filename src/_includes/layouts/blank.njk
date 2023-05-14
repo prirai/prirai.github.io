@@ -20,11 +20,6 @@
     </head>
     <body>
         <main {% if templateClass %} class="{{ templateClass }}" {% endif %}>
-            <h1>{{ title }}</h1>
-            <aside>
-                <h2>Table of Contents</h2>
-                {{ content | toc | safe }}
-            </aside>
             {{ content | safe }}
         </main>
     </body>
