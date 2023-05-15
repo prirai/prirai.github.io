@@ -23,123 +23,98 @@
             
 <style>
 main {
-    margin: 0;
     max-height: 100vh;
 }
-.clock {
-    position: fixed;
-    z-index: 100;
+img {
+    height: 100px;
 }
-.clock__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40vh;
-    margin-left: auto;
-    margin-right: auto;
+button {
+    border: none;
 }
-.searchpage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+.datetime {
+  text-align: center;
+  border: 1px solid black;
+  margin: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+  padding: 5px 2px 2px 20px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.searchpage form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#time {
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.buttoncontainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  display: block;
+  margin: 1%;
+  border-radius: 12px;
+  background-color: white;
+  width: 14%;
+}
+
+.via {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#query {
+    margin-top: 35vh;
     width: 100%;
 }
-.searchpage input {
-    width: 100%;
-    max-width: 500px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    margin: 10px;
-    transition: all 0.2s ease-in-out;
-}
-.searchpage input:focus {
-    outline: none;
-    border: 1px solid #aaa;
-}
-.searchpage .buttoncontainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
-.query {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+@media screen and (max-width: 800px) {
+  button {
+    width: 30%;
+  }
 }
 </style>
-<div class="clock">
-    <div class="clock__inner">
-        <div class="clock__time">
-            <span class="clock__hours"></span> : 
-            <span class="clock__minutes"></span>
-        </div>
-        <div class="clock__date">
-            <span class="clock__day"></span>
-            <span class="clock__month"></span>
-            <span class="clock__year"></span>
-        </div>
-    </div>
+
+<!-- <div class="datetime">
+    <p id="time"></p>
+    <p id="date"></p>
 </div>
+
 <script>
-    const clock = document.querySelector('.clock');
-    const clockHours = clock.querySelector('.clock__hours');
-    const clockMinutes = clock.querySelector('.clock__minutes');
-    const clockDay = clock.querySelector('.clock__day');
-    const clockMonth = clock.querySelector('.clock__month');
-    const clockYear = clock.querySelector('.clock__year');
-
-    function getTime() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const day = now.getDate();
-        const month = now.getMonth() + 1;
-        const year = now.getFullYear();
-
-        clockHours.textContent = hours;
-        clockMinutes.textContent = minutes;
-        clockDay.textContent = day;
-        clockMonth.textContent = month;
-        clockYear.textContent = year;
-    }
-
-    setInterval(getTime, 1000);
-</script>
-</div>
+    // This script displays the local time zone time and then date. Time is in the format HH:MM in 24 hour format (no seconds). Date is in DD Month YYYY format.
+    var d = new Date();
+    var n = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    document.getElementById("time").innerHTML = n;
+    var m = d.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
+    document.getElementById("date").innerHTML = m;
+</script> -->
 
 <div class="searchpage">
 <form id="formquery" method="get" action="https://example.com">
-    <input id="query" maxlength="2048" name="q" type="text" title="Search" placeholder="Search" autocomplete="off"/>
+    <input id="query" maxlength="2048" name="q" type="text" title="Search Anything" placeholder="Search Anything" autocomplete="off"/>
 </form>
     
+<div class="via">Search via</div>
 <div class="buttoncontainer">
-    <button id="annas" form="formquery" formaction="https://annas-archive.org/search">Anna's Archive</button>
-    <button id="kagi" form="formquery" formaction="https://kagi.com/search">Kagi</button>
-    <button id="searx" form="formquery" formaction="https://search.disroot.org">Searx</button>
-    <button id="duckduckgo" form="formquery" formaction="https://duckduckgo.com">DuckDuckGo</button>
-    <button id="you" form="formquery" formaction="https://you.com/search?q=jquery">you</button>
-    <button id="brave" form="formquery" formaction="https://search.brave.com/search">Brave</button>
-    <button id="mojeek" form="formquery" formaction="https://www.mojeek.com/search">Mojeek</button>
-    <button id="bing" form="formquery" formaction="https://www.bing.com/search">Bing</button>
-    <button id="google" form="formquery" formaction="https://www.google.com/search">Google</button>
-    <button id="scholar" form="formquery" formaction="https://scholar.google.com/scholar">Google Scholar</button>
-    <button id="urban" form="formquery" formaction="https://www.urbandictionary.com/define.php">Urban Dictionary</button>
+    <button id="annas" form="formquery" formaction="https://annas-archive.org/search"><img src="/assets/img/annas.svg"></button>
+    <button id="kagi" form="formquery" formaction="https://kagi.com/search"><img src="/assets/img/kagi.png"></button>
+    <button id="searx" form="formquery" formaction="https://search.disroot.org"><img src="/assets/img/searx.png"></button>
+    <button id="duckduckgo" form="formquery" formaction="https://duckduckgo.com"><img src="/assets/img/ddg.svg"></button>
+    <button id="you" form="formquery" formaction="https://you.com/search?q=jquery"><img src="/assets/img/you.svg"></button>
+    <button id="brave" form="formquery" formaction="https://search.brave.com/search"><img src="/assets/img/brave.svg"></button>
+    <button id="mojeek" form="formquery" formaction="https://www.mojeek.com/search"><img src="/assets/img/mojeek.svg"></button>
+    <button id="bing" form="formquery" formaction="https://www.bing.com/search"><img src="/assets/img/bing.svg"></button>
+    <button id="google" form="formquery" formaction="https://www.google.com/search"><img src="/assets/img/google.svg"></button>
+    <button id="scihub" form="formquery" formaction="https://sci-hub.st/"><img src="/assets/img/scihub.png"></button>
+    <button id="scholar" form="formquery" formaction="https://scholar.google.com/scholar"><img src="/assets/img/gscholar.svg"></button>
+    <button id="urban" form="formquery" formaction="https://www.urbandictionary.com/define.php"><img src="/assets/img/ud.svg"></button>
 </div>
 
 <script>
@@ -168,6 +143,9 @@ main {
         document.getElementById("formquery").submit();
     });
     document.getElementById("google").addEventListener("click", function() {
+        document.getElementById("formquery").submit();
+    });
+    document.getElementById("scihub").addEventListener("click", function() {
         document.getElementById("formquery").submit();
     });
     document.getElementById("scholar").addEventListener("click", function() {
