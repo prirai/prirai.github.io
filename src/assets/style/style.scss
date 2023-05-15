@@ -340,7 +340,7 @@ a {
 }
 
 input {
-    font-family: $codefont;
+    font-family: $font-italic;
 }
 
 .heading {
@@ -404,10 +404,6 @@ pre {
     max-width: 600px;
     max-width: 90%;
     margin: 10px auto;
-    &:hover {
-        background-color: var(--accent-col);
-        color: var(--bgcol);
-    }
 }
 
 article {
@@ -634,14 +630,14 @@ header>a,
 footer .social-icons a,
 .navigate-post a,
 a.direct-link {
-    background-color: unset;
+    background-color: var(--accent-col-light);
     color: var(--accent-col-dark);
 
     &:link,
     &:visited {
         border-radius: var(--border-radius);
         color: var(--accent-col-dark);
-        background-color: unset;
+        background-color: var(--accent-col-light);
     }
 
     &:hover {
@@ -677,7 +673,7 @@ hr {
         padding: 20px;
         a.item {
             display: block;
-            background-color: var(--accent-col);
+            background-color: var(--accent-col-light);
             color: var(--accent-col-dark);
             border-radius: var(--border-radius);
             padding: 10px;

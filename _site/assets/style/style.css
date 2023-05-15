@@ -288,7 +288,7 @@ a:hover {
 }
 
 input {
-  font-family: "IBM Plex Mono";
+  font-family: "VictorMonoI";
 }
 
 .heading {
@@ -349,10 +349,6 @@ pre {
   max-width: 600px;
   max-width: 90%;
   margin: 10px auto;
-}
-.blog-box:hover {
-  background-color: var(--accent-col);
-  color: var(--bgcol);
 }
 
 article {
@@ -555,7 +551,7 @@ header > a,
 footer .social-icons a,
 .navigate-post a,
 a.direct-link {
-  background-color: unset;
+  background-color: var(--accent-col-light);
   color: var(--accent-col-dark);
 }
 header > a:link, header > a:visited,
@@ -567,7 +563,7 @@ a.direct-link:link,
 a.direct-link:visited {
   border-radius: var(--border-radius);
   color: var(--accent-col-dark);
-  background-color: unset;
+  background-color: var(--accent-col-light);
 }
 header > a:hover,
 footer .social-icons a:hover,
@@ -605,7 +601,7 @@ hr {
 }
 .container .box a.item {
   display: block;
-  background-color: var(--accent-col);
+  background-color: var(--accent-col-light);
   color: var(--accent-col-dark);
   border-radius: var(--border-radius);
   padding: 10px;
