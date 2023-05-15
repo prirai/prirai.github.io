@@ -1,0 +1,13 @@
+---
+layout: layouts/post.njk
+title: मुंशी प्रेमचंद की कहानियां
+tags: books
+---
+
+<div class="container">
+    {% for post in collections.premchand | sort(attribute='title') %}
+        <div class="box">
+            <a class="item" href="{{ post.url }}">{{ post.data.title }}</a>
+            </div>
+    {% endfor %}
+</div>

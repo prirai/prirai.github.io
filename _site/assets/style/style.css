@@ -145,7 +145,7 @@ footer .social-icons a {
   border-radius: 6px;
   transition: 0.5s;
   margin: 15px;
-  padding: 20px;
+  padding: 10px;
 }
 footer .social-icons a:hover, footer .social-icons a:active {
   text-decoration: none;
@@ -350,6 +350,10 @@ pre {
   max-width: 90%;
   margin: 10px auto;
 }
+.blog-box:hover {
+  background-color: var(--accent-col);
+  color: var(--bgcol);
+}
 
 article {
   max-width: 50em;
@@ -402,7 +406,7 @@ form > input:placeholder-shown {
   margin: 0 0 5px 5px;
   min-width: 50px;
   display: inline-block;
-  background-color: var(--accent-col);
+  background-color: none;
   text-align: center;
 }
 
@@ -551,7 +555,7 @@ header > a,
 footer .social-icons a,
 .navigate-post a,
 a.direct-link {
-  background-color: var(--accent-col);
+  background-color: unset;
   color: var(--accent-col-dark);
 }
 header > a:link, header > a:visited,
@@ -563,13 +567,13 @@ a.direct-link:link,
 a.direct-link:visited {
   border-radius: var(--border-radius);
   color: var(--accent-col-dark);
-  background-color: var(--accent-col);
+  background-color: unset;
 }
 header > a:hover,
 footer .social-icons a:hover,
 .navigate-post a:hover,
 a.direct-link:hover {
-  color: var(--accent-col);
+  color: var(--accent-col-light);
   background-color: var(--primary-color);
   filter: drop-shadow(0 0 0.5rem var(--accent-col-dark));
 }
@@ -585,4 +589,30 @@ a.direct-link {
 
 hr {
   margin: 30px 0;
+}
+
+.container {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.container .box {
+  padding: 20px;
+}
+.container .box a.item {
+  display: block;
+  background-color: var(--accent-col);
+  color: var(--accent-col-dark);
+  border-radius: var(--border-radius);
+  padding: 10px;
+  text-decoration: none;
+}
+.container .box a.item:hover {
+  color: var(--accent-col);
+  background-color: var(--primary-color);
+  filter: drop-shadow(0 0 0.5rem var(--accent-col-dark));
 }
