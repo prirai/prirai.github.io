@@ -93,12 +93,6 @@ header > a i {
   padding: 0 4px;
 }
 
-footer .text-content {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  text-decoration-line: underline;
-}
-
 #footer-content {
   display: flex;
   width: 100%;
