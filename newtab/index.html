@@ -22,15 +22,17 @@
         <main >
             
 <style>
+body {
+    background: black;
+    max-height: 90vh;
+}
 main {
-    max-height: 100vh;
+    color: white;
 }
 img {
     height: 70px;
 }
-button {
-    border: none;
-}
+
 .datetime {
   text-align: center;
   border: 1px solid black;
@@ -59,8 +61,10 @@ button {
   display: block;
   margin: 1%;
   border-radius: 12px;
-  background-color: white;
   width: 14%;
+  border: none;
+  padding: 10px;
+  background-color: #aeeef4 ;
 }
 
 .via {
@@ -72,9 +76,12 @@ button {
 }
 
 #query {
-    margin-top: 35vh;
-    width: 100%;
+  background-color: #0d4364;
+  color: white;
+  margin-top: 25vh;
+  width: 100%;
 }
+
 @media screen and (max-width: 800px) {
   button {
     width: 30%;
@@ -82,23 +89,9 @@ button {
 }
 </style>
 
-<!-- <div class="datetime">
-    <p id="time"></p>
-    <p id="date"></p>
-</div>
-
-<script>
-    // This script displays the local time zone time and then date. Time is in the format HH:MM in 24 hour format (no seconds). Date is in DD Month YYYY format.
-    var d = new Date();
-    var n = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    document.getElementById("time").innerHTML = n;
-    var m = d.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
-    document.getElementById("date").innerHTML = m;
-</script> -->
-
 <div class="searchpage">
 <form id="formquery" method="get" action="https://example.com">
-    <input id="query" maxlength="2048" name="q" type="text" title="Search Anything" placeholder="Search Anything" autocomplete="off"/>
+    <input id="query" maxlength="2048" name="q" type="text" title="Search Anything" placeholder="Search Anything" autocomplete="off" autofocus/>
 </form>
     
 <div class="via">Search via</div>
