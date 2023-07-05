@@ -212,732 +212,992 @@
   </url>
   
   <url>
+    <loc>https://prirai.github.io/blogs/hdl/</loc>
+    <lastmod>2023-05-18</lastmod>
+  </url>
+  
+  <url>
     <loc>https://prirai.github.io/404/</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/assets/style/fonts.css</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/assets/style/prism-okadia.css</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/assets/style/style.css</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/assets/style/time-table.css</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/assets/style/typebase.css</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/blogs/</loc>
-    <lastmod>2023-05-13</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/code/knuth-morris-pratt-string-matching/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/contact/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/contact/gpg-pubkey.md</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/home/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/howto/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/iiserb/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/page-list/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/awsm-gh-repos/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/book-club/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/comp-coding-sites/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/courses/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/hacking-resources/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/list-of-learning/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/shiksha/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/unix-koans/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/programming/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/c/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/blog/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/ansi/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/linux/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/hdl/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/hacking/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/bash/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/lisp/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/dsa/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/howto/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/gaming/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/coding/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/cryptography/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/rsrc/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/main/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/books/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/premchand/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/hindi/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/story/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/bhagavad-gita/</loc>
-    <lastmod>2023-05-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/newtab/</loc>
-    <lastmod>2023-05-14</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/aadhar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/aakhiri-tohfa/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/aatm-sangeet/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/actress/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/algyojha/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/amrit/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/apni-karni/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/bade-babu/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/bade-bhaisahab/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/bade-ghar-ki-beti/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/badhi-kaki/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/beto-wali-vidhwa/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/cricket-match/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/dand/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/devi/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/dhikkar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/dipty-shyamcharan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/do-bailo-ki-katha/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/do-sakhiyan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/dusri-shaadi/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/ek-aanch-ki-kasar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/ekta-ka-sambandh-pusht-hota-hai/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/gairat-ki-katar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/ghamand-ka-putla/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/gulli-danda/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/holi-ki-chutti/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/idgaah/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/ijjat-ka-khoon/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/irshya/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/jhanki/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/jyoti/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/kamlacharan-ke-mitr/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/kashi-me-aagman/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/katil/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/kaushal/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/kavach/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/kayapalat/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/khudi/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/koi-dukh-na-ho-to-bakri-la/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/laila/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/maa/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/maadhvi/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/man-ka-prabalya/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/mandir-aur-masjid/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/mata-ka-harday/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/mavwali-yogini/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/mote-ramji-shashtri/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/mubarak-bimari/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/naadan-dost/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/nabi-ka-niti-nirvah/</loc>
-    <lastmod>2023-05-15</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/books/premchand/nairashy/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/nairashy-lila/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/books/premchand/nairashy/</loc>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/namak-ka-daroga/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/narak-ka-marg/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/nasha/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/naye-padosiyo-se-mel-jol/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/neuar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/nishthurta-aur-prem/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/nivrasan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/paipu-ji/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/panch-parmeshwar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/pariksha/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/parvat-yatra/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/poos-ki-raat/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/pratishodh/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/prem-ka-swpan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/prem-sutra/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/putra-prem/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/rashtra-ka-sevak/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/sabhyta-ka-rahasy/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/sailani-bandar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/sakhiyan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/samasya/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/saut/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/shaadi-ki-vajah/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/shanti/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/shisht-jivan-ke-drshya/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/shudra/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/sohag-ka-shav/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/stri-aur-purush/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/sushila-ki-mrityu/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/swamini/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/swarg-ki-devi/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/tange-wale-ki-bad/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/tentar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/thakur-ka-kuwa/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/uddhar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vairagy/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vardan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vasna-ki-kadiyan/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vidai/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vidushi-vrjrani/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vijay/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/virjan-ki-vida/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/vishvas/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
     <loc>https://prirai.github.io/books/premchand/wafa-ka-khanjar/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-06-24</lastmod>
   </url>
   
   <url>
-    <loc>https://prirai.github.io/blogs/hdl/</loc>
-    <lastmod>2023-05-18</lastmod>
+    <loc>https://prirai.github.io/code/knuth-morris-pratt-string-matching/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/contact/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/contact/gpg-pubkey.md</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/home/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/howto/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/iiserb/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/newtab/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/page-list/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/awsm-gh-repos/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/bhagavad-gita/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/book-club/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/comp-coding-sites/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/courses/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/hacking-resources/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/list-of-learning/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/shiksha/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/unix-koans/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/coding/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/c/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/cryptography/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/ansi/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/programming/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/linux/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/blog/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/hacking/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/bash/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/lisp/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/dsa/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/hdl/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/gaming/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/howto/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/rsrc/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/main/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/premchand/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/hindi/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/story/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/books/</loc>
+    <lastmod>2023-06-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/js_imperialism_favorites/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/paying_one_half_the_poor_to_kill_the_other_half/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/baked_potato/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/beans/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/beer_brewing/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/bens_tek/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/cold_brew_coffee/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/dashi/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/milkshake/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/mushrooms/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/oat%20milk/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/seasoned_fries/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/sourdough_bread/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/taco_rice/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/recipes/yogurt/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/acab/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/aimixin_transitions_to_socialism/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/anticapitalist_orgs/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/arm_frontpage/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/audiobooks/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/burn_the_constitution/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/capitalism_doesnt_work/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/crash_course_socialism/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/dash_rendar_what_is_capitalism/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/dessalines_marxism_study_plan/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/favorite_apps_and_services/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/glossary_of_socialist_terms/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/how_to_torrent/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/how_to_win_a_revolution/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/images_csv/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/left_anticommunism_parenti/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/lenin_lwc/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/lise_vogel_domestic_labour_revisited/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/mandarin_guide/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/market_socialism/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/microsoft/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/nietzsche/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/paul_cockshott_cyber_communism/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/routines/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/socdem_bribery/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/socialism_faq/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/star_trek_communism/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/supercooper_china_deng/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/terminology_conversion/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/toki_pona_guide/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/us_atrocities/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/us_hate_crimes/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/why_not_signal/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/why_torrents_are_better/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/workout_routine/</loc>
+    <lastmod>2023-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/rsrc/essays/zak_cope_divided_favorites/</loc>
+    <lastmod>2023-07-05</lastmod>
   </url>
 </urlset>
