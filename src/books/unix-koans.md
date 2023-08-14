@@ -15,6 +15,8 @@ _Rootless Root_
 
 Linked discussion on [Hackernews](https://news.ycombinator.com/item?id=35837750) posted by [Nimbius](https://news.ycombinator.com/user?id=nimbius).
 
+Actual source - [Eric S raymond/unix-koans](http://catb.org/~esr/writings/unix-koans/)
+
 ## Master Foo and the Ten Thousand Lines
 
 Master Foo once said to a visiting programmer: “There is more Unix-nature in one line of shell script than there is in ten thousand lines of C.”
