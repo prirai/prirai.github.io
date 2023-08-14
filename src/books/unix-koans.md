@@ -1,8 +1,8 @@
 ---
-layout: layouts/home.njk
+layout: layouts/plain.njk
 title: The Unix Koans of Master Foo
 description: The Unix Koans of Master Foo
-tags: rsrc
+tags: books
 ---
 
 _Rootless Root_
@@ -13,8 +13,9 @@ _Rootless Root_
 
 ![Home](/assets/home.png)
 
-Master Foo and the Ten Thousand Lines
--------------------------------------
+Linked discussion on [Hackernews](https://news.ycombinator.com/item?id=35837750) posted by [Nimbius](https://news.ycombinator.com/user?id=nimbius).
+
+## Master Foo and the Ten Thousand Lines
 
 Master Foo once said to a visiting programmer: “There is more Unix-nature in one line of shell script than there is in ten thousand lines of C.”
 

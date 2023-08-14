@@ -6,7 +6,9 @@ tags: main
 
 ## Stories
 
+- [श्रीमद्भगवद्गीता](bhagavad-gita)
 - [Stories by Munshi Premchand](premchand/)
+- [The Unix Koans of Master Foo](unix-koans)
 
 ## CS
 
