@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Unix Koans of Master Foo</title>
+        <meta name="description" content="The Unix Koans of Master Foo">
+        <link rel="canonical" href="/books/unix-koans/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="The Unix Koans of Master Foo"/>
+        <meta property="og:description" content="The Unix Koans of Master Foo"/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+    <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blogs/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main >
+            <h1>The Unix Koans of Master Foo</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#master-foo-and-the-ten-thousand-lines">Master Foo and the Ten Thousand Lines</a></li><li><a href="#master-foo-and-the-script-kiddie">Master Foo and the Script Kiddie</a></li><li><a href="#master-foo-discourses-on-the-two-paths">Master Foo Discourses on the Two Paths</a></li><li><a href="#master-foo-and-the-methodologist">Master Foo and the Methodologist</a></li><li><a href="#master-foo-discourses-on-the-graphical-user-interface">Master Foo Discourses on the Graphical User Interface</a></li><li><a href="#master-foo-and-the-old-hand">Master Foo and the Old Hand</a></li><li><a href="#master-foo-and-the-shell-tools">Master Foo and the Shell Tools</a></li><li><a href="#master-foo-and-the-nervous-novice">Master Foo and the Nervous Novice</a></li><li><a href="#master-foo-and-the-recruiter">Master Foo and the Recruiter</a></li><li><a href="#master-foo-discourses-on-returning-to-windows">Master Foo Discourses on Returning to Windows</a></li><li><a href="#master-foo-and-the-unix-zealot">Master Foo and the Unix Zealot</a></li><li><a href="#master-foo-discourses-on-the-unix-nature">Master Foo Discourses on the Unix-Nature</a></li><li><a href="#master-foo-and-the-mcse">Master Foo and the MCSE</a></li><li><a href="#master-foo-and-the-end-user">Master Foo and the End User</a></li><li><a href="#master-foo-and-the-programming-prodigy">Master Foo and the Programming Prodigy</a></li><li><a href="#master-foo-and-the-hardware-designer">Master Foo and the Hardware Designer</a></li></ul>
+      </div>
+            </aside>
+            <p><em>Rootless Root</em></p>
+<p><img src="/assets/rootlessroot.png" alt="Rootless Root"></p>
+<hr>
+<p><img src="/assets/home.png" alt="Home"></p>
+<p>Linked discussion on <a href="https://news.ycombinator.com/item?id=35837750">Hackernews</a> posted by <a href="https://news.ycombinator.com/user?id=nimbius">Nimbius</a>.</p>
+<p>Actual source - <a href="http://catb.org/~esr/writings/unix-koans/">Eric S raymond/unix-koans</a></p>
+<h2 id="master-foo-and-the-ten-thousand-lines" tabindex="-1">Master Foo and the Ten Thousand Lines <a class="direct-link" href="#master-foo-and-the-ten-thousand-lines" aria-hidden="true">#</a></h2>
+<p>Master Foo once said to a visiting programmer: “There is more Unix-nature in one line of shell script than there is in ten thousand lines of C.”</p>
+<p>The programmer, who was very proud of his mastery of C, said: “How can this be? C is the language in which the very kernel of Unix is implemented!”</p>
+<p>Master Foo replied: “That is so. Nevertheless, there is more Unix-nature in one line of shell script than there is in ten thousand lines of C.”</p>
+<p>The programmer grew distressed. “But through the C language we experience the enlightenment of the Patriarch Ritchie! We become as one with the operating system and the machine, reaping matchless performance!”</p>
+<p>Master Foo replied: “All that you say is true. But there is still more Unix-nature in one line of shell script than there is in ten thousand lines of C.”</p>
+<p>The programmer scoffed at Master Foo and rose to depart. But Master Foo nodded to his student Nubi, who wrote a line of shell script on a nearby whiteboard, and said: “Master programmer, consider this pipeline. Implemented in pure C, would it not span ten thousand lines?”</p>
+<p>The programmer muttered through his beard, contemplating what Nubi had written. Finally he agreed that it was so.</p>
+<p>“And how many hours would you require to implement and debug that C program?” asked Nubi.</p>
+<p>“Many,” admitted the visiting programmer. “But only a fool would spend the time to do that when so many more worthy tasks await him.”</p>
+<p>“And who better understands the Unix-nature?” Master Foo asked. “Is it he who writes the ten thousand lines, or he who, perceiving the emptiness of the task, gains merit by not coding?”</p>
+<p>Upon hearing this, the programmer was enlightened.</p>
+<h2 id="master-foo-and-the-script-kiddie" tabindex="-1">Master Foo and the Script Kiddie <a class="direct-link" href="#master-foo-and-the-script-kiddie" aria-hidden="true">#</a></h2>
+<p>A stranger from the land of Woot came to Master Foo as he was eating the morning meal with his students.</p>
+<p>“I hear y00 are very l33t,” he said. “Pl33z teach m3 all y00 know.”</p>
+<p>Master Foo's students looked at each other, confused by the stranger's barbarous language. Master Foo just smiled and replied: “You wish to learn the Way of Unix?”</p>
+<p>“I want to b3 a wizard hax0r,” the stranger replied, “and 0wn ever3one's b0xen.”</p>
+<p>“I do not teach that Way,” replied Master Foo.</p>
+<p>The stranger grew agitated. “D00d, y00 r nothing but a p0ser,” he said. “If y00 n00 anything, y00 wud t33ch m3.”</p>
+<p>“There is a path,” said Master Foo, “that might bring you to wisdom.” The master scribbled an IP address on a piece of paper. “Cracking this box should pose you little difficulty, as its guardians are incompetent. Return and tell me what you find.”</p>
+<p>The stranger bowed and left. Master Foo finished his meal.</p>
+<p>Days passed, then months. The stranger was forgotten.</p>
+<p>Years later, the stranger from the land of Woot returned.</p>
+<p>“Damn you!” he said, “I cracked that box, and it was easy like you said. But I got busted by the FBI and thrown in jail.”</p>
+<p>“Good,” said Master Foo. “You are ready for the next lesson.” He scribbled an IP address on another piece of paper and handed it to the stranger.</p>
+<p>“Are you <em>crazy</em>?” the stranger yelled. “After what I've been through, I'm never going to break into a computer again!”</p>
+<p>Master Foo smiled. “Here,” he said, “is the beginning of wisdom.”</p>
+<p>On hearing this, the stranger was enlightened.</p>
+<h2 id="master-foo-discourses-on-the-two-paths" tabindex="-1">Master Foo Discourses on the Two Paths <a class="direct-link" href="#master-foo-discourses-on-the-two-paths" aria-hidden="true">#</a></h2>
+<p>Master Foo instructed his students:</p>
+<p>“There is a line of dharma teaching, exemplified by the Patriarch McIlroy's mantra ‘Do one thing well’, which emphasizes that software partakes of the Unix way when it has simple and consistent behavior, with properties that can be readily modeled by the mind of the user and used by other programs.”</p>
+<p>“But there is another line of dharma teaching, exemplified by the Patriarch Thompson's great mantra ‘When in doubt, use brute force’, and various sutras on the value of getting 90% of cases right <em>now</em>, rather than 100% <em>later</em>, which emphasizes robustness and simplicity of implementation.”</p>
+<p>“Now tell me: which programs have the Unix nature?”</p>
+<p>After a silence, Nubi observed:</p>
+<p>“Master, these teachings may conflict.”</p>
+<p>“A simple implementation is likely to lack logic for edge cases, such as resource exhaustion, or failure to close a race window, or a timeout during an uncompleted transaction.”</p>
+<p>“When such edge cases occur, the behavior of the software will become irregular and difficult. Surely this is not the Way of Unix?”</p>
+<p>Master Foo nodded in agreement.</p>
+<p>“On the other hand, it is well known that fancy algorithms are brittle. Further, each attempt to cover an edge case tends to interact with both the program's central algorithms and the code covering other edge cases.”</p>
+<p>“Thus, attempts to cover all edge cases in advance, guaranteeing ‘simplicity of description’, may in fact produce code that is overcomplicated and brittle or which, plagued by bugs, never ships at all. Surely this is not the Way of Unix?”</p>
+<p>Master Foo nodded in agreement.</p>
+<p>“What, then, is the proper dharma path?” asked Nubi.</p>
+<p>The master spoke:</p>
+<p>“When the eagle flies, does it forget that its feet have touched the ground? When the tiger lands upon its prey, does it forget its moment in the air? Three pounds of VAX!”</p>
+<p>On hearing this, Nubi was enlightened.</p>
+<h2 id="master-foo-and-the-methodologist" tabindex="-1">Master Foo and the Methodologist <a class="direct-link" href="#master-foo-and-the-methodologist" aria-hidden="true">#</a></h2>
+<p>When Master Foo and his student Nubi journeyed among the sacred sites, it was the Master's custom in the evenings to offer public instruction to Unix neophytes of the towns and villages in which they stopped for the night.</p>
+<p>On one such occasion, a methodologist was among those who gathered to listen.</p>
+<p>“If you do not repeatedly profile your code for hot spots while tuning, you will be like a fisherman who casts his net in an empty lake,” said Master Foo.</p>
+<p>“Is it not, then, also true,” said the methodology consultant, “that if you do not continually measure your productivity while managing resources, you will be like a fisherman who casts his net in an empty lake?”</p>
+<p>“I once came upon a fisherman who just at that moment let his net fall in the lake on which his boat was floating,” said Master Foo. “He scrabbled around in the bottom of his boat for quite a while looking for it.”</p>
+<p>“But,” said the methodologist, “if he had dropped his net in the lake, why was he looking in the boat?”</p>
+<p>“Because he could not swim,” replied Master Foo.</p>
+<p>Upon hearing this, the methodologist was enlightened.</p>
+<h2 id="master-foo-discourses-on-the-graphical-user-interface" tabindex="-1">Master Foo Discourses on the Graphical User Interface <a class="direct-link" href="#master-foo-discourses-on-the-graphical-user-interface" aria-hidden="true">#</a></h2>
+<p>One evening, Master Foo and Nubi attended a gathering of programmers who had met to learn from each other. One of the programmers asked Nubi to what school he and his master belonged. Upon being told they were followers of the Great Way of Unix, the programmer grew scornful.</p>
+<p>“The command-line tools of Unix are crude and backward,” he scoffed. “Modern, properly designed operating systems do everything through a graphical user interface.”</p>
+<p>Master Foo said nothing, but pointed at the moon. A nearby dog began to bark at the master's hand.</p>
+<p>“I don't understand you!” said the programmer.</p>
+<p>Master Foo remained silent, and pointed at an image of the Buddha. Then he pointed at a window.</p>
+<p>“What are you trying to tell me?” asked the programmer.</p>
+<p>Master Foo pointed at the programmer's head. Then he pointed at a rock.</p>
+<p>“Why can't you make yourself clear?” demanded the programmer.</p>
+<p>Master Foo frowned thoughtfully, tapped the programmer twice on the nose, and dropped him in a nearby trashcan.</p>
+<p>As the programmer was attempting to extricate himself from the garbage, the dog wandered over and piddled on him.</p>
+<p>At that moment, the programmer achieved enlightenment.</p>
+<h2 id="master-foo-and-the-old-hand" tabindex="-1">Master Foo and the Old Hand <a class="direct-link" href="#master-foo-and-the-old-hand" aria-hidden="true">#</a></h2>
+<p>An experienced Unix programmer, hearing of Master Foo's wisdom, came to him for guidance. Approaching the Master, he bowed three times and said:</p>
+<p>“Master Foo, I am gravely troubled. In my youth, those who followed the Great Way of Unix used software that was simple and unaffected, like ed and mailx. Today, they use vim and mutt. Tomorrow I fear they will use KMail and Evolution, and Unix will have become like Windows — bloated and covered over with GUIs.”</p>
+<p>Master Foo said: “But what software do you use when you want to draw a poster?”</p>
+<p>The programmer replied: “I...have never done that. But I am sure that I could use LaTeX or pic to accomplish it without GUIs, in the proper Unix way.”</p>
+<p>Master Foo then said: “Which one will reach the other side of the river: The one who dreams of a raft, or the one that hitchhikes to the next bridge?”</p>
+<p>Upon hearing this, the programmer was enlightened.</p>
+<h2 id="master-foo-and-the-shell-tools" tabindex="-1">Master Foo and the Shell Tools <a class="direct-link" href="#master-foo-and-the-shell-tools" aria-hidden="true">#</a></h2>
+<p>A Unix novice came to Master Foo and said: “I am confused. Is it not the Unix way that every program should concentrate on one thing and do it well?”</p>
+<p>Master Foo nodded.</p>
+<p>The novice continued: “Isn't it also the Unix way that the wheel should not be reinvented?”</p>
+<p>Master Foo nodded again.</p>
+<p>“Why, then, are there several tools with similar capabilities in text processing: sed, awk and Perl? With which one can I best practice the Unix way?”</p>
+<p>Master Foo asked the novice: “If you have a text file, what tool would you use to produce a copy with a few words in it replaced by strings of your choosing?”</p>
+<p>The novice frowned and said: “Perl's regexps would be excessive for so simple a task. I do not know awk, and I have been writing sed scripts in the last few weeks. As I have some experience with sed, at the moment I would prefer it. But if the job only needed to be done once rather than repeatedly, a text editor would suffice.”</p>
+<p>Master Foo nodded and replied: “When you are hungry, eat; when you are thirsty, drink; when you are tired, sleep.”</p>
+<p>Upon hearing this, the novice was enlightened.</p>
+<h2 id="master-foo-and-the-nervous-novice" tabindex="-1">Master Foo and the Nervous Novice <a class="direct-link" href="#master-foo-and-the-nervous-novice" aria-hidden="true">#</a></h2>
+<p>There was a novice who learned much at the Master's feet, but felt something to be missing. After meditating on his doubts for some time, he found the courage to approach Master Foo about his problem.</p>
+<p>“Master Foo,” he asked “why do Unix users not employ antivirus programs? And defragmentors? And malware cleaners?”</p>
+<p>Master Foo smiled, and said “When your house is well constructed, there is no need to add pillars to keep the roof in place.”</p>
+<p>The novice replied “Would it not be better to use these things anyway, just to be certain?”</p>
+<p>Master Foo reached for a nearby ball of string, and began wrapping it around the novice's feet.</p>
+<p>“What are you doing?” the novice asked in surprise.</p>
+<p>Master Foo replied simply: “Tying your shoes.”</p>
+<p>Upon hearing this, the novice was enlightened.</p>
+<h2 id="master-foo-and-the-recruiter" tabindex="-1">Master Foo and the Recruiter <a class="direct-link" href="#master-foo-and-the-recruiter" aria-hidden="true">#</a></h2>
+<p>A technical recruiter, having discovered that that the ways of Unix hackers were strange to him, sought an audience with Master Foo to learn more about the Way. Master Foo met the recruiter in the HR offices of a large firm.</p>
+<p>The recruiter said, “I have observed that Unix hackers scowl or become annoyed when I ask them how many years of experience they have in a new programming language. Why is this so?”</p>
+<p>Master Foo stood, and began to pace across the office floor. The recruiter was puzzled, and asked “What are you doing?”</p>
+<p>“I am learning to walk,” replied Master Foo.</p>
+<p>“I saw you walk through that door” the recruiter exclaimed, “and you are not stumbling over your own feet. Obviously you already know how to walk.”</p>
+<p>“Yes, but this floor is new to me.” replied Master Foo.</p>
+<p>Upon hearing this, the recruiter was enlightened.</p>
+<h2 id="master-foo-discourses-on-returning-to-windows" tabindex="-1">Master Foo Discourses on Returning to Windows <a class="direct-link" href="#master-foo-discourses-on-returning-to-windows" aria-hidden="true">#</a></h2>
+<p>A student said: “We have learned that Unix is not just an operating system, but also a style of approaching problems.”</p>
+<p>Master Foo nodded in agreement.</p>
+<p>The student continued: “Then, the Great Way of Unix can be applied on other operating systems?”</p>
+<p>Master Foo sat silent for a moment, then said: “In every operating system there is a path to the Great Way, if only we can find it.”</p>
+<p>The student continued: “What, then, of Windows? It is preinstalled on most computers, and though its tools are mostly far inferior, they are easy to use for beginners. Surely, Windows users could benefit from the Unix philosophy.”</p>
+<p>Master Foo nodded again.</p>
+<p>The student said: “How, then, are those enlightened in the Unix Way to return to the Windows world?”</p>
+<p>Master Foo said: “To return to Windows, you have but to boot it up.”</p>
+<p>The student said, growing agitated: “Master Foo, if it is so easy, why are there so many monolithic and broken software packages for Windows? Elegant software should also be possible with a GUI and fancy colors, but there is little evidence that this occurs. What becomes of an enlighted one who returns to Windows?”</p>
+<p>Master Foo: “A broken mirror never reflects again; fallen flowers never go back to the old branches.”</p>
+<p>Upon hearing this, all present were enlightened.</p>
+<h2 id="master-foo-and-the-unix-zealot" tabindex="-1">Master Foo and the Unix Zealot <a class="direct-link" href="#master-foo-and-the-unix-zealot" aria-hidden="true">#</a></h2>
+<p>A Unix zealot, having heard that Master Foo was wise in the Great Way, came to him for instruction. Master Foo said to him:</p>
+<p>“When the Patriarch Thompson invented Unix, he did not understand it. Then he gained in understanding, and no longer invented it.”</p>
+<p>“When the Patriarch McIlroy invented the pipe, he knew that it would transform software, but did not know that it would transform mind.”</p>
+<p>“When the Patriarch Ritchie invented C, he condemned programmers to a thousand hells of buffer overruns, heap corruption, and stale-pointer bugs.”</p>
+<p>“Truly, the Patriarchs were blind and foolish!”</p>
+<p>The zealot was greatly angered by the Master's words.</p>
+<p>“These enlightened ones,” he protested, “gave us the Great Way of Unix. Surely, if we mock them we will lose merit and be reborn as beasts or MCSEs.”</p>
+<p>“Is your code ever completely without stain and flaw?” demanded Master Foo.</p>
+<p>“No,” admitted the zealot, “no man's is.”</p>
+<p>“The wisdom of the Patriarchs” said Master Foo, “was that they <em>knew</em> they were fools.”</p>
+<p>Upon hearing this, the zealot was enlightened.</p>
+<h2 id="master-foo-discourses-on-the-unix-nature" tabindex="-1">Master Foo Discourses on the Unix-Nature <a class="direct-link" href="#master-foo-discourses-on-the-unix-nature" aria-hidden="true">#</a></h2>
+<p>A student said to Master Foo: “We are told that the firm called Novell holds true dominion over Unix.”</p>
+<p>Master Foo nodded.</p>
+<p>The student continued, “Yet we are also told that the firm called OpenGroup also holds true dominion over Unix.”</p>
+<p>Master Foo nodded.</p>
+<p>“How can this be?” asked the student.</p>
+<p>Master Foo replied:</p>
+<p>“Novell indeed has dominion over the code of Unix, but the code of Unix is not Unix. OpenGroup indeed has dominion over the name of Unix, but the name of Unix is not Unix.”</p>
+<p>“What, then, is the Unix-nature?” asked the student.</p>
+<p>Master Foo replied:</p>
+<p>“Not code. Not name. Not mind. Not things. Always changing, yet never changing.”</p>
+<p>“The Unix-nature is simple and empty. Because it is simple and empty, it is more powerful than a typhoon.”</p>
+<p>“Moving in accordance with the law of nature, it unfolds inexorably in the minds of programmers, assimilating designs to its own nature. All software that would compete with it must become like to it; empty, empty, profoundly empty, perfectly void, hail!”</p>
+<p>Upon hearing this, the student was enlightened.</p>
+<h2 id="master-foo-and-the-mcse" tabindex="-1">Master Foo and the MCSE <a class="direct-link" href="#master-foo-and-the-mcse" aria-hidden="true">#</a></h2>
+<p>Once, a famous Windows system administrator came to Master Foo and asked him for instruction: “I have heard that you are a powerful Unix wizard. Let us trade secrets, that we may both gain thereby.”</p>
+<p>Master Foo said: “It is good that you seek wisdom. But in the Way of Unix, there are no secrets.”</p>
+<p>The administrator looked puzzled at this. “But it is said that you are a great Unix guru who knows all the innermost mysteries. As do I in Windows; I am an MCSE, and I have many other certifications of knowledge not common in the world. I know even the most obscure registry entries by heart. I can tell you everything about the Windows API, yes, even secrets those of Redmond have half-forgotten. What is the arcane lore that gives you your power?”</p>
+<p>Master Foo said: “I have none. Nothing is hidden, nothing is revealed.”</p>
+<p>Growing angry, the administrator said “Very well, if you hold no secrets, then tell me: what do I have to know to become as powerful in the Unix way as you?”</p>
+<p>Master Foo said: “A man who mistakes secrets for knowledge is like a man who, seeking light, hugs a candle so closely that he smothers it and burns his hand.”</p>
+<p>Upon hearing this, the administrator was enlightened.</p>
+<h2 id="master-foo-and-the-end-user" tabindex="-1">Master Foo and the End User <a class="direct-link" href="#master-foo-and-the-end-user" aria-hidden="true">#</a></h2>
+<p>On another occasion when Master Foo gave public instruction, an end user, having heard tales of the Master's wisdom, came to him for guidance.</p>
+<p>He bowed three times to Master Foo. “I wish to learn the Great Way of Unix,” he said “but the command line confuses me.”</p>
+<p>Some of the onlooking neophytes began to mock the end user, calling him “clueless” and saying that the Way of Unix is only for those of discipline and intelligence.</p>
+<p>The Master held up a hand for silence, and called the most obstreperous of the neophytes who had mocked forward, to where he and the end user sat.</p>
+<p>“Tell me,” he asked the neophyte, “of the code you have written and the works of design you have uttered.”</p>
+<p>The neophyte began to stammer out a reply, but fell silent.</p>
+<p>Master Foo turned to the end-user. “Tell me,” he inquired, “why do you seek the Way?”</p>
+<p>“I am discontent with the software I see around me,” the end user replied. “It neither performs reliably nor pleases the eye and hand. Having heard that the Unix way, though difficult, is superior, I seek to cast aside all snares and delusions.”</p>
+<p>“And what do you do in the world,” asked Master Foo, “that you must strive with software?”</p>
+<p>“I am a builder,” the end user replied, “Many of the houses of this town were made under my chop.”</p>
+<p>Master Foo turned back to the neophyte. “The housecat may mock the tiger,” said the master, “but doing so will not make his purr into a roar.”</p>
+<p>Upon hearing this, the neophyte was enlightened.</p>
+<h2 id="master-foo-and-the-programming-prodigy" tabindex="-1">Master Foo and the Programming Prodigy <a class="direct-link" href="#master-foo-and-the-programming-prodigy" aria-hidden="true">#</a></h2>
+<p>There was a time when rumors began to reach Master Foo and his students of a prodigiously gifted programmer, a young man who wandered the length and breadth of the land performing mighty feats of coding and humiliating all who dared set their skill against his.</p>
+<p>Eventually this prodigy came to visit Master Foo, who received him politely and offered him tea. The Prodigy accepted with equal politeness and explained the motive for his visit.</p>
+<p>“I have come to you,” he said “seeking a code and design review of my latest project. For it is of surpassing complexity, and I do not have peers capable of understanding it. Only an acknowledged master such as yourself (and here the Prodigy bowed deeply) can have the discernment required.”</p>
+<p>Master Foo bowed politely in return and began examining the Prodigy's code. After some time he raised his eyes from the screen. “This code is at first sight very impressive,” he said. “It is elegant in design, utilizing original algorithms of great ingenuity, and appears to be implemented in a craftsmanlike way which minimizes the possibility of errors.”</p>
+<p>The Prodigy looked very pleased at this praise, but Master Foo continued: “However, I detect one significant flaw.”</p>
+<p>“Flaw?” the Prodigy said. “What flaw?”</p>
+<p>“This code is difficult to read,” said Master Foo. “It is only thinly commented, its invariants are not specified, and I see no narrative description of its architecture or internal data structures anywhere. These problems will seriously impede your cooperation with other programmers.”</p>
+<p>The Prodigy drew himself up haughtily. “I do not seek the cooperation of other programmers,” he said. “Every time I thought I had found one who might match me in skill I have been disappointed. Thus, I work alone.”</p>
+<p>“But even the hacker who works alone,” said Master Foo, “collaborates with others, and must constantly communicate clearly to them, lest his work become confused and lost.”</p>
+<p>“Of what others do you speak?” the Prodigy demanded.</p>
+<p>Master Foo said: “All your future selves.”</p>
+<p>Upon hearing this, the Prodigy was enlightened.</p>
+<h2 id="master-foo-and-the-hardware-designer" tabindex="-1">Master Foo and the Hardware Designer <a class="direct-link" href="#master-foo-and-the-hardware-designer" aria-hidden="true">#</a></h2>
+<p>On one occasion, as Master Foo was traveling to a conference with a few of his senior disciples, he was accosted by a hardware designer.</p>
+<p>The hardware designer said: “It is rumored that you are a great programmer. How many lines of code do you write per year?”</p>
+<p>Master Foo replied with a question: “How many square inches of silicon do you lay out per year?”</p>
+<p>“Why...we hardware designers never measure our work in that way,” the man said.</p>
+<p>“And why not?” Master Foo inquired.</p>
+<p>“If we did so,” the hardware designer replied, “we would be tempted to design chips so large that they cannot be fabricated - and, if they were fabricated, their overwhelming complexity would make it be impossible to generate proper test vectors for them.”</p>
+<p>Master Foo smiled, and bowed to the hardware designer.</p>
+<p>In that moment, the hardware designer achieved enlightenment.</p>
+
+            
+        </main>
+    </body>
+</html>
