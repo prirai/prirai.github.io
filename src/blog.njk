@@ -1,0 +1,24 @@
+---
+layout: layouts/home.njk
+title: 🖋️ Blog
+tags: main
+---
+
+<h1>My Writings</h1>
+<hr>
+    <div class="p-space-10"></div>
+    <div class="blog-container">
+        {% for post in collections.blog | reverse %}
+            <div class="blog-box">
+                <a class="post-title" href="{{ post.url }}">{{ post.data.title }}</a>
+                <br>
+                    <time class="blogdate" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+                    <div class="tag-container">
+                    {% for tag in post.data.tags | filterTagList %}
+                        {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+                        <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+                    {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
