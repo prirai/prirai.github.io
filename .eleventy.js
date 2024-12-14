@@ -6,6 +6,12 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginTOC = require('eleventy-plugin-toc')
+const pluginMermaid = require("@kevingimbel/eleventy-plugin-mermaid");
+const readerBar = require('eleventy-plugin-reader-bar')
+// const typesetPlugin = require('eleventy-plugin-typeset');
+// const searchFilter = require("./src/filters/searchFilter");
+
+const mathjaxPlugin = require("eleventy-plugin-mathjax");
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/cdn");
@@ -21,6 +27,25 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginRss);
     eleventyConfig.addPlugin(syntaxHighlight);
     eleventyConfig.addPlugin(pluginNavigation);
+    // eleventyConfig.addPlugin(mathjaxPlugin);
+    // eleventyConfig.addFilter("excludeMathjax", (page) => {
+    //     if (page.inputPath.includes("/books/")) {
+    //         return true;
+    //     }
+    //     return false;
+    // });
+    // eleventyConfig.addPlugin(mathjaxPlugin, {
+    //     filter: "excludeMathjax",
+    // });
+    eleventyConfig.addTransform("conditional-mathjax", (content, outputPath) => {
+        const fileData = this.page;
+        if (fileData && fileData.useMathjax) {
+            return mathjaxPlugin.process(content);
+        }
+        return content;
+    });
+    eleventyConfig.addPlugin(pluginMermaid);
+
     eleventyConfig.addPlugin(pluginTOC, {
         tags: ['h2', 'h3'],
         ul: true,

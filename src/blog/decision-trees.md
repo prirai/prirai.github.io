@@ -1,9 +1,10 @@
 ---
-layout: layouts/post.njk
+layout: layouts/post-math.njk
 title: Decision Trees using Information Gain and Gini Index
 tags: 
     - ml
     - blog
+useMathjax: true
 date: 2024-12-02
 ---
 
@@ -28,7 +29,7 @@ date: 2024-12-02
 | 13  | Overcast | Hot         | Normal   | Weak   | Yes       |
 | 14  | Rain     | Mild        | High     | Strong | No        |
 
-$H(\textrm{Play Golf}) = H(5,9) = -\cfrac{5}{14}*\log_2\bigg(\cfrac{5}{14}\bigg)-\cfrac{9}{14}*\log_2\bigg(\cfrac{9}{14}\bigg) = 0.940$
+<p>$H(\textrm{Play Golf}) = H(5,9) = -\cfrac{5}{14}*\log_2\bigg(\cfrac{5}{14}\bigg) - \cfrac{9}{14}*\log_2\bigg(\cfrac{9}{14}\bigg) = 0.940$</p>
 
 Where:
 - Yes (Play Golf) = 5 instances
@@ -37,47 +38,46 @@ Where:
 
 ### 1. Outlook (Sunny, Overcast, Rain)
 
-$H(\text{Play Golf}|\text{Sunny})$ $\log_2$
-$= -\cfrac{2}{5}$$*\log_2(\cfrac{2}{5})$$-\cfrac{3}{5}*$\log _2(\cfrac{3}{5}) = 0.971$
+<p>$H(\textrm{Play Golf}|\textrm{Sunny}) = -\cfrac{2}{5}*\log_2(\cfrac{2}{5}) -\cfrac{3}{5}*$\log _2(\cfrac{3}{5}) = 0.971$ </p>
 
-$H(\text{Play Golf}|\text{Overcast}) = -1*\log_2(1)-0*\log_2(0) = 0$
+$H(\textrm{Play Golf}|\textrm{Overcast}) = -1*\log_2(1)-0*\log_2(0) = 0$
 
-$H(\text{Play Golf}|\text{Rain}) = -\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg)-\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg) = 0.971$
+<p>$H(\textrm{Play Golf}|\textrm{Rain}) = -\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg)-\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg) = 0.971$</p>
 
-$H_{avg}(\text{Play Golf | Outlook}) = \cfrac{5}{14}*0.971 + \cfrac{4}{14}*0 + \cfrac{5}{14}*0.971 = 0.694$
+$H_{avg}(\textrm{Play Golf | Outlook}) = \cfrac{5}{14}*0.971 + \cfrac{4}{14}*0 + \cfrac{5}{14}*0.971 = 0.694$
 
-$IG(\text{Outlook}) = 0.940 - 0.694 = 0.246$ ✅
+$IG(\textrm{Outlook}) = 0.940 - 0.694 = 0.246$ ✅
 
 ### 2. Temperature (Hot, Mild, Cool)
 
-$H(\text{Play Golf}|\text{Hot}) = -\cfrac{2}{4}*\log_2\bigg(\cfrac{2}{4}\bigg)-\cfrac{2}{4}*\log_2\bigg(\cfrac{2}{4}\bigg) = 1.000$
+<p>$H(\textrm{Play Golf}|\textrm{Hot}) = -\cfrac{2}{4}*\log_2\bigg(\cfrac{2}{4}\bigg)-\cfrac{2}{4}*\log_2\bigg(\cfrac{2}{4}\bigg) = 1.000$</p>
 
-$H(\text{Play Golf}|\text{Mild}) = -\cfrac{4}{6}*\log_2\bigg(\cfrac{4}{6}\bigg)-\cfrac{2}{6}*\log_2\bigg(\cfrac{2}{6}\bigg) = 0.918$
+<p>$H(\textrm{Play Golf}|\textrm{Mild}) = -\cfrac{4}{6}*\log_2\bigg(\cfrac{4}{6}\bigg)-\cfrac{2}{6}*\log_2\bigg(\cfrac{2}{6}\bigg) = 0.918$</p>
 
-$H(\text{Play Golf}|\text{Cool}) = -\cfrac{3}{4}*\log_2\bigg(\cfrac{3}{4}\bigg)-\cfrac{1}{4}*\log_2\bigg(\cfrac{1}{4}\bigg) = 0.811$
+<p>$H(\textrm{Play Golf}|\textrm{Cool}) = -\cfrac{3}{4}*\log_2\bigg(\cfrac{3}{4}\bigg)-\cfrac{1}{4}*\log_2\bigg(\cfrac{1}{4}\bigg) = 0.811$</p>
 
 $H_{avg}(\textrm{Play Golf | Temperature}) = \cfrac{4}{14}*1.000 + \cfrac{6}{14}*0.918 + \cfrac{4}{14}*0.811 = 0.911$
 
-$IG(\text{Temperature}) = 0.940 - 0.911 = 0.029$
+$IG(\textrm{Temperature}) = 0.940 - 0.911 = 0.029$
 ### 3. Humidity (High, Normal)
 
-$H(\text{Play Golf}|\text{High}) = -\cfrac{1}{7}*\log_2\bigg(\cfrac{1}{7}\bigg)-\cfrac{6}{7}*\log_2\bigg(\cfrac{6}{7}\bigg) = 0.592$
+<p>$H(\textrm{Play Golf}|\textrm{High}) = -\cfrac{1}{7}*\log_2\bigg(\cfrac{1}{7}\bigg)-\cfrac{6}{7}*\log_2\bigg(\cfrac{6}{7}\bigg) = 0.592$</p>
 
-$H(\text{Play Golf}|\text{Normal}) = -\cfrac{4}{7}*\log_2\bigg(\cfrac{4}{7}\bigg)-\cfrac{3}{7}*\log_2\bigg(\cfrac{3}{7}\bigg) = 0.985$
+<p>$H(\textrm{Play Golf}|\textrm{Normal}) = -\cfrac{4}{7}*\log_2\bigg(\cfrac{4}{7}\bigg)-\cfrac{3}{7}*\log_2\bigg(\cfrac{3}{7}\bigg) = 0.985$</p>
 
-$H_{avg}(\text{Play Golf | Humidity}) = \cfrac{7}{14}*0.592 + \cfrac{7}{14}*0.985 = 0.789$
+$H_{avg}(\textrm{Play Golf | Humidity}) = \cfrac{7}{14}*0.592 + \cfrac{7}{14}*0.985 = 0.789$
 
-$IG(\text{Humidity}) = 0.940 - 0.789 = 0.151$
+$IG(\textrm{Humidity}) = 0.940 - 0.789 = 0.151$
 
 ### 4. Wind (Strong, Weak)
 
-$H(\text{Play Golf}|\text{Strong}) = -\cfrac{3}{6}*\log_2\bigg(\cfrac{3}{6}\bigg)-\cfrac{3}{6}*\log_2\bigg(\cfrac{3}{6}\bigg) = 1.0$
+<p>$H(\textrm{Play Golf}|\textrm{Strong}) = -\cfrac{3}{6}*\log_2\bigg(\cfrac{3}{6}\bigg)-\cfrac{3}{6}*\log_2\bigg(\cfrac{3}{6}\bigg) = 1.0$</p>
 
-$H(\text{Play Golf}|\text{Weak}) = -\cfrac{6}{8}*\log_2\bigg(\cfrac{6}{8}\bigg)-\cfrac{6}{8}*\log_2\bigg(\cfrac{6}{8}\bigg) = 0.811$
+<p>$H(\textrm{Play Golf}|\textrm{Weak}) = -\cfrac{6}{8}*\log_2\bigg(\cfrac{6}{8}\bigg)-\cfrac{6}{8}*\log_2\bigg(\cfrac{6}{8}\bigg) = 0.811$</p>
 
-$H_{avg}(\text{Play Golf | Wind}) = \cfrac{6}{14}*1.0 + \cfrac{8}{14}*0.811 = 0.892$
+$H_{avg}(\textrm{Play Golf | Wind}) = \cfrac{6}{14}*1.0 + \cfrac{8}{14}*0.811 = 0.892$
 
-$IG(\text{Wind}) = 0.940 - 0.892 = 0.048$
+$IG(\textrm{Wind}) = 0.940 - 0.892 = 0.048$
 
 ## Level 2
 
@@ -94,25 +94,28 @@ $IG(\text{Wind}) = 0.940 - 0.892 = 0.048$
 | 11  | Mild       | Normal   | Strong | Yes       |
 
 Entropy for Sunny:
-$H(\text{Sunny}) = -\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg)-\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg) = 0.971$
+<p>$H(\textrm{Sunny}) = -\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg)-\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg) = 0.971$</p>
 
 ##### Information Gain - Sunny:
 
 1. **Temperature** (Hot, Mild, Cool)
-   $H(Play|Hot) = 0$
-   $H(Play|Mild) = 1$
-   $H(Play|Cool) = 0$
-   $IG(Temperature) = 0.971 - (\frac{2}{5}*0 + \frac{2}{5}*1 + \frac{1}{5}*0) = 0.571$
+
+   $H(\textrm{Play}|Hot) = 0$\
+   $H(\textrm{Play}|\textrm{Mild}) = 1$\
+   $H(\textrm{Play}|\textrm{Cool}) = 0$\
+   $IG(\textrm{Temperature}) = 0.971 - (\frac{2}{5}*0 + \frac{2}{5}*1 + \frac{1}{5}*0) = 0.571$
 
 2. **Humidity** (High, Normal)
-   $H(Play|High) = 0$
-   $H(Play|Normal) = 0$
-   $IG(Humidity) = 0.971 - (\frac{3}{5}*0 + \frac{2}{5}*0) = 0.971$ ✅
+
+   $H(\textrm{Play}|\textrm{High}) = 0$\
+   $H(\textrm{Play}|\textrm{Normal}) = 0$\
+   $IG(\textrm{Humidity}) = 0.971 - (\frac{3}{5}*0 + \frac{2}{5}*0) = 0.971$ ✅
 
 3. **Wind** (Strong, Weak)
-   $H(Play|Strong) = 1$
-   $H(Play|Weak) = 0.918$
-   $IG(Wind) = 0.971 - (\frac{2}{5}*1 + \frac{3}{5}*0.918) = 0.020$
+
+   $H(\textrm{Play}|\textrm{Strong}) = 1$\
+   $H(\textrm{Play}|\textrm{Weak}) = 0.918$\
+   $IG(\textrm{Wind}) = 0.971 - (\frac{2}{5}*1 + \frac{3}{5}*0.918) = 0.020$
 
 #### 2. Overcast Outlook
 
@@ -136,27 +139,31 @@ Note: No further splitting needed as all instances are "Yes"
 | 14  | Mild       | High     | Strong | No        |
 
 Initial Entropy for Rain:
-$H(\text{Rain}) = -\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg)-\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg) = 0.971$
+<p>$H(\textrm{Rain}) = -\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg)-\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg) = 0.971$</p>
 
 ##### Information Gain - Rain
 
 1. **Temperature** (Mild, Cool)
-   $H(Play|Mild) = 0.918$
-   $H(Play|Cool) = 1$
-   $IG(Temperature) = 0.971 - (\frac{3}{5}*0.918 + \frac{2}{5}*1) = 0.020$
+
+   $H(\textrm{Play}|\textrm{Mild}) = 0.918$\
+   $H(\textrm{Play}|\textrm{Cool}) = 1$\
+   $IG(\textrm{Temperature}) = 0.971 - (\frac{3}{5}*0.918 + \frac{2}{5}*1) = 0.020$
 
 2. **Humidity** (High, Normal)
-   $H(Play|High) = 1$
-   $H(Play|Normal) = 0.918$
-   $IG(Humidity) = 0.971 - (\frac{2}{5}*1 + \frac{3}{5}*0.918) = 0.020$
+
+   $H(\textrm{Play}|\textrm{High}) = 1$\
+   $H(\textrm{Play}|\textrm{Normal}) = 0.918$\
+   $IG(\textrm{Humidity}) = 0.971 - (\frac{2}{5}*1 + \frac{3}{5}*0.918) = 0.020$
 
 3. **Wind** (Strong, Weak)
-   $H(Play|Strong) = 0$
-   $H(Play|Weak) = 0$
-   $IG(Wind) = 0.971 - (\frac{2}{5}*0 + \frac{3}{5}*0) = 0.971$ ✅
+
+   $H(\textrm{Play}|\textrm{Strong}) = 0$\
+   $H(\textrm{Play}|\textrm{Weak}) = 0$\
+   $IG(\textrm{Wind}) = 0.971 - (\frac{2}{5}*0 + \frac{3}{5}*0) = 0.971$ ✅
 ### Decision Tree
 
 ```mermaid
+%%{init: {'theme':'forest'}}%%
 graph TD
     A[Outlook] -->|Sunny| B[Humidity]
     A -->|Overcast| C[Play Yes]

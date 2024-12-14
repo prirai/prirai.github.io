@@ -12,7 +12,7 @@ Systemd-boot is a boot loader for Linux systems. It is the default boot loader f
 
 ## Booting into the wrong OS
 
-This is a very common issue that I have encountered with systemd-boot. The issue is that when you boot into your system, you are presented with a list of operating systems that you can boot into. However, the default option is not the one that you want to boot into. This is a very common issue when you have multiple operating systems installed on your system. The solution to this issue is to change the default boot option. To do this, you need to edit the file `/boot/loader/loader.conf`. This file contains the configuration for systemd-boot. You need to add the following line to the file:
+This is a very common issue that I have encountered with systemd-boot. It's that when you boot into your system, you are presented with a list of operating systems that you can boot into. However, the default option is not the one that you want to boot into. This commonly happens when you have multiple operating systems installed. The solution is to change the default boot option. To do this, you need to edit the file `/boot/loader/loader.conf`. This file contains the configuration for systemd-boot. Just add the following line to the file:
 
 ```
 default arch.conf
@@ -57,7 +57,7 @@ Boot Loader Entries:
 
 Notice how the default and selected flags are set to the linux-hardened-secure.conf file.
 
-After asking in groups and exploring a bit, I found out that in the file at `/sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f` had the value 0. This means that the timeout value was set to 0. Howecould not be edited. I tried to change the permissions of the file but that didn't work. I also tried to change the value of the file using `echo 10 > /sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f` but that didn't work either.
+After exploring a bit, I found out that in the file at `/sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f` had the value 0. This means that the timeout value was set to 0. Howecould not be edited. I tried to change the permissions of the file but that didn't work. I also tried to change the value of the file using `echo 10 > /sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f` but that didn't work either.
 
 ### Final solution
 

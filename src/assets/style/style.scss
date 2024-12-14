@@ -380,6 +380,11 @@ pre {
   border: 2px solid var(--border-dark);
 }
 
+pre.mermaid {
+  //background-color: var(--accent-bgcol-light);
+  all: revert;
+}
+
 .blog-container {
   display: flex;
   flex-direction: row;
