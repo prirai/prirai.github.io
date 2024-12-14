@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Matrix Addition in C</title>
+        <meta name="description" content="In this tutorial we will create a program in C which will add two matrices of same size.">
+        <link rel="canonical" href="/code/matrix-addition/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Matrix Addition in C"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C which will add two matrices of same size."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+    <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main >
+            <h1>Matrix Addition in C</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#algorithm">Algorithm</a></li><li><a href="#problem-description">Problem description</a></li><li><a href="#examples">Examples</a></li><li><a href="#problem-solution">Problem Solution</a></li><li><a href="#naive-approach">Naive Approach</a><ul><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#functional-approach">Functional Approach</a><ul><li><a href="#approach">Approach</a></li><li><a href="#program-source-code-1">Program/Source code</a></li><li><a href="#method-used">Method used</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#time-complexity-1">Time complexity</a></li><li><a href="#space-complexity-1">Space Complexity</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#advanced-approach">Advanced approach</a><ul><li><a href="#approach-1">Approach</a></li><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#methods-used">Methods used</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#time-complexity-2">Time complexity</a></li><li><a href="#space-complexity-2">Space Complexity</a></li><li><a href="#output-2">Output</a></li></ul></li></ul>
+      </div>
+            </aside>
+            <p>This C program will add two matrices of same size.</p>
+<h2 id="algorithm" tabindex="-1">Algorithm <a class="direct-link" href="#algorithm" aria-hidden="true">#</a></h2>
+<p>In order to add two matrices, we need to add the corresponding elements of each matrix. Suppose we have two matrices of size m x n and p x q.</p>
+<ol>
+<li>Take the number of rows and columns as input.</li>
+<li>Store the number in a variable.</li>
+<li>Initialize the first matrix.</li>
+<li>Initialize the second matrix.</li>
+<li>Initialize the result matrix.</li>
+<li>Inside a loop, add the corresponding elements of the two matrices and store them in the result matrix.</li>
+<li>Print the result matrix.</li>
+</ol>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>Given two matrices of same size, this program will add the corresponding elements of each matrix and print the result.</p>
+<h2 id="examples" tabindex="-1">Examples <a class="direct-link" href="#examples" aria-hidden="true">#</a></h2>
+<pre><code>Input:
+First Matrix:
+1 2 3
+4 5 6
+Second Matrix:
+1 2 3
+4 5 6
+
+Output:
+2 4 6
+6 8 10
+</code></pre>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<p>To approach this problem we'll use a for loop to loop through the number of rows and columns and add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<h2 id="naive-approach" tabindex="-1">Naive Approach <a class="direct-link" href="#naive-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we'll simply loop through the number of rows and columns and add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* Program to add two matrices of same size */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> r<span class="token punctuation">,</span> c<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of columns: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>res <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of first matrix:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%d][%d]: "</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of second matrix:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%d][%d]: "</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The result matrix is:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%6.d"</span><span class="token punctuation">,</span> res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>The program will ask the user to enter the number of rows and columns and will return the result matrix. The program will loop through the number of rows and columns and add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<p>Here, the memory allocation is done a bit differently. We'll use malloc to allocate the memory for the two matrices and the result matrix. First we allocate the rows of the three matrices and then we allocate the columns.</p>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>Time complexity of this algorithm is O(n^2).</p>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>Space complexity of this algorithm is O(n^2).</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./matrix_add      
+Enter the number of rows: 3
+Enter the number of columns: 2
+Enter the elements of first matrix:
+[0][0]: 2
+[0][1]: 5
+[1][0]: 32
+[1][1]: 65
+[2][0]: 23
+[2][1]: 76
+Enter the elements of second matrix:
+[0][0]: 23
+[0][1]: 65
+[1][0]: 35
+[1][1]: 2
+[2][0]: 4
+[2][1]: 0
+The result matrix is:
+    25    70
+    67    67
+    27    76
+</code></pre>
+<h2 id="functional-approach" tabindex="-1">Functional Approach <a class="direct-link" href="#functional-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we'll use a function to add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<h3 id="approach" tabindex="-1">Approach <a class="direct-link" href="#approach" aria-hidden="true">#</a></h3>
+<ol>
+<li>Create a function to add the corresponding elements of the two matrices and store them in the result matrix.</li>
+<li>Ask the user to enter the number of rows and columns.</li>
+<li>Initialize the first matrix.</li>
+<li>Initialize the second matrix.</li>
+<li>Initialize the result matrix.</li>
+<li>Call the function to add the corresponding elements of the two matrices and store them in the result matrix.</li>
+<li>Print the result matrix.</li>
+</ol>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* Program to add two matrices of same size */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>b<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>res<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> r<span class="token punctuation">,</span> c<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of columns: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>res <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span> c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of first matrix:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%d][%d]: "</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of second matrix:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%d][%d]: "</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> res<span class="token punctuation">,</span> r<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The result matrix is:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%6.d"</span><span class="token punctuation">,</span> res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="method-used" tabindex="-1">Method used <a class="direct-link" href="#method-used" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>add(int **, int **, int **, int, int)</code>: This function adds the corresponding elements of the two matrices and stores them in the result matrix.</li>
+</ul>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>The program will ask the user to enter the number of rows and columns. Then it will initialize the first matrix, initialize the second matrix and initialize the result matrix. The program will then call the function to add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<p>In the function, we'll loop through the number of rows and columns and add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<h3 id="time-complexity-1" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-1" aria-hidden="true">#</a></h3>
+<p>Time complexity of this algorithm is O(n^2).</p>
+<h3 id="space-complexity-1" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-1" aria-hidden="true">#</a></h3>
+<p>Space complexity of this algorithm is O(n^2).</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./matrix_add0 
+Enter the number of rows: 3
+Enter the number of columns: 2
+Enter the elements of first matrix:
+[0][0]: 34
+[0][1]: 64
+[1][0]: 86
+[1][1]: 0
+[2][0]: 34
+[2][1]: -25
+Enter the elements of second matrix:
+[0][0]: 65
+[0][1]: -67
+[1][0]: 576
+[1][1]: -674
+[2][0]: 58  
+[2][1]: 435
+The result matrix is:
+    99    -3
+   662  -674
+    92   410
+</code></pre>
+<h2 id="advanced-approach" tabindex="-1">Advanced approach <a class="direct-link" href="#advanced-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we'll use functions to add the corresponding elements of the two matrices and store them in the result matrix.</p>
+<h3 id="approach-1" tabindex="-1">Approach <a class="direct-link" href="#approach-1" aria-hidden="true">#</a></h3>
+<ol>
+<li>Create a function to add the corresponding elements of the two matrices and store them in the result matrix.</li>
+<li>Create a function to initialize a matrix.</li>
+<li>Create a function to print a matrix.</li>
+<li>Ask the user to enter the number of rows and columns.</li>
+<li>Initialize the first matrix using the function <code>initializeMatrix()</code>.</li>
+<li>Initialize the second matrix using the function <code>initializeMatrix()</code>.</li>
+<li>Add the corresponding elements of the two matrices using the function <code>addMatrix()</code>.</li>
+<li>Print the result matrix using the function <code>printMatrix()</code>.</li>
+</ol>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* Program to add two matrices of same size using functions */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">printMatrix</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">initializeMatrix</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%d][%d]: "</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">addMatrix</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>b<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>res<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> c<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> r<span class="token punctuation">,</span> c<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of rows: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number of columns: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span>res <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>r <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>c <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of first matrix:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">initializeMatrix</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> r<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of second matrix:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">initializeMatrix</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> r<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">addMatrix</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> res<span class="token punctuation">,</span> r<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The result matrix is:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printMatrix</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> r<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>printMatrix(int **, int, int)</code>: This function will print the matrix.</li>
+<li><code>initializeMatrix(int **, int, int)</code>: This function will initialize the matrix.</li>
+<li><code>addMatrix(int **, int **, int **, int, int)</code>: This function will add the corresponding elements of the two matrices and store them in the result matrix.</li>
+</ul>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>The program begins with asking the number of rows and columns and then initializes the matrices using the function <code>initializeMatrix</code>. The program then calls the <code>addMatrix</code> function to add the corresponding elements of the two matrices and store them in the result matrix. The program then prints the result matrix.</p>
+<h3 id="time-complexity-2" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-2" aria-hidden="true">#</a></h3>
+<p>The time complexity of this algorithm is O(n^2).</p>
+<h3 id="space-complexity-2" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-2" aria-hidden="true">#</a></h3>
+<p>Space complexity of this algorithm is O(n^2).</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./matrix_add1
+Enter the number of rows: 3
+Enter the number of columns: 4
+Enter the elements of first matrix:
+[0][0]: 2
+[0][1]: 765
+[0][2]: 42
+[0][3]: 52
+[1][0]: 843
+[1][1]: 45
+[1][2]: 32
+[1][3]: 91
+[2][0]: 34
+[2][1]: 25
+[2][2]: 84
+[2][3]: 26
+Enter the elements of second matrix:
+[0][0]: 48
+[0][1]: 25
+[0][2]: 18
+[0][3]: 258
+[1][0]: 59
+[1][1]: 25
+[1][2]: 89
+[1][3]: 23
+[2][0]: 28
+[2][1]: 292
+[2][2]: 5958
+[2][3]: 56
+The result matrix is:
+    50    790     60    310 
+   902     70    121    114 
+    62    317   6042     82 
+</code></pre>
+
+            
+        </main>
+    </body>
+</html>

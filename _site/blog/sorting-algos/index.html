@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sorting algorithms in C</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blog/sorting-algos/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Sorting algorithms in C"/>
+        <meta property="og:url" content="/blog/sorting-algos/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blog</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Sorting algorithms in C</h1>
+<time datetime="2022-02-25">25 Feb 2022</time>
+    <a href="/tags/programming/" class="post-tag">programming</a>
+    <a href="/tags/c/" class="post-tag">c</a>
+    <a href="/tags/dsa/" class="post-tag">dsa</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#insertion-sort">Insertion Sort</a></li><li><a href="#merge-sort">Merge Sort</a></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <p>I made this blog during my university course of Data Structures and Algorithms. As the code is completely
+indigeneous, there might be some efficiency issues and you are free to point out if you find any.</p>
+<p>Also you might checkout the project yourself on GitHub and star it and maybe verify the code yourself. I'd
+be glad if you also contribute to the codebase by either submitting issues or create new source files for
+various algorithms.</p>
+<p><a href="https://github.com/prirai/DSA-using-C">DSA-using-C</a></p>
+<h2 id="insertion-sort" tabindex="-1">Insertion Sort <a class="direct-link" href="#insertion-sort" aria-hidden="true">#</a></h2>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">printar</span><span class="token punctuation">(</span><span class="token keyword">int</span> ar<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[] = ["</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" %d"</span><span class="token punctuation">,</span> ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">" ]\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token function">throwel</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>ar<span class="token punctuation">,</span> <span class="token keyword">int</span> in<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ptr <span class="token operator">=</span> in <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>ar<span class="token punctuation">[</span>in<span class="token punctuation">]</span> <span class="token operator">&lt;</span> ar<span class="token punctuation">[</span>ptr<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> in <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d &lt; %d\n"</span><span class="token punctuation">,</span> ar<span class="token punctuation">[</span>in<span class="token punctuation">]</span><span class="token punctuation">,</span> ar<span class="token punctuation">[</span>ptr<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> t <span class="token operator">=</span> ar<span class="token punctuation">[</span>in<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        ar<span class="token punctuation">[</span>in<span class="token punctuation">]</span> <span class="token operator">=</span> ar<span class="token punctuation">[</span>ptr<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        ar<span class="token punctuation">[</span>ptr<span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        ptr <span class="token operator">--</span><span class="token punctuation">;</span>
+        in <span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token function">iterel</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>ar<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> ar<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Pointer : ar[%d] = %d\n"</span><span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> ar<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">memcpy</span><span class="token punctuation">(</span>ar<span class="token punctuation">,</span> <span class="token function">throwel</span><span class="token punctuation">(</span>ar<span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> size <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">printar</span><span class="token punctuation">(</span>ar<span class="token punctuation">,</span> <span class="token string">"ar"</span><span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Enter the size of the array : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span>array_to_sort <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span>n <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Enter the Array elements:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"array_to_sort[%d] : "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>array_to_sort<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printar</span><span class="token punctuation">(</span>array_to_sort<span class="token punctuation">,</span> <span class="token string">"array_to_sort"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span>result_array <span class="token operator">=</span> <span class="token function">iterel</span><span class="token punctuation">(</span>array_to_sort<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printar</span><span class="token punctuation">(</span>result_array<span class="token punctuation">,</span> <span class="token string">"result_array"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="merge-sort" tabindex="-1">Merge Sort <a class="direct-link" href="#merge-sort" aria-hidden="true">#</a></h2>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">printar</span><span class="token punctuation">(</span><span class="token keyword">int</span> ar<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[] = ["</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" %d"</span><span class="token punctuation">,</span> ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">" ]\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token function">two_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> ar<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">></span> ar<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> t <span class="token operator">=</span> ar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        ar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> ar<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        ar<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token function">ar_merge</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">,</span> <span class="token keyword">int</span> as<span class="token punctuation">,</span> <span class="token keyword">int</span> bs<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span>arr <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ain <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> al <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bl <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Trying to merge these...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        al <span class="token operator">=</span> <span class="token punctuation">(</span>ain <span class="token operator">&lt;</span> as<span class="token punctuation">)</span> <span class="token operator">?</span> a<span class="token punctuation">[</span>ain<span class="token punctuation">]</span> <span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">;</span>
+        bl <span class="token operator">=</span> <span class="token punctuation">(</span>bin <span class="token operator">&lt;</span> bs<span class="token punctuation">)</span> <span class="token operator">?</span> b<span class="token punctuation">[</span>bin<span class="token punctuation">]</span> <span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>al <span class="token operator">&lt;</span> bl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a[%d] = %d &lt; b[%d] = %d\n"</span><span class="token punctuation">,</span> ain<span class="token punctuation">,</span> a<span class="token punctuation">[</span>ain<span class="token punctuation">]</span><span class="token punctuation">,</span> bin<span class="token punctuation">,</span> b<span class="token punctuation">[</span>bin<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> al<span class="token punctuation">;</span>
+            ain <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a[%d] = %d > b[%d] = %d\n"</span><span class="token punctuation">,</span> ain<span class="token punctuation">,</span> a<span class="token punctuation">[</span>ain<span class="token punctuation">]</span><span class="token punctuation">,</span> bin<span class="token punctuation">,</span> b<span class="token punctuation">[</span>bin<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> bl<span class="token punctuation">;</span>
+            bin <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printar</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token string">"after merge"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> arr<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token function">partition</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>ar<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> s <span class="token operator">=</span> h <span class="token operator">-</span> l<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span>arr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token function">malloc</span><span class="token punctuation">(</span>s <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token function">two_sort</span><span class="token punctuation">(</span>ar<span class="token punctuation">)</span><span class="token punctuation">,</span> s <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> ar<span class="token punctuation">,</span> s <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> <span class="token operator">*</span>ar2 <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span>s<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> <span class="token operator">*</span>ar1 <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token punctuation">(</span>s <span class="token operator">-</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> l<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s <span class="token operator">-</span> s<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> l<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i is %d, ar1[%d] = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> i <span class="token operator">-</span> l<span class="token punctuation">,</span> ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ar1<span class="token punctuation">[</span>i <span class="token operator">-</span> l<span class="token punctuation">]</span> <span class="token operator">=</span> ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> s <span class="token operator">-</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i is %d, ar2[%d] = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> i <span class="token operator">-</span> s <span class="token operator">+</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ar2<span class="token punctuation">[</span>i <span class="token operator">-</span> s <span class="token operator">+</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> ar<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printar</span><span class="token punctuation">(</span>ar1<span class="token punctuation">,</span> <span class="token string">"ar1"</span><span class="token punctuation">,</span> s <span class="token operator">-</span> s<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printar</span><span class="token punctuation">(</span>ar2<span class="token punctuation">,</span> <span class="token string">"ar2"</span><span class="token punctuation">,</span> h <span class="token operator">-</span> s <span class="token operator">+</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ar1 <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>ar1<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> s <span class="token operator">-</span> s<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ar2 <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>ar2<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> h <span class="token operator">-</span> s <span class="token operator">+</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">memcpy</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token function">ar_merge</span><span class="token punctuation">(</span>ar1<span class="token punctuation">,</span> ar2<span class="token punctuation">,</span> s <span class="token operator">-</span> s<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> l<span class="token punctuation">,</span> h <span class="token operator">-</span> s <span class="token operator">+</span> s<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">,</span> s <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> arr<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Enter the size of the array : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%ud"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span>array_to_sort <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span>n <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Enter the Array elements:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"array_to_sort[%d] : "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>array_to_sort<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printar</span><span class="token punctuation">(</span>array_to_sort<span class="token punctuation">,</span> <span class="token string">"array_to_sort"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">*</span>result_array <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>array_to_sort<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printar</span><span class="token punctuation">(</span>result_array<span class="token punctuation">,</span> <span class="token string">"result_array"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blog/wine-setup/"><div><i class="la la-angle-left"></i> WINE best effort setup</div></a>
+                    
+                        <a href="/blog/lisp/"><div>Learn Lisp with me <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

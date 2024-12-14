@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reverse number using for loop</title>
+        <meta name="description" content="In this tutorial we will create a program in C that will ask for a number and then reverse it using for loop.">
+        <link rel="canonical" href="/code/number-reverse-using-for-loop/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Reverse number using for loop"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C that will ask for a number and then reverse it using for loop."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+    <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main >
+            <h1>Reverse number using for loop</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#algorithm">Algorithm</a></li><li><a href="#problem-description">Problem description</a><ul><li><a href="#methods-used">Methods used</a></li><li><a href="#approach">Approach</a></li><li><a href="#examples">Examples</a></li><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#output">Output</a></li></ul></li></ul>
+      </div>
+            </aside>
+            <h1 id="c-program-to-reverse-a-number-using-for-loop" tabindex="-1">C program to reverse a number using for loop <a class="direct-link" href="#c-program-to-reverse-a-number-using-for-loop" aria-hidden="true">#</a></h1>
+<p>This is a C program that will find the reverse of a number provided by user using for loop.</p>
+<h2 id="algorithm" tabindex="-1">Algorithm <a class="direct-link" href="#algorithm" aria-hidden="true">#</a></h2>
+<p>Ask for the number as user input. In thus case, as we are using for loop, it is essential to know the size of the number beforehand. Therefore we should make use of the log10 function to find the size of the number.</p>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>Given a number, find the reverse of the number using for loop.</p>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>long reverse(long)</code> - This function will reverse the number.</li>
+</ul>
+<h3 id="approach" tabindex="-1">Approach <a class="direct-link" href="#approach" aria-hidden="true">#</a></h3>
+<ol>
+<li>Take the number as input.</li>
+<li>Store the number in a variable.</li>
+<li>Find the size of the number using log10() function.</li>
+<li>Inside for loop, take the number and divide it by 10 and store the remainder in a variable.</li>
+<li>Add the remainder to the sum where sum multiplies its previous value by 10.</li>
+<li>Repeat the process until the number is not 0 until the loop ends.</li>
+<li>Return the sum.</li>
+</ol>
+<h3 id="examples" tabindex="-1">Examples <a class="direct-link" href="#examples" aria-hidden="true">#</a></h3>
+<p>Input: 98353
+Output: 35398</p>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* C program to reverse a number using for loop */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;math.h></span></span>
+
+<span class="token keyword">long</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token keyword">long</span> num<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">long</span> reverse <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">long</span> temp<span class="token punctuation">;</span>
+	<span class="token keyword">long</span> remainder<span class="token punctuation">;</span>
+	<span class="token keyword">long</span> size <span class="token operator">=</span> <span class="token function">log10</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		temp <span class="token operator">=</span> num<span class="token punctuation">;</span>
+		remainder <span class="token operator">=</span> temp <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">;</span>
+		reverse <span class="token operator">=</span> reverse <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> remainder<span class="token punctuation">;</span>
+		num <span class="token operator">=</span> num <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> reverse<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">long</span> num<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the number\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%ld"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The reverse of the number is %ld\n"</span><span class="token punctuation">,</span> <span class="token function">reverse</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Compiled with gcc 12.1.0 :</p>
+<pre><code>gcc num-reverse-for.c -o num-reverse-for -lm 
+</code></pre>
+<p>Note that here <code>-lm</code> is necessary to include math library otherwise the <code>ld</code> linker will not find the <code>log10()</code> function.</p>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>The program begins with asking the user for a number. The number is stored in a variable <code>num</code> and then passed to the function <code>reverse()</code>.</p>
+<p>In <code>reverse()</code> function, we find the log of the number which is the size of the number and then iterate through the for loop from zero to size and use the basic division algorithm to find the reverse of the number.</p>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>The time complexity of the program is O(n).</p>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>The space complexity of the program is O(1) since we are not using any extra space.</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./num-reverse-for 
+Enter the number
+24981
+The reverse of the number is 18942
+
+&gt; ./num-reverse-for
+Enter the number
+172398
+The reverse of the number is 893271
+</code></pre>
+
+            
+        </main>
+    </body>
+</html>

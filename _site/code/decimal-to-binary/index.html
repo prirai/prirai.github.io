@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Decimal to Binary conversion in C</title>
+        <meta name="description" content="In this tutorial we will be creating a C program which will convert decimal numbers to binary numbers.">
+        <link rel="canonical" href="/code/decimal-to-binary/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Decimal to Binary conversion in C"/>
+        <meta property="og:url" content="/code/decimal-to-binary/"/>
+        <meta property="og:description" content="In this tutorial we will be creating a C program which will convert decimal numbers to binary numbers."/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blog</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Decimal to Binary conversion in C</h1>
+<time datetime="2022-07-21">21 Jul 2022</time>
+    <a href="/tags/c/" class="post-tag">c</a>
+    <a href="/tags/coding/" class="post-tag">coding</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#decimal-numbers">Decimal numbers</a></li><li><a href="#binary-numbers">Binary numbers</a></li><li><a href="#algorithm">Algorithm</a></li><li><a href="#naive-approach">Naive Approach</a><ul><li><a href="#methods-used">Methods used</a></li><li><a href="#approach">Approach</a></li><li><a href="#examples">Examples</a></li><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#negative-numbers">Negative numbers</a><ul><li><a href="#methods-used-1">Methods used</a></li><li><a href="#approach-1">Approach</a></li><li><a href="#examples-1">Examples</a></li><li><a href="#program-source-code-1">Program/Source code</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#time-complexity-1">Time complexity</a></li><li><a href="#space-complexity-1">Space Complexity</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#decimal-numbers-with-floating-points">Decimal numbers with floating points</a><ul><li><a href="#methods-used-2">Methods used</a></li><li><a href="#approach-2">Approach</a></li><li><a href="#examples-2">Examples</a></li><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#time-complexity-2">Time complexity</a></li><li><a href="#space-complexity-2">Space Complexity</a></li><li><a href="#output-2">Output</a></li></ul></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <h2 id="decimal-numbers" tabindex="-1">Decimal numbers <a class="direct-link" href="#decimal-numbers" aria-hidden="true">#</a></h2>
+<p>Decimal numbers are the numbers in the decimal system. They are represented by the digits 0 to 9. For example, the number <code>123</code> is represented by the digits <code>1</code>, <code>2</code>, and <code>3</code>. The number <code>0</code> is represented by the digit <code>0</code>. The number <code>123456789</code> is represented by the digits <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, and <code>9</code>. In order to represent number system, we need a base. Decimal numbers are represented in the base 10. The base 10 is the most common base in the world.</p>
+<h2 id="binary-numbers" tabindex="-1">Binary numbers <a class="direct-link" href="#binary-numbers" aria-hidden="true">#</a></h2>
+<p>Binary numbers are the numbers in the binary system. They are represented by the digits 0 and 1. For example, the number <code>101</code> is represented by the digits <code>1</code> and <code>0</code>. The number <code>0</code> is represented by the digit <code>0</code>. The number <code>101010101</code> is represented by the digits <code>0</code>, and <code>1</code>. Binary numbers are represented in the base 2.</p>
+<h2 id="algorithm" tabindex="-1">Algorithm <a class="direct-link" href="#algorithm" aria-hidden="true">#</a></h2>
+<p>There can be many approaches to convert a Decimal number to Binary number. The simplest way to convert a Decimal number to Binary number is to use the following algorithm:</p>
+<ol>
+<li>Divide the number by 2 and get the quotient and remainder.</li>
+<li>If the remainder is 0, then the binary number is 0.</li>
+<li>If the remainder is 1, then the binary number is 1.</li>
+<li>Repeat the process for the quotient and remainder.</li>
+<li>For every step keep appending the remainder to the binary number.</li>
+</ol>
+<h1 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h1>
+<p>Given a decimal number, convert it to binary number.</p>
+<h1 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h1>
+<p>To approach this problem, we simply use the repeated division method and take out the remainder. This program uses modulo operator to get the remainder.</p>
+<h2 id="naive-approach" tabindex="-1">Naive Approach <a class="direct-link" href="#naive-approach" aria-hidden="true">#</a></h2>
+<p>This approach simply converts the decimal number to binary using the division operation</p>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<p><code>decimal_to_binary</code> - This method converts the decimal number to binary number.</p>
+<h3 id="approach" tabindex="-1">Approach <a class="direct-link" href="#approach" aria-hidden="true">#</a></h3>
+<ol>
+<li>Divide the number by 2 and get the quotient and remainder.</li>
+<li>If the remainder is 0, then the binary number is 0.</li>
+<li>If the remainder is 1, then the binary number is 1.</li>
+<li>Repeat the process for the quotient and remainder.</li>
+<li>For every step keep appending the remainder to the binary number.</li>
+</ol>
+<h3 id="examples" tabindex="-1">Examples <a class="direct-link" href="#examples" aria-hidden="true">#</a></h3>
+<p>Suppose the input is <code>324</code>, the program should output <code>101000100</code>.</p>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* This program converts a decimal number to binary. */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">long</span> <span class="token function">dec_to_bin</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">long</span> bin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">long</span> dec <span class="token operator">=</span> n<span class="token punctuation">;</span>
+	<span class="token keyword">long</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>dec <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		bin <span class="token operator">+=</span> <span class="token punctuation">(</span>dec <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> i<span class="token punctuation">;</span>
+		dec <span class="token operator">/=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+		i <span class="token operator">*=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">return</span> bin<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">long</span> n<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter a decimal number: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%ld"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Binary equivalent of %ld = %ld\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">dec_to_bin</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>The program starts with asking the user to enter a decimal number. The program then converts the decimal number to binary number via the <code>dec_to_bin</code> method. Here, we have to keep in mind that our program can't convert negative numbers to binary. Therefore, for numbers which are negative, we return <code>0</code> as the binary number. For positive numbers, we return the binary number after performing continued division and adding the remainders to the binary number.</p>
+<p>The program prints the binary number after converting the decimal number to binary.</p>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n) where n is the number of digits in the decimal number.</p>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1) since we are not using any extra space.</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<p>```
+Enter a decimal number: 324
+Binary equivalent of 324 = 101000100</p>
+<p>Enter a decimal number: 123
+Binary equivalent of 123 = 1111011</p>
+<p>Enter a decimal number: -123
+Binary equivalent of -123 = 0
+```</p>
+<h2 id="negative-numbers" tabindex="-1">Negative numbers <a class="direct-link" href="#negative-numbers" aria-hidden="true">#</a></h2>
+<p>The decimal number can be negative. For example, the number <code>-123</code> is represented by the digits <code>1</code>, <code>2</code>, <code>3</code>. The number <code>-0</code> is represented by the digit <code>0</code>. The number <code>-123.456789</code> is represented by the digits <code>1</code>, <code>2</code>, <code>3</code>, <code>.</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, and <code>9</code>.</p>
+<h3 id="methods-used-1" tabindex="-1">Methods used <a class="direct-link" href="#methods-used-1" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>int sizeOfNumber</code> - Used to find the size (number of digits) of the number and also the bitsize in which it should fit in.</li>
+<li><code>long twos_complement</code> - Finds the twos complement of the number entered as binary.</li>
+<li><code>long dec_to_bin</code> - Converts the decimal number to binary.</li>
+<li><code>long toBinary</code> - Checks whether the number is negative or not and accordingly passes it to functions.</li>
+</ul>
+<h3 id="approach-1" tabindex="-1">Approach <a class="direct-link" href="#approach-1" aria-hidden="true">#</a></h3>
+<ol>
+<li>Ask the user to enter the decimal number.</li>
+<li>Check whether the number is negative or not.</li>
+<li>If the number is positive, then convert it to binary.</li>
+<li>If the number is negative, find it's bitsize and convert it to two's complement.</li>
+<li>Convert the decimal number to binary.</li>
+<li>Print the binary number.</li>
+</ol>
+<h3 id="examples-1" tabindex="-1">Examples <a class="direct-link" href="#examples-1" aria-hidden="true">#</a></h3>
+<p>Suppose the input is <code>-123</code>, the program should output <code>10000101</code>.</p>
+<p>Suppose the input is <code>48</code>, the program should output <code>110000</code>.</p>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* Decimal to binary numbers also taking into account negative numbers. */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> bitsize <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">sizeOfNumber</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Repeated division by 10 to find the size of the number.</span>
+    <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        n <span class="token operator">/=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        size<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Bitsize will be helpful while finding the two's complement</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>size <span class="token operator">></span> <span class="token number">7</span><span class="token punctuation">)</span>
+        bitsize <span class="token operator">=</span> <span class="token number">16</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> size<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">long</span> <span class="token function">twos_complement</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">long</span> twos_comp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">long</span> r<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The number has %d digits so setting bitsize at %d.\n"</span><span class="token punctuation">,</span> <span class="token function">sizeOfNumber</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">,</span> bitsize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> bitsize<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Finding the remainder and appending it according to the flag.</span>
+        r <span class="token operator">=</span> n <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            twos_comp <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>r <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            twos_comp <span class="token operator">+=</span> r <span class="token operator">*</span> i<span class="token punctuation">;</span>
+        n <span class="token operator">/=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        i <span class="token operator">*=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The twos complement "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> twos_comp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Simple decimal to binary convertor */</span>
+<span class="token keyword">long</span> <span class="token function">dec_to_bin</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> bin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">long</span> dec <span class="token operator">=</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">long</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>dec <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        bin <span class="token operator">+=</span> <span class="token punctuation">(</span>dec <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> i<span class="token punctuation">;</span>
+        dec <span class="token operator">/=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        i <span class="token operator">*=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> bin<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">long</span> <span class="token function">toBinary</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Function to check whether it's a negative or a positive number and accordingly passes through the functions.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token function">dec_to_bin</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token keyword">return</span> <span class="token function">twos_complement</span><span class="token punctuation">(</span><span class="token function">dec_to_bin</span><span class="token punctuation">(</span><span class="token operator">~</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> n<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter a decimal number: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%ld"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Binary equivalent of %ld = %ld\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">toBinary</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>The program starts with asking the user to enter a decimal number. The program then converts the decimal number to binary number via the <code>dec_to_bin</code> method. In case the number is negative, we use the <code>twos_complement</code> method to find the twos complement of the number and also find the bitsize.</p>
+<h3 id="time-complexity-1" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-1" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n) where n is the number of digits in the decimal number.</p>
+<h3 id="space-complexity-1" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-1" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1) since we are not using any extra space.</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre class="language-bash"><code class="language-bash"><span class="token operator">></span> ./dectobinneg      
+Enter a decimal number: <span class="token parameter variable">-48</span>
+The number has <span class="token number">6</span> digits so setting bitsize at <span class="token number">8</span>.
+The twos complement Binary equivalent of <span class="token parameter variable">-48</span> <span class="token operator">=</span> <span class="token number">11010000</span>
+
+<span class="token operator">></span> ./dectobinneg
+Enter a decimal number: <span class="token number">100</span>
+Binary equivalent of <span class="token number">100</span> <span class="token operator">=</span> <span class="token number">1100100</span></code></pre>
+<h2 id="decimal-numbers-with-floating-points" tabindex="-1">Decimal numbers with floating points <a class="direct-link" href="#decimal-numbers-with-floating-points" aria-hidden="true">#</a></h2>
+<p>The decimal number can have fractional points. For example, the number <code>123.45</code> is represented by the digits <code>1</code>, <code>2</code>, <code>3</code>, <code>.</code>, <code>4</code>, <code>5</code>. The number <code>0.0</code> is represented by the digit <code>0</code>. The number <code>123.456789</code> is represented by the digits <code>1</code>, <code>2</code>, <code>3</code>, <code>.</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, and <code>9</code>.</p>
+<h3 id="methods-used-2" tabindex="-1">Methods used <a class="direct-link" href="#methods-used-2" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>long dec_to_bin</code> - Converts the decimal number to binary.</li>
+<li><code>double fractBin</code> - Converts the fractional part of the decimal number to binary.</li>
+<li><code>long toBinary</code> - Converts the decimal number to binary by separating the fractional part and integer part.</li>
+</ul>
+<h3 id="approach-2" tabindex="-1">Approach <a class="direct-link" href="#approach-2" aria-hidden="true">#</a></h3>
+<ol>
+<li>Ask the user to enter the decimal number.</li>
+<li>Separate the fractional part and integer part.</li>
+<li>Send the integer part to the <code>dec_to_bin</code> method.</li>
+<li>Send the fractional part to the <code>fractBin</code> method.</li>
+<li>Convert the decimal number to binary.</li>
+<li>Add the resulting binary numbers.</li>
+<li>Print the binary number.</li>
+</ol>
+<h3 id="examples-2" tabindex="-1">Examples <a class="direct-link" href="#examples-2" aria-hidden="true">#</a></h3>
+<p>Suppose the input is <code>123.45</code>, the program should output <code>1111011.011100</code>.</p>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* We will convert decimal numbers with doubleing points to binary */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">long</span> <span class="token function">dec_to_bin</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">long</span> bin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">long</span> dec <span class="token operator">=</span> n<span class="token punctuation">;</span>
+	<span class="token keyword">long</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>dec <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		bin <span class="token operator">+=</span> <span class="token punctuation">(</span>dec <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> i<span class="token punctuation">;</span>
+		dec <span class="token operator">/=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+		i <span class="token operator">*=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">return</span> bin<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// fractBin multiplies iteratively for the fractional part of the number.</span>
+<span class="token keyword">double</span> <span class="token function">fractBin</span><span class="token punctuation">(</span><span class="token keyword">double</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">double</span> bin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">int</span> threshold <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>
+	<span class="token keyword">double</span> temp <span class="token operator">=</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">double</span> j <span class="token operator">=</span> <span class="token number">0.1f</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> threshold <span class="token operator">&amp;&amp;</span> temp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		temp <span class="token operator">*=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> temp_int <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>temp<span class="token punctuation">;</span>
+		bin <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>temp_int <span class="token operator">*</span> j<span class="token punctuation">;</span>
+		temp <span class="token operator">-=</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>temp_int<span class="token punctuation">;</span>
+        j <span class="token operator">/=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">return</span> bin<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">double</span> <span class="token function">toBinary</span><span class="token punctuation">(</span><span class="token keyword">double</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token comment">// Send the part after decimal point to dec_to_bin function.</span>
+	<span class="token keyword">long</span> num_int <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span>n<span class="token punctuation">;</span>
+	<span class="token keyword">double</span> bina <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> <span class="token function">dec_to_bin</span><span class="token punctuation">(</span>num_int<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">double</span> num_dec <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> num_int<span class="token punctuation">;</span>
+	<span class="token keyword">double</span> binb <span class="token operator">=</span> <span class="token function">fractBin</span><span class="token punctuation">(</span>num_dec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> bina <span class="token operator">+</span> binb<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">double</span> n<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter a decimal number: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%lf"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Binary equivalent of %lf = %lf\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token function">toBinary</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>The program starts with asking the user to enter a decimal number. The program then converts the integer part of the decimal number to binary number via the <code>dec_to_bin</code> method. The fractional part of the decimal number is converted to binary number via the <code>fractBin</code> method. The resulting binary numbers are added and printed.</p>
+<p>Let's see how this works.</p>
+<p>So, for the integer part, it's already clear that the binary representation can be found out simply by repeated division with 2. However in case of fractional parts, the binary equaivalent is found out by repeated multiplication by 2. Suppose the number is <code>12.5</code>, then as we'd guess the binary representation is <code>1100.1</code>. For every digit to the right of the decimal point, if an decimal gets 10 different characters, binaries gets only 2. So, that's the reason of the multiplication.</p>
+<p>A simple analogy would be that of a jar. If we want to tell that it's half filled, we know that in decimal terms, we'll say it's 0.50 filled. So, 0.50 + 0.50 is 1.00. Similarly, in case of binary we say 0.10 as, 0.10 + 0.10 = 1.00. This simple trick could be used to understand many other aspects of binaries and their relations with decimals.</p>
+<h3 id="time-complexity-2" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-2" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n) where n is the number of digits in the decimal number.</p>
+<h3 id="space-complexity-2" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-2" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1) since we are not using any extra space.</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre class="language-bash"><code class="language-bash"><span class="token operator">></span> ./dectobinfrac 
+Enter a decimal number: <span class="token number">123.45</span>
+Binary equivalent of <span class="token number">123.450000</span> <span class="token operator">=</span> <span class="token number">1111011.011100</span>
+
+<span class="token operator">></span> ./dectobinfrac
+Enter a decimal number: <span class="token number">3045.219</span>
+Binary equivalent of <span class="token number">3045.219000</span> <span class="token operator">=</span> <span class="token number">101111100101.001114</span></code></pre>
+<p>Wait, but why did I get a 4 at the end? The reason is <a href="https://floating-point-gui.de/basic/">here</a>, also read 'The Art of Computer Programming' by <em>Donald Knuth</em> for a mathematical foundation on why the floating point implementation in programming languages is not so accurate (or perhaps was).</p>
+
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

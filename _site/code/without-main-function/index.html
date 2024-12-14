@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>C program without main function</title>
+        <meta name="description" content="In this tutorial we will create a program in C with no main function.">
+        <link rel="canonical" href="/code/without-main-function/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="C program without main function"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C with no main function."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+    <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main >
+            <h1>C program without main function</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#problem-description">Problem description</a></li><li><a href="#problem-solution">Problem Solution</a></li><li><a href="#using-a-macro-that-defines-main">Using a macro that defines main</a><ul><li><a href="#program-source-code">Program/Source Code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#using-token-pasting">Using token pasting</a><ul><li><a href="#program-source-code-1">Program/Source Code</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#by-obfuscation-using-token-pasting">By obfuscation using token pasting</a><ul><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#output-2">Output</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul>
+      </div>
+            </aside>
+            <p>This tutorial will show you how to create a C program without main function.</p>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>We want to create a C program with no main function.</p>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<ol>
+<li>Design a macro to obfuscate the main function.</li>
+<li>Define the function being used and call the macro which then append the word main by token pasting.</li>
+</ol>
+<h2 id="using-a-macro-that-defines-main" tabindex="-1">Using a macro that defines main <a class="direct-link" href="#using-a-macro-that-defines-main" aria-hidden="true">#</a></h2>
+<h3 id="program-source-code" tabindex="-1">Program/Source Code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">pseudo</span> <span class="token expression">main</span></span>
+
+<span class="token keyword">int</span> <span class="token function">pseudo</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>A macro is defined which is called pseudo. The pseudo macro is then used to define the main function. The pseudo macro is then called which works as the main function.</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>./without-main
+Hello World
+</code></pre>
+<h2 id="using-token-pasting" tabindex="-1">Using token pasting <a class="direct-link" href="#using-token-pasting" aria-hidden="true">#</a></h2>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source Code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">pseudo</span> <span class="token expression">m</span><span class="token punctuation">##</span><span class="token expression">a</span><span class="token punctuation">##</span><span class="token expression">i</span><span class="token punctuation">##</span><span class="token expression">n</span></span>
+
+<span class="token keyword">int</span> <span class="token function">pseudo</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>A macro is defined which appends the work main using token pasting in contrast to the previous example where we directly included the word main. The pseudo macro is then called which works as the main function.</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre><code>./without-main
+Hello World
+</code></pre>
+<h2 id="by-obfuscation-using-token-pasting" tabindex="-1">By obfuscation using token pasting <a class="direct-link" href="#by-obfuscation-using-token-pasting" aria-hidden="true">#</a></h2>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">pseudo</span><span class="token expression"><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">)</span> f</span><span class="token punctuation">##</span><span class="token expression">c</span><span class="token punctuation">##</span><span class="token expression">a</span><span class="token punctuation">##</span><span class="token expression">d</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">nomain</span> <span class="token expression"><span class="token function">pseudo</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> b<span class="token punctuation">,</span> a <span class="token punctuation">,</span> n<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">int</span> <span class="token function">nomain</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>This program actually runs main but with a disguise. This is acheived by replacing the main function with a macro. The macro here is <code>pseudo</code>. The macro is defined as follows:</p>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">pseudo</span><span class="token expression"><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">)</span> f</span><span class="token punctuation">##</span><span class="token expression">c</span><span class="token punctuation">##</span><span class="token expression">a</span><span class="token punctuation">##</span><span class="token expression">d</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">nomain</span> <span class="token expression"><span class="token function">pseudo</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> b<span class="token punctuation">,</span> a <span class="token punctuation">,</span> n<span class="token punctuation">,</span> l<span class="token punctuation">,</span> m<span class="token punctuation">)</span></span></span></code></pre>
+<p>In the first line it tells the compiler to do token pasting. The tokens order is defined as <code>f##c##a##d</code>. Thus, in the next line, when the nomain function is defined as <code>pseudo(i, b, a , n, l, m)</code>, the compiler expands the argument such that the 6th argument is taken first, third argument is taken second, first argument is taken third and finally comes the fourth argument. Therefore the macro decodes the argument to <code>main</code>.</p>
+<p>So, the argument simplifies to <code>#define nomain main</code>.</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre><code>./without-main
+Hello World
+</code></pre>
+<h2 id="conclusion" tabindex="-1">Conclusion <a class="direct-link" href="#conclusion" aria-hidden="true">#</a></h2>
+<p>No C program can work without main function. There has to be some way to disguise the main function as we did here by defining a macro function which then decodes itself to the word <code>main</code>.</p>
+
+            
+        </main>
+    </body>
+</html>

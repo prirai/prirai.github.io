@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Common systemd-boot issues and how to fix them</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blog/systemd-boot-issues/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Common systemd-boot issues and how to fix them"/>
+        <meta property="og:url" content="/blog/systemd-boot-issues/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blog</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Common systemd-boot issues and how to fix them</h1>
+<time datetime="2022-09-12">12 Sep 2022</time>
+    <a href="/tags/linux/" class="post-tag">linux</a>
+    <a href="/tags/howto/" class="post-tag">howto</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#booting-into-the-wrong-os">Booting into the wrong OS</a></li><li><a href="#booting-directly-into-the-default-selected-os-without-showing-the-menu">Booting directly into the default selected OS without showing the menu</a><ul><li><a href="#final-solution">Final solution</a></li></ul></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <p>Systemd-boot is a boot loader for Linux systems. It is the default boot loader for Arch Linux and many other distributions. It is a very simple and easy to use boot loader. However, it is not without its issues. In this post, I will be going over some of the common issues that I have encountered with systemd-boot and how to fix them.</p>
+<h2 id="booting-into-the-wrong-os" tabindex="-1">Booting into the wrong OS <a class="direct-link" href="#booting-into-the-wrong-os" aria-hidden="true">#</a></h2>
+<p>This is a very common issue that I have encountered with systemd-boot. It's that when you boot into your system, you are presented with a list of operating systems that you can boot into. However, the default option is not the one that you want to boot into. This commonly happens when you have multiple operating systems installed. The solution is to change the default boot option. To do this, you need to edit the file <code>/boot/loader/loader.conf</code>. This file contains the configuration for systemd-boot. Just add the following line to the file:</p>
+<pre><code>default arch.conf
+</code></pre>
+<p>Where you can replace arch.conf with the configuration file you made in the entries folder.</p>
+<h2 id="booting-directly-into-the-default-selected-os-without-showing-the-menu" tabindex="-1">Booting directly into the default selected OS without showing the menu <a class="direct-link" href="#booting-directly-into-the-default-selected-os-without-showing-the-menu" aria-hidden="true">#</a></h2>
+<p>So, I was trying out different key-bindings for the systemd-boot menu. Doing that, I by mistake set the timeout to 0. This means that the menu will not show up and the system will boot directly into the default selected OS. In my case the default selected OS was the linux-stable kernel.</p>
+<p>At first I tried to change the name of the configuration file from <code>linux-secure.conf</code> to <code>linux-stable-secure.conf</code>. This also didn't do any good. The default one was selected regardless of the filename being changed.</p>
+<pre class="language-bash"><code class="language-bash">╰─<span class="token operator">></span>$ bootctl list
+Boot Loader Entries:
+         type: Boot Loader Specification Type <span class="token comment">#1 (.conf)</span>
+        title: Arch Linux <span class="token punctuation">(</span>secure<span class="token punctuation">)</span>
+           id: linux-stable-secure.conf
+       source: /boot/loader/entries/linux-stable-secure.conf
+
+         type: Boot Loader Specification Type <span class="token comment">#1 (.conf)</span>
+        title: Arch Linux LTS <span class="token punctuation">(</span>secure<span class="token punctuation">)</span>
+           id: linux-lts-secure.conf
+       source: /boot/loader/entries/linux-lts-secure.conf
+
+         type: Boot Loader Specification Type <span class="token comment">#1 (.conf)</span>
+        title: Arch Linux Hardened <span class="token punctuation">(</span>secure<span class="token punctuation">)</span> <span class="token punctuation">(</span>default<span class="token punctuation">)</span> <span class="token punctuation">(</span>selected<span class="token punctuation">)</span>
+           id: linux-hardened-secure.conf
+       source: /boot/loader/entries/linux-hardened-secure.conf
+
+         type: Boot Loader Specification Type <span class="token comment">#1 (.conf)</span>
+        title: keytool
+           id: keytool.conf
+       source: /boot/loader/entries/keytool.conf
+
+         type: Automatic
+        title: Reboot Into Firmware Interface
+           id: auto-reboot-to-firmware-setup
+       source: /sys/firmware/efi/efivars/LoaderEntries-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f</code></pre>
+<p>Notice how the default and selected flags are set to the linux-hardened-secure.conf file.</p>
+<p>After exploring a bit, I found out that in the file at <code>/sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f</code> had the value 0. This means that the timeout value was set to 0. Howecould not be edited. I tried to change the permissions of the file but that didn't work. I also tried to change the value of the file using <code>echo 10 &gt; /sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f</code> but that didn't work either.</p>
+<h3 id="final-solution" tabindex="-1">Final solution <a class="direct-link" href="#final-solution" aria-hidden="true">#</a></h3>
+<p>I entered the following command in a root shell:</p>
+<pre class="language-bash"><code class="language-bash">chattr <span class="token parameter variable">-i</span> /sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f
+<span class="token function">rm</span> /sys/firmware/efi/efivars/LoaderConfigTimeout-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f</code></pre>
+<p><code>chattr -i</code> removes the immutable flag from the file. <code>rm</code> removes the file. After this, I rebooted my system. Voila! the menu showed up and I was able to select the OS that I wanted to boot into.</p>
+<p><code>chattr</code> is a tool to change file attributes on a Linux file system. The <code>i</code> flag is the immutable flag. This flag prevents the file from being modified. This is useful for files that you don't want to be modified. For example, the file <code>/etc/shadow</code> is immutable. This is because you don't want to modify the file. If you do, you will not be able to login to your system.</p>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blog/c-code-styles/"><div><i class="la la-angle-left"></i> C coding styles</div></a>
+                    
+                        <a href="/blog/use_3ds/"><div>Using 3DS with Citra <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>
