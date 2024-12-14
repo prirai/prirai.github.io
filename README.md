@@ -1,1 +1,0 @@
-# prirai.github.io

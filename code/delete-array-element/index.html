@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>C program to delete an element from an array</title>
+        <meta name="description" content="In this tutorial we will create a program in C which will delete an element from an array.">
+        <link rel="canonical" href="/code/delete-array-element/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="C program to delete an element from an array"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C which will delete an element from an array."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+    <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main >
+            <h1>C program to delete an element from an array</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#problem-description">Problem description</a></li><li><a href="#examples">Examples</a></li><li><a href="#problem-solution">Problem Solution</a></li><li><a href="#delete-element-by-index">Delete element by index</a><ul><li><a href="#approach">Approach</a></li><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#time-complexity">Time Complexity</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#delete-element-by-value">Delete element by value</a><ul><li><a href="#approach-1">Approach</a></li><li><a href="#program-source-code-1">Program/Source code</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#space-complexity-1">Space Complexity</a></li><li><a href="#time-complexity-1">Time Complexity</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#advanced-approach">Advanced approach</a><ul><li><a href="#approach-2">Approach</a></li><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#methods-used">Methods used</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#space-complexity-2">Space Complexity</a></li><li><a href="#time-complexity-2">Time Complexity</a></li><li><a href="#output-2">Output</a></li></ul></li></ul>
+      </div>
+            </aside>
+            <p>This tutorial will show you how to delete an element from an array in C.</p>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>We have an array of integers and we want to delete an element from it.</p>
+<h2 id="examples" tabindex="-1">Examples <a class="direct-link" href="#examples" aria-hidden="true">#</a></h2>
+<pre><code>input:
+  - [1, 2, 3, 4, 5]
+  - 3
+
+output:
+    - [1, 2, 4, 5]
+</code></pre>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<ol>
+<li>Create an array of integers.</li>
+<li>Ask the user to enter the index of the element to be deleted.</li>
+<li>Delete the element from the array.</li>
+<li>Print the array.</li>
+</ol>
+<h2 id="delete-element-by-index" tabindex="-1">Delete element by index <a class="direct-link" href="#delete-element-by-index" aria-hidden="true">#</a></h2>
+<p>In this approach, we will use a loop to iterate through the array and delete the element from the array.</p>
+<h3 id="approach" tabindex="-1">Approach <a class="direct-link" href="#approach" aria-hidden="true">#</a></h3>
+<ol>
+<li>Create an array of integers.</li>
+<li>Ask the user to enter the index of the element to be deleted.</li>
+<li>Loop through the array and delete the element from the array.</li>
+<li>Print the array.</li>
+</ol>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> n<span class="token punctuation">,</span> index<span class="token punctuation">,</span> arr<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the size of the array: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of the array: \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d: "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the index of the element to be deleted: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> index<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The array after deleting the element is: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>The program will ask the user to enter the size of the array and then the elements of the array. The program will then ask the user to enter the index of the element to be deleted. The program will then loop through the array and delete the element from the array. The program will then print the array.</p>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1).</p>
+<h3 id="time-complexity" tabindex="-1">Time Complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n).</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./delete-element 
+Enter the size of the array: 5
+Enter the elements of the array: 
+0: 1
+
+1: 2
+
+2: 3
+
+3: 4
+
+4: 5
+Enter the index of the element to be deleted: 3
+The array after deleting the element is: 1 2 3 5 
+</code></pre>
+<h2 id="delete-element-by-value" tabindex="-1">Delete element by value <a class="direct-link" href="#delete-element-by-value" aria-hidden="true">#</a></h2>
+<p>In this approach, we will use a loop to iterate through the array and delete the element from the array.</p>
+<h3 id="approach-1" tabindex="-1">Approach <a class="direct-link" href="#approach-1" aria-hidden="true">#</a></h3>
+<ol>
+<li>Create an array of integers.</li>
+<li>Ask the user to enter the value of the element to be deleted.</li>
+<li>Loop through the array and delete the element from the array.</li>
+<li>Print the array.</li>
+</ol>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> n<span class="token punctuation">,</span> value<span class="token punctuation">,</span> arr<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the size of the array: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of the array: \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d: "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the value of the element to be deleted: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> value<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+                arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The array after deleting the element is: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>The program will ask the user to enter the size of the array and then the elements of the array. The program will then ask the user to enter the value of the element to be deleted. The program will then loop through the array and delete the element from the array. The program will then print the array.</p>
+<h3 id="space-complexity-1" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-1" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1).</p>
+<h3 id="time-complexity-1" tabindex="-1">Time Complexity <a class="direct-link" href="#time-complexity-1" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n).</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./delete-element
+Enter the size of the array: 5
+Enter the elements of the array:
+0: 7
+1: 12
+2: 15
+3: 18
+4: 33
+Enter the value of the element to be deleted: 15
+The array after deleting the element is: 7 12 18 33
+</code></pre>
+<h2 id="advanced-approach" tabindex="-1">Advanced approach <a class="direct-link" href="#advanced-approach" aria-hidden="true">#</a></h2>
+<p>In this approach we'll use separate functions to delete elements by index or by value and give back the array after deleting the element.</p>
+<h3 id="approach-2" tabindex="-1">Approach <a class="direct-link" href="#approach-2" aria-hidden="true">#</a></h3>
+<ol>
+<li>Create an array of integers.</li>
+<li>Give the user the option to delete an element by index or by value.</li>
+<li>Delete the element from the array.</li>
+<li>Print the array.</li>
+</ol>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">delete_element_by_index</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> index<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+		arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	n <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">delete_element_by_value</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+				arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+			n <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+			<span class="token keyword">break</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">print_array</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n[ "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"]\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">init_array</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d: "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> index<span class="token punctuation">,</span> value<span class="token punctuation">,</span> arr<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> choice<span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the size of the array: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the elements of the array: \n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">init_array</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span>
+	    <span class="token punctuation">(</span><span class="token string">"You can delete an element by index or by value.\n1. Delete by index\n2. Delete by value\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter your choice: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>choice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>choice <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the index of the element to be deleted: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">delete_element_by_index</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter the value of the element to be deleted: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">delete_element_by_value</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token function">print_array</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>delete_element_by_index()</code> - This function will delete the element from the array by index.</li>
+<li><code>delete_element_by_value()</code> - This function will delete the element from the array by value.</li>
+<li><code>print_array()</code> - This function will print the array.</li>
+</ul>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>The program will ask the user to enter the size of the array and then the elements of the array. The program will then ask the user to enter the index of the element to be deleted. The program will provide a choice between deleting element by value or by index. The program will then call the function <code>delete_element_by_index()</code> to delete the element from the array. The program will then call the function <code>print_array()</code> to print the array. The program will then ask the user to enter the value of the element to be deleted. The program will then call the function <code>delete_element_by_value()</code> to delete the element from the array. The program will then call the function <code>print_array()</code> to print the array.</p>
+<h3 id="space-complexity-2" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-2" aria-hidden="true">#</a></h3>
+<p>The space complexity of this program is O(1).</p>
+<h3 id="time-complexity-2" tabindex="-1">Time Complexity <a class="direct-link" href="#time-complexity-2" aria-hidden="true">#</a></h3>
+<p>The time complexity of this program is O(n).</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./delete-element-2 
+Enter the size of the array: 4
+Enter the elements of the array: 
+0: 2
+1: 8
+2: 4
+3: 9
+You can delete an element by index or by value.
+1. Delete by index
+2. Delete by value
+Enter your choice: 1
+Enter the index of the element to be deleted: 2
+
+[ 2 8 9 ]
+
+&gt; ./delete-element-2
+Enter the size of the array: 6
+Enter the elements of the array: 
+0: 12
+1: 65
+2: 32
+3: 75
+4: 48
+5: 11
+You can delete an element by index or by value.
+1. Delete by index
+2. Delete by value
+Enter your choice: 2
+Enter the value of the element to be deleted: 32
+
+[ 12 65 75 48 11 ]
+</code></pre>
+
+            
+        </main>
+    </body>
+</html>

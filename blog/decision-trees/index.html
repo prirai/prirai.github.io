@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Decision Trees using Information Gain and Gini Index</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blog/decision-trees/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Decision Trees using Information Gain and Gini Index"/>
+        <meta property="og:url" content="/blog/decision-trees/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blog</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Decision Trees using Information Gain and Gini Index</h1>
+<time datetime="2024-12-02">02 Dec 2024</time>
+    <a href="/tags/ml/" class="post-tag">ml</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#level-1">Level 1</a><ul><li><a href="#1-outlook-sunny-overcast-rain">1. Outlook (Sunny, Overcast, Rain)</a></li><li><a href="#2-temperature-hot-mild-cool">2. Temperature (Hot, Mild, Cool)</a></li><li><a href="#3-humidity-high-normal">3. Humidity (High, Normal)</a></li><li><a href="#4-wind-strong-weak">4. Wind (Strong, Weak)</a></li></ul></li><li><a href="#level-2">Level 2</a><ul><li><a href="#subtables-after-outlook-split">Subtables After Outlook Split</a></li><li><a href="#decision-tree">Decision Tree</a></li></ul></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<h1 id="using-information-gain" tabindex="-1">Using Information Gain <a class="direct-link" href="#using-information-gain" aria-hidden="true">#</a></h1>
+<h2 id="level-1" tabindex="-1">Level 1 <a class="direct-link" href="#level-1" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Outlook</th>
+<th>Temperature</th>
+<th>Humidity</th>
+<th>Wind</th>
+<th>Play Golf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Sunny</td>
+<td>Hot</td>
+<td>High</td>
+<td>Weak</td>
+<td>No</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sunny</td>
+<td>Hot</td>
+<td>High</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Overcast</td>
+<td>Hot</td>
+<td>High</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Rain</td>
+<td>Mild</td>
+<td>High</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Rain</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Rain</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Overcast</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Sunny</td>
+<td>Mild</td>
+<td>High</td>
+<td>Weak</td>
+<td>No</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Sunny</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Rain</td>
+<td>Mild</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Sunny</td>
+<td>Mild</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Overcast</td>
+<td>Mild</td>
+<td>High</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Overcast</td>
+<td>Hot</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Rain</td>
+<td>Mild</td>
+<td>High</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>$H(\textrm{Play Golf}) = H(5,9) = -\cfrac{5}{14}*\log_2\bigg(\cfrac{5}{14}\bigg) - \cfrac{9}{14}*\log_2\bigg(\cfrac{9}{14}\bigg) = 0.940$</p>
+<p>Where:</p>
+<ul>
+<li>Yes (Play Golf) = 5 instances</li>
+<li>No (Don't Play Golf) = 9 instances</li>
+<li>Total = 14 instances</li>
+</ul>
+<h3 id="1-outlook-sunny-overcast-rain" tabindex="-1">1. Outlook (Sunny, Overcast, Rain) <a class="direct-link" href="#1-outlook-sunny-overcast-rain" aria-hidden="true">#</a></h3>
+<p>$H(\textrm{Play Golf}|\textrm{Sunny}) = -\cfrac{2}{5}*\log_2(\cfrac{2}{5}) -\cfrac{3}{5}*$\log _2(\cfrac{3}{5}) = 0.971$ </p>
+<p>$H(\textrm{Play Golf}|\textrm{Overcast}) = -1*\log_2(1)-0*\log_2(0) = 0$</p>
+<p>$H(\textrm{Play Golf}|\textrm{Rain}) = -\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg)-\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg) = 0.971$</p>
+<p>$H_{avg}(\textrm{Play Golf | Outlook}) = \cfrac{5}{14}*0.971 + \cfrac{4}{14}*0 + \cfrac{5}{14}*0.971 = 0.694$</p>
+<p>$IG(\textrm{Outlook}) = 0.940 - 0.694 = 0.246$ ✅</p>
+<h3 id="2-temperature-hot-mild-cool" tabindex="-1">2. Temperature (Hot, Mild, Cool) <a class="direct-link" href="#2-temperature-hot-mild-cool" aria-hidden="true">#</a></h3>
+<p>$H(\textrm{Play Golf}|\textrm{Hot}) = -\cfrac{2}{4}*\log_2\bigg(\cfrac{2}{4}\bigg)-\cfrac{2}{4}*\log_2\bigg(\cfrac{2}{4}\bigg) = 1.000$</p>
+<p>$H(\textrm{Play Golf}|\textrm{Mild}) = -\cfrac{4}{6}*\log_2\bigg(\cfrac{4}{6}\bigg)-\cfrac{2}{6}*\log_2\bigg(\cfrac{2}{6}\bigg) = 0.918$</p>
+<p>$H(\textrm{Play Golf}|\textrm{Cool}) = -\cfrac{3}{4}*\log_2\bigg(\cfrac{3}{4}\bigg)-\cfrac{1}{4}*\log_2\bigg(\cfrac{1}{4}\bigg) = 0.811$</p>
+<p>$H_{avg}(\textrm{Play Golf | Temperature}) = \cfrac{4}{14}*1.000 + \cfrac{6}{14}*0.918 + \cfrac{4}{14}*0.811 = 0.911$</p>
+<p>$IG(\textrm{Temperature}) = 0.940 - 0.911 = 0.029$</p>
+<h3 id="3-humidity-high-normal" tabindex="-1">3. Humidity (High, Normal) <a class="direct-link" href="#3-humidity-high-normal" aria-hidden="true">#</a></h3>
+<p>$H(\textrm{Play Golf}|\textrm{High}) = -\cfrac{1}{7}*\log_2\bigg(\cfrac{1}{7}\bigg)-\cfrac{6}{7}*\log_2\bigg(\cfrac{6}{7}\bigg) = 0.592$</p>
+<p>$H(\textrm{Play Golf}|\textrm{Normal}) = -\cfrac{4}{7}*\log_2\bigg(\cfrac{4}{7}\bigg)-\cfrac{3}{7}*\log_2\bigg(\cfrac{3}{7}\bigg) = 0.985$</p>
+<p>$H_{avg}(\textrm{Play Golf | Humidity}) = \cfrac{7}{14}*0.592 + \cfrac{7}{14}*0.985 = 0.789$</p>
+<p>$IG(\textrm{Humidity}) = 0.940 - 0.789 = 0.151$</p>
+<h3 id="4-wind-strong-weak" tabindex="-1">4. Wind (Strong, Weak) <a class="direct-link" href="#4-wind-strong-weak" aria-hidden="true">#</a></h3>
+<p>$H(\textrm{Play Golf}|\textrm{Strong}) = -\cfrac{3}{6}*\log_2\bigg(\cfrac{3}{6}\bigg)-\cfrac{3}{6}*\log_2\bigg(\cfrac{3}{6}\bigg) = 1.0$</p>
+<p>$H(\textrm{Play Golf}|\textrm{Weak}) = -\cfrac{6}{8}*\log_2\bigg(\cfrac{6}{8}\bigg)-\cfrac{6}{8}*\log_2\bigg(\cfrac{6}{8}\bigg) = 0.811$</p>
+<p>$H_{avg}(\textrm{Play Golf | Wind}) = \cfrac{6}{14}*1.0 + \cfrac{8}{14}*0.811 = 0.892$</p>
+<p>$IG(\textrm{Wind}) = 0.940 - 0.892 = 0.048$</p>
+<h2 id="level-2" tabindex="-1">Level 2 <a class="direct-link" href="#level-2" aria-hidden="true">#</a></h2>
+<h3 id="subtables-after-outlook-split" tabindex="-1">Subtables After Outlook Split <a class="direct-link" href="#subtables-after-outlook-split" aria-hidden="true">#</a></h3>
+<h4 id="1-sunny-outlook" tabindex="-1">1. Sunny Outlook <a class="direct-link" href="#1-sunny-outlook" aria-hidden="true">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Temperature</th>
+<th>Humidity</th>
+<th>Wind</th>
+<th>Play Golf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Hot</td>
+<td>High</td>
+<td>Weak</td>
+<td>No</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Hot</td>
+<td>High</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Mild</td>
+<td>High</td>
+<td>Weak</td>
+<td>No</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Mild</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Entropy for Sunny:</p>
+<p>$H(\textrm{Sunny}) = -\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg)-\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg) = 0.971$</p>
+<h5>Information Gain - Sunny:</h5>
+<ol>
+<li>
+<p><strong>Temperature</strong> (Hot, Mild, Cool)</p>
+<p>$H(\textrm{Play}|Hot) = 0$<br>
+$H(\textrm{Play}|\textrm{Mild}) = 1$<br>
+$H(\textrm{Play}|\textrm{Cool}) = 0$<br>
+$IG(\textrm{Temperature}) = 0.971 - (\frac{2}{5}*0 + \frac{2}{5}*1 + \frac{1}{5}*0) = 0.571$</p>
+</li>
+<li>
+<p><strong>Humidity</strong> (High, Normal)</p>
+<p>$H(\textrm{Play}|\textrm{High}) = 0$<br>
+$H(\textrm{Play}|\textrm{Normal}) = 0$<br>
+$IG(\textrm{Humidity}) = 0.971 - (\frac{3}{5}*0 + \frac{2}{5}*0) = 0.971$ ✅</p>
+</li>
+<li>
+<p><strong>Wind</strong> (Strong, Weak)</p>
+<p>$H(\textrm{Play}|\textrm{Strong}) = 1$<br>
+$H(\textrm{Play}|\textrm{Weak}) = 0.918$<br>
+$IG(\textrm{Wind}) = 0.971 - (\frac{2}{5}*1 + \frac{3}{5}*0.918) = 0.020$</p>
+</li>
+</ol>
+<h4 id="2-overcast-outlook" tabindex="-1">2. Overcast Outlook <a class="direct-link" href="#2-overcast-outlook" aria-hidden="true">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Temperature</th>
+<th>Humidity</th>
+<th>Wind</th>
+<th>Play Golf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>Hot</td>
+<td>High</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Mild</td>
+<td>High</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Hot</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: No further splitting needed as all instances are &quot;Yes&quot;</p>
+<h4 id="3-rain-outlook" tabindex="-1">3. Rain Outlook <a class="direct-link" href="#3-rain-outlook" aria-hidden="true">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Temperature</th>
+<th>Humidity</th>
+<th>Wind</th>
+<th>Play Golf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>Mild</td>
+<td>High</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Mild</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Mild</td>
+<td>High</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Initial Entropy for Rain:</p>
+<p>$H(\textrm{Rain}) = -\cfrac{3}{5}*\log_2\bigg(\cfrac{3}{5}\bigg)-\cfrac{2}{5}*\log_2\bigg(\cfrac{2}{5}\bigg) = 0.971$</p>
+<h5>Information Gain - Rain</h5>
+<ol>
+<li>
+<p><strong>Temperature</strong> (Mild, Cool)</p>
+<p>$H(\textrm{Play}|\textrm{Mild}) = 0.918$<br>
+$H(\textrm{Play}|\textrm{Cool}) = 1$<br>
+$IG(\textrm{Temperature}) = 0.971 - (\frac{3}{5}*0.918 + \frac{2}{5}*1) = 0.020$</p>
+</li>
+<li>
+<p><strong>Humidity</strong> (High, Normal)</p>
+<p>$H(\textrm{Play}|\textrm{High}) = 1$<br>
+$H(\textrm{Play}|\textrm{Normal}) = 0.918$<br>
+$IG(\textrm{Humidity}) = 0.971 - (\frac{2}{5}*1 + \frac{3}{5}*0.918) = 0.020$</p>
+</li>
+<li>
+<p><strong>Wind</strong> (Strong, Weak)</p>
+<p>$H(\textrm{Play}|\textrm{Strong}) = 0$<br>
+$H(\textrm{Play}|\textrm{Weak}) = 0$<br>
+$IG(\textrm{Wind}) = 0.971 - (\frac{2}{5}*0 + \frac{3}{5}*0) = 0.971$ ✅</p>
+</li>
+</ol>
+<h3 id="decision-tree" tabindex="-1">Decision Tree <a class="direct-link" href="#decision-tree" aria-hidden="true">#</a></h3>
+<pre class="mermaid">%%{init: {&#39;theme&#39;:&#39;forest&#39;}}%%&#10;graph TD&#10;    A[Outlook] --&gt;|Sunny| B[Humidity]&#10;    A --&gt;|Overcast| C[Play Yes]&#10;    A --&gt;|Rain| D[Wind]&#10;    B --&gt;|High| E[Don&#39;t Play]&#10;    B --&gt;|Normal| F[Play]&#10;    D --&gt;|Strong| G[Don&#39;t Play]&#10;    D --&gt;|Weak| H[Play]&#10;</pre>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blog/hdl/"><div><i class="la la-angle-left"></i> Open-source tools for HDL</div></a>
+                    
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

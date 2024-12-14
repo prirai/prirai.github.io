@@ -1,0 +1,1350 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ANSI escape sequences</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blog/ansi-esc/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="ANSI escape sequences"/>
+        <meta property="og:url" content="/blog/ansi-esc/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blog</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>ANSI escape sequences</h1>
+<time datetime="2022-01-24">24 Jan 2022</time>
+    <a href="/tags/ansi/" class="post-tag">ansi</a>
+    <a href="/tags/programming/" class="post-tag">programming</a>
+    <a href="/tags/linux/" class="post-tag">linux</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#general-ascii-codes">General ASCII Codes</a></li><li><a href="#cursor-controls">Cursor Controls</a></li><li><a href="#erase-functions">Erase Functions</a></li><li><a href="#colors-graphics-mode">Colors / Graphics Mode</a><ul><li><a href="#color-codes">Color codes</a></li></ul></li><li><a href="#screen-modes">Screen Modes</a><ul><li><a href="#set-mode">Set Mode</a></li><li><a href="#common-private-modes">Common Private Modes</a></li><li><a href="#keyboard-strings">Keyboard Strings</a></li></ul></li><li><a href="#resources">Resources</a></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <p>Standard escape codes are prefixed with Escape:</p>
+<ul>
+<li>Ctrl-Key: ^[</li>
+<li>Octal: \033</li>
+<li>Unicode: \u001b</li>
+<li>Hexadecimal: \x1b</li>
+<li>Decimal: 27</li>
+</ul>
+<p>Followed by the command, somtimes delimited by opening square bracket ([), known as a Control Sequence Introducer (CSI), optionally followed by arguments and the command itself.</p>
+<p>Arguments are delimeted by semi colon (;).</p>
+<p>For example:</p>
+<p>sh
+\x1b[1;31m  # Set style to bold, red foreground.</p>
+<h2 id="general-ascii-codes" tabindex="-1">General ASCII Codes <a class="direct-link" href="#general-ascii-codes" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>decimal</th>
+<th>octal</th>
+<th>hex</th>
+<th>C-escape</th>
+<th>Ctrl-Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BEL</td>
+<td>7</td>
+<td>007</td>
+<td>0x07</td>
+<td>\a</td>
+<td>^G</td>
+<td>Terminal bell</td>
+</tr>
+<tr>
+<td>BS</td>
+<td>8</td>
+<td>010</td>
+<td>0x08</td>
+<td>\b</td>
+<td>^H</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td>HT</td>
+<td>9</td>
+<td>011</td>
+<td>0x09</td>
+<td>\t</td>
+<td>^I</td>
+<td>Horizontal TAB</td>
+</tr>
+<tr>
+<td>LF</td>
+<td>10</td>
+<td>012</td>
+<td>0x0A</td>
+<td>\n</td>
+<td>^J</td>
+<td>Linefeed (newline)</td>
+</tr>
+<tr>
+<td>VT</td>
+<td>11</td>
+<td>013</td>
+<td>0x0B</td>
+<td>\v</td>
+<td>^K</td>
+<td>Vertical TAB</td>
+</tr>
+<tr>
+<td>FF</td>
+<td>12</td>
+<td>014</td>
+<td>0x0C</td>
+<td>\f</td>
+<td>^L</td>
+<td>Formfeed (also: New page NP)</td>
+</tr>
+<tr>
+<td>CR</td>
+<td>13</td>
+<td>015</td>
+<td>0x0D</td>
+<td>\r</td>
+<td>^M</td>
+<td>Carriage return</td>
+</tr>
+<tr>
+<td>ESC</td>
+<td>27</td>
+<td>033</td>
+<td>0x1B</td>
+<td>\e<a href="#escape">*</a></td>
+<td>^[</td>
+<td>Escape character</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>127</td>
+<td>177</td>
+<td>0x7F</td>
+<td><none></td>
+<td><none></td>
+<td>Delete character</td>
+</tr>
+</tbody>
+</table>
+<div id="escape"></div>
+<blockquote>
+<p>Note: Some control escape sequences, like \e for ESC, are not guaranteed to work in all languages and compilers. It is recommended to use the decimal, octal or hex representation as escape code.</p>
+</blockquote>
+<blockquote>
+<p>Note: The Ctrl-Key representation is simply associating the non-printable characters from ASCII code 1 with the printable (letter) characters from ASCII code 65 (&quot;A&quot;). ASCII code 1 would be ^A (Ctrl-A), while ASCII code 7 (BEL) would be ^G (Ctrl-G). This is a common representation (and input method) and historically comes from one of the VT series of terminals.</p>
+</blockquote>
+<h2 id="cursor-controls" tabindex="-1">Cursor Controls <a class="direct-link" href="#cursor-controls" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[H</td>
+<td style="text-align:left">moves cursor to home position (0, 0)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[{line};{column}H <br> ESC[{line};{column}f</td>
+<td style="text-align:left">moves cursor to line #, column #</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#A</td>
+<td style="text-align:left">moves cursor up # lines</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#B</td>
+<td style="text-align:left">moves cursor down # lines</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#C</td>
+<td style="text-align:left">moves cursor right # columns</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#D</td>
+<td style="text-align:left">moves cursor left # columns</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#E</td>
+<td style="text-align:left">moves cursor to beginning of next line, # lines down</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#F</td>
+<td style="text-align:left">moves cursor to beginning of previous line, # lines down</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[#G</td>
+<td style="text-align:left">moves cursor to column #</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[6n</td>
+<td style="text-align:left">request cursor position (reports as ESC[#;#R)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC7</td>
+<td style="text-align:left">save cursor position (DEC)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC8</td>
+<td style="text-align:left">restores the cursor to the last saved position (DEC)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[s</td>
+<td style="text-align:left">save cursor position (SCO)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[u</td>
+<td style="text-align:left">restores the cursor to the last saved position (SCO)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: Some sequences, like saving and restoring cursors, are private sequences and are not standardized. While some terminal emulators (i.e. xterm and derived) support both SCO and DEC sequences, they are likely to have different functionality. It is therefore recommended to use DEC sequences.</p>
+</blockquote>
+<h2 id="erase-functions" tabindex="-1">Erase Functions <a class="direct-link" href="#erase-functions" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[J</td>
+<td style="text-align:left">clears the screen</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[0J</td>
+<td style="text-align:left">clears from cursor until end of screen</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[1J</td>
+<td style="text-align:left">clears from cursor to beginning of screen</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[2J</td>
+<td style="text-align:left">clears entire screen</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[K</td>
+<td style="text-align:left">clears the current line</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[0K</td>
+<td style="text-align:left">clears from cursor to end of line</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[1K</td>
+<td style="text-align:left">clears from cursor to start of line</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[2K</td>
+<td style="text-align:left">clears entire line</td>
+</tr>
+</tbody>
+</table>
+<h2 id="colors-graphics-mode" tabindex="-1">Colors / Graphics Mode <a class="direct-link" href="#colors-graphics-mode" aria-hidden="true">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[1;34;{...}m</td>
+<td style="text-align:left">Set graphics modes for cell, separated by semicolon (;).</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[0m</td>
+<td style="text-align:left">reset all modes (styles and colors)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[1m</td>
+<td style="text-align:left">set bold mode.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[2m</td>
+<td style="text-align:left">set dim/faint mode.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[3m</td>
+<td style="text-align:left">set italic mode.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[4m</td>
+<td style="text-align:left">set underline mode.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[5m</td>
+<td style="text-align:left">set blinking mode</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[7m</td>
+<td style="text-align:left">set inverse/reverse mode</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[8m</td>
+<td style="text-align:left">set invisible mode</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[9m</td>
+<td style="text-align:left">set strikethrough mode.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: Some terminals may not support some of the graphic mode sequences listed above.</p>
+</blockquote>
+<h3 id="color-codes" tabindex="-1">Color codes <a class="direct-link" href="#color-codes" aria-hidden="true">#</a></h3>
+<p>Most terminals support 8 and 16 colors, as well as 256 (8-bit) colors. These colors are set by the user, but have commonly defined meanings.</p>
+<h4 id="8-16-colors" tabindex="-1">8-16 Colors <a class="direct-link" href="#8-16-colors" aria-hidden="true">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Color Name</th>
+<th style="text-align:left">Foreground Color Code</th>
+<th style="text-align:left">Background Color Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Black</td>
+<td style="text-align:left">30</td>
+<td style="text-align:left">40</td>
+</tr>
+<tr>
+<td style="text-align:left">Red</td>
+<td style="text-align:left">31</td>
+<td style="text-align:left">41</td>
+</tr>
+<tr>
+<td style="text-align:left">Green</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">42</td>
+</tr>
+<tr>
+<td style="text-align:left">Yellow</td>
+<td style="text-align:left">33</td>
+<td style="text-align:left">43</td>
+</tr>
+<tr>
+<td style="text-align:left">Blue</td>
+<td style="text-align:left">34</td>
+<td style="text-align:left">44</td>
+</tr>
+<tr>
+<td style="text-align:left">Magenta</td>
+<td style="text-align:left">35</td>
+<td style="text-align:left">45</td>
+</tr>
+<tr>
+<td style="text-align:left">Cyan</td>
+<td style="text-align:left">36</td>
+<td style="text-align:left">46</td>
+</tr>
+<tr>
+<td style="text-align:left">White</td>
+<td style="text-align:left">37</td>
+<td style="text-align:left">47</td>
+</tr>
+<tr>
+<td style="text-align:left">Reset</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: the <em>Reset</em> color is the reset code that resets <em>all</em> colors and text effects.</p>
+</blockquote>
+<p>Most terminals, apart from the basic set of 8 colors, also support the &quot;bright&quot; or &quot;bold&quot; colors. These have their own set of codes, mirroring the normal colors, but with an additional ;1 in their codes:</p>
+<p>sh</p>
+<p>Set style to bold, red foreground.</p>
+<pre><code>\x1b[1;31mHello
+</code></pre>
+<p>Set style to dimmed white foreground with red background.</p>
+<pre><code>\x1b[2;37;41mWorld
+</code></pre>
+<h4 id="256-colors" tabindex="-1">256 Colors <a class="direct-link" href="#256-colors" aria-hidden="true">#</a></h4>
+<p>The following escape codes tells the terminal to use the given color ID:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[38;5;{ID}m</td>
+<td style="text-align:left">Set foreground color.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[48;5;{ID}m</td>
+<td style="text-align:left">Set background color.</td>
+</tr>
+</tbody>
+</table>
+<p>Where {ID} should be replaced with the color index from 0 to 255 of the following color table:</p>
+<p><img src="https://user-images.githubusercontent.com/995050/47952855-ecb12480-df75-11e8-89d4-ac26c50e80b9.png" alt="256 Color table"></p>
+<p>The table starts with the original 16 colors (0-15).</p>
+<p>The proceeding 216 colors (16-231) or formed by a 3bpc RGB value offset by 16, packed into a single value.</p>
+<p>The final 24 colors (232-255) are grayscale starting from a shade slighly lighter than black, ranging up to shade slightly darker than white.</p>
+<p>Some emulators interpret these steps as linear increments (256 / 24) on all three channels, although some emulators may explicitly define these values.</p>
+<h4 id="rgb-colors" tabindex="-1">RGB Colors <a class="direct-link" href="#rgb-colors" aria-hidden="true">#</a></h4>
+<p>More modern terminals supports <a href="https://en.wikipedia.org/wiki/Color_depth#True_color_.2824-bit.29">Truecolor</a> (24-bit RGB), which allows you to set foreground and background colors using RGB.</p>
+<p>These escape sequences are usually not well documented.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[38;2;{r};{g};{b}m</td>
+<td style="text-align:left">Set foreground color as RGB.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[48;2;{r};{g};{b}m</td>
+<td style="text-align:left">Set background color as RGB.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note that ;38 and ;48 corresponds to the 16 color sequence and is interpreted by the terminal to set the foreground and background color respectively. Where as ;2 and ;5 sets the color format.</p>
+</blockquote>
+<h2 id="screen-modes" tabindex="-1">Screen Modes <a class="direct-link" href="#screen-modes" aria-hidden="true">#</a></h2>
+<h3 id="set-mode" tabindex="-1">Set Mode <a class="direct-link" href="#set-mode" aria-hidden="true">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[={value}h</td>
+<td style="text-align:left">Changes the screen width or type to the mode specified by value.</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=0h</td>
+<td style="text-align:left">40 x 25 monochrome (text)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=1h</td>
+<td style="text-align:left">40 x 25 color (text)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=2h</td>
+<td style="text-align:left">80 x 25 monochrome (text)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=3h</td>
+<td style="text-align:left">80 x 25 color (text)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=4h</td>
+<td style="text-align:left">320 x 200 4-color (graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=5h</td>
+<td style="text-align:left">320 x 200 monochrome (graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=6h</td>
+<td style="text-align:left">640 x 200 monochrome (graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=7h</td>
+<td style="text-align:left">Enables line wrapping</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=13h</td>
+<td style="text-align:left">320 x 200 color (graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=14h</td>
+<td style="text-align:left">640 x 200 color (16-color graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=15h</td>
+<td style="text-align:left">640 x 350 monochrome (2-color graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=16h</td>
+<td style="text-align:left">640 x 350 color (16-color graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=17h</td>
+<td style="text-align:left">640 x 480 monochrome (2-color graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=18h</td>
+<td style="text-align:left">640 x 480 color (16-color graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[=19h</td>
+<td style="text-align:left">320 x 200 color (256-color graphics)</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[={value}l</td>
+<td style="text-align:left">Resets the mode by using the same values that Set Mode uses, except for 7, which disables line wrapping. The last character in this escape sequence is a lowercase L.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-private-modes" tabindex="-1">Common Private Modes <a class="direct-link" href="#common-private-modes" aria-hidden="true">#</a></h3>
+<p>These are some examples of private modes, which are not defined by the specification, but are implemented in most terminals.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ESC Code Sequence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ESC[?25l</td>
+<td style="text-align:left">make cursor invisible</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[?25h</td>
+<td style="text-align:left">make cursor visible</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[?47l</td>
+<td style="text-align:left">restore screen</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[?47h</td>
+<td style="text-align:left">save screen</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[?1049h</td>
+<td style="text-align:left">enables the alternative buffer</td>
+</tr>
+<tr>
+<td style="text-align:left">ESC[?1049l</td>
+<td style="text-align:left">disables the alternative buffer</td>
+</tr>
+</tbody>
+</table>
+<p>Refer to the <a href="https://invisible-island.net/xterm/ctlseqs/ctlseqs.html">XTerm Control Sequences</a> for a more in-depth list of private modes defined by XTerm.</p>
+<blockquote>
+<p>Note: While these modes may be supported by the most terminals, some may not work in multiplexers like tmux.</p>
+</blockquote>
+<h3 id="keyboard-strings" tabindex="-1">Keyboard Strings <a class="direct-link" href="#keyboard-strings" aria-hidden="true">#</a></h3>
+<p>sh
+ESC[{code};{string};{...}p</p>
+<p>Redefines a keyboard key to a specified string.</p>
+<p>The parameters for this escape sequence are defined as follows:</p>
+<ul>
+<li>
+<p>code is one or more of the values listed in the following table. These values represent keyboard keys and key combinations. When using these values in a command, you must type the semicolons shown in this table in addition to the semicolons required by the escape sequence. The codes in parentheses are not available on some keyboards. ANSI.SYS will not interpret the codes in parentheses for those keyboards unless you specify the /X switch in the DEVICE command for ANSI.SYS.</p>
+</li>
+<li>
+<p>string is either the ASCII code for a single character or a string contained in quotation marks. For example, both 65 and &quot;A&quot; can be used to represent an uppercase A.</p>
+</li>
+</ul>
+<blockquote>
+<p>IMPORTANT: Some of the values in the following table are not valid for all computers. Check your computer's documentation for values that are different.</p>
+</blockquote>
+<h4 id="list-of-keyboard-strings" tabindex="-1">List of keyboard strings <a class="direct-link" href="#list-of-keyboard-strings" aria-hidden="true">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Code</th>
+<th>SHIFT+code</th>
+<th>CTRL+code</th>
+<th>ALT+code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F1</td>
+<td>0;59</td>
+<td>0;84</td>
+<td>0;94</td>
+<td>0;104</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>0;60</td>
+<td>0;85</td>
+<td>0;95</td>
+<td>0;105</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>0;61</td>
+<td>0;86</td>
+<td>0;96</td>
+<td>0;106</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>0;62</td>
+<td>0;87</td>
+<td>0;97</td>
+<td>0;107</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>0;63</td>
+<td>0;88</td>
+<td>0;98</td>
+<td>0;108</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>0;64</td>
+<td>0;89</td>
+<td>0;99</td>
+<td>0;109</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>0;65</td>
+<td>0;90</td>
+<td>0;100</td>
+<td>0;110</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>0;66</td>
+<td>0;91</td>
+<td>0;101</td>
+<td>0;111</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>0;67</td>
+<td>0;92</td>
+<td>0;102</td>
+<td>0;112</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>0;68</td>
+<td>0;93</td>
+<td>0;103</td>
+<td>0;113</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>0;133</td>
+<td>0;135</td>
+<td>0;137</td>
+<td>0;139</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>0;134</td>
+<td>0;136</td>
+<td>0;138</td>
+<td>0;140</td>
+</tr>
+<tr>
+<td>HOME (num keypad)</td>
+<td>0;71</td>
+<td>55</td>
+<td>0;119</td>
+<td>--</td>
+</tr>
+<tr>
+<td>UP ARROW (num keypad)</td>
+<td>0;72</td>
+<td>56</td>
+<td>(0;141)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>PAGE UP (num keypad)</td>
+<td>0;73</td>
+<td>57</td>
+<td>0;132</td>
+<td>--</td>
+</tr>
+<tr>
+<td>LEFT ARROW (num keypad)</td>
+<td>0;75</td>
+<td>52</td>
+<td>0;115</td>
+<td>--</td>
+</tr>
+<tr>
+<td>RIGHT ARROW (num keypad)</td>
+<td>0;77</td>
+<td>54</td>
+<td>0;116</td>
+<td>--</td>
+</tr>
+<tr>
+<td>END (num keypad)</td>
+<td>0;79</td>
+<td>49</td>
+<td>0;117</td>
+<td>--</td>
+</tr>
+<tr>
+<td>DOWN ARROW (num keypad)</td>
+<td>0;80</td>
+<td>50</td>
+<td>(0;145)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>PAGE DOWN (num keypad)</td>
+<td>0;81</td>
+<td>51</td>
+<td>0;118</td>
+<td>--</td>
+</tr>
+<tr>
+<td>INSERT (num keypad)</td>
+<td>0;82</td>
+<td>48</td>
+<td>(0;146)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>DELETE (num keypad)</td>
+<td>0;83</td>
+<td>46</td>
+<td>(0;147)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>(224;71)</td>
+<td>(224;71)</td>
+<td>(224;119)</td>
+<td>(224;151)</td>
+</tr>
+<tr>
+<td>UP ARROW</td>
+<td>(224;72)</td>
+<td>(224;72)</td>
+<td>(224;141)</td>
+<td>(224;152)</td>
+</tr>
+<tr>
+<td>PAGE UP</td>
+<td>(224;73)</td>
+<td>(224;73)</td>
+<td>(224;132)</td>
+<td>(224;153)</td>
+</tr>
+<tr>
+<td>LEFT ARROW</td>
+<td>(224;75)</td>
+<td>(224;75)</td>
+<td>(224;115)</td>
+<td>(224;155)</td>
+</tr>
+<tr>
+<td>RIGHT ARROW</td>
+<td>(224;77)</td>
+<td>(224;77)</td>
+<td>(224;116)</td>
+<td>(224;157)</td>
+</tr>
+<tr>
+<td>END</td>
+<td>(224;79)</td>
+<td>(224;79)</td>
+<td>(224;117)</td>
+<td>(224;159)</td>
+</tr>
+<tr>
+<td>DOWN ARROW</td>
+<td>(224;80)</td>
+<td>(224;80)</td>
+<td>(224;145)</td>
+<td>(224;154)</td>
+</tr>
+<tr>
+<td>PAGE DOWN</td>
+<td>(224;81)</td>
+<td>(224;81)</td>
+<td>(224;118)</td>
+<td>(224;161)</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>(224;82)</td>
+<td>(224;82)</td>
+<td>(224;146)</td>
+<td>(224;162)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>(224;83)</td>
+<td>(224;83)</td>
+<td>(224;147)</td>
+<td>(224;163)</td>
+</tr>
+<tr>
+<td>PRINT SCREEN</td>
+<td>--</td>
+<td>--</td>
+<td>0;114</td>
+<td>--</td>
+</tr>
+<tr>
+<td>PAUSE/BREAK</td>
+<td>--</td>
+<td>--</td>
+<td>0;0</td>
+<td>--</td>
+</tr>
+<tr>
+<td>BACKSPACE</td>
+<td>8</td>
+<td>8</td>
+<td>127</td>
+<td>(0)</td>
+</tr>
+<tr>
+<td>ENTER</td>
+<td>13</td>
+<td>--</td>
+<td>10</td>
+<td>(0</td>
+</tr>
+<tr>
+<td>TAB</td>
+<td>9</td>
+<td>0;15</td>
+<td>(0;148)</td>
+<td>(0;165)</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>0;3</td>
+<td>--</td>
+<td>--</td>
+<td>--</td>
+</tr>
+<tr>
+<td>A</td>
+<td>97</td>
+<td>65</td>
+<td>1</td>
+<td>0;30</td>
+</tr>
+<tr>
+<td>B</td>
+<td>98</td>
+<td>66</td>
+<td>2</td>
+<td>0;48</td>
+</tr>
+<tr>
+<td>C</td>
+<td>99</td>
+<td>66</td>
+<td>3</td>
+<td>0;46</td>
+</tr>
+<tr>
+<td>D</td>
+<td>100</td>
+<td>68</td>
+<td>4</td>
+<td>0;32</td>
+</tr>
+<tr>
+<td>E</td>
+<td>101</td>
+<td>69</td>
+<td>5</td>
+<td>0;18</td>
+</tr>
+<tr>
+<td>F</td>
+<td>102</td>
+<td>70</td>
+<td>6</td>
+<td>0;33</td>
+</tr>
+<tr>
+<td>G</td>
+<td>103</td>
+<td>71</td>
+<td>7</td>
+<td>0;34</td>
+</tr>
+<tr>
+<td>H</td>
+<td>104</td>
+<td>72</td>
+<td>8</td>
+<td>0;35</td>
+</tr>
+<tr>
+<td>I</td>
+<td>105</td>
+<td>73</td>
+<td>9</td>
+<td>0;23</td>
+</tr>
+<tr>
+<td>J</td>
+<td>106</td>
+<td>74</td>
+<td>10</td>
+<td>0;36</td>
+</tr>
+<tr>
+<td>K</td>
+<td>107</td>
+<td>75</td>
+<td>11</td>
+<td>0;37</td>
+</tr>
+<tr>
+<td>L</td>
+<td>108</td>
+<td>76</td>
+<td>12</td>
+<td>0;38</td>
+</tr>
+<tr>
+<td>M</td>
+<td>109</td>
+<td>77</td>
+<td>13</td>
+<td>0;50</td>
+</tr>
+<tr>
+<td>N</td>
+<td>110</td>
+<td>78</td>
+<td>14</td>
+<td>0;49</td>
+</tr>
+<tr>
+<td>O</td>
+<td>111</td>
+<td>79</td>
+<td>15</td>
+<td>0;24</td>
+</tr>
+<tr>
+<td>P</td>
+<td>112</td>
+<td>80</td>
+<td>16</td>
+<td>0;25</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>113</td>
+<td>81</td>
+<td>17</td>
+<td>0;16</td>
+</tr>
+<tr>
+<td>R</td>
+<td>114</td>
+<td>82</td>
+<td>18</td>
+<td>0;19</td>
+</tr>
+<tr>
+<td>S</td>
+<td>115</td>
+<td>83</td>
+<td>19</td>
+<td>0;31</td>
+</tr>
+<tr>
+<td>T</td>
+<td>116</td>
+<td>84</td>
+<td>20</td>
+<td>0;20</td>
+</tr>
+<tr>
+<td>U</td>
+<td>117</td>
+<td>85</td>
+<td>21</td>
+<td>0;22</td>
+</tr>
+<tr>
+<td>V</td>
+<td>118</td>
+<td>86</td>
+<td>22</td>
+<td>0;47</td>
+</tr>
+<tr>
+<td>W</td>
+<td>119</td>
+<td>87</td>
+<td>23</td>
+<td>0;17</td>
+</tr>
+<tr>
+<td>X</td>
+<td>120</td>
+<td>88</td>
+<td>24</td>
+<td>0;45</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>121</td>
+<td>89</td>
+<td>25</td>
+<td>0;21</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>122</td>
+<td>90</td>
+<td>26</td>
+<td>0;44</td>
+</tr>
+<tr>
+<td>1</td>
+<td>49</td>
+<td>33</td>
+<td>--</td>
+<td>0;120</td>
+</tr>
+<tr>
+<td>2</td>
+<td>50</td>
+<td>64</td>
+<td>0</td>
+<td>0;121</td>
+</tr>
+<tr>
+<td>3</td>
+<td>51</td>
+<td>35</td>
+<td>--</td>
+<td>0;122</td>
+</tr>
+<tr>
+<td>4</td>
+<td>52</td>
+<td>36</td>
+<td>--</td>
+<td>0;123</td>
+</tr>
+<tr>
+<td>5</td>
+<td>53</td>
+<td>37</td>
+<td>--</td>
+<td>0;124</td>
+</tr>
+<tr>
+<td>6</td>
+<td>54</td>
+<td>94</td>
+<td>30</td>
+<td>0;125</td>
+</tr>
+<tr>
+<td>7</td>
+<td>55</td>
+<td>38</td>
+<td>--</td>
+<td>0;126</td>
+</tr>
+<tr>
+<td>8</td>
+<td>56</td>
+<td>42</td>
+<td>--</td>
+<td>0;126</td>
+</tr>
+<tr>
+<td>9</td>
+<td>57</td>
+<td>40</td>
+<td>--</td>
+<td>0;127</td>
+</tr>
+<tr>
+<td>0</td>
+<td>48</td>
+<td>41</td>
+<td>--</td>
+<td>0;129</td>
+</tr>
+<tr>
+<td>-</td>
+<td>45</td>
+<td>95</td>
+<td>31</td>
+<td>0;130</td>
+</tr>
+<tr>
+<td>=</td>
+<td>61</td>
+<td>43</td>
+<td>---</td>
+<td>0;131</td>
+</tr>
+<tr>
+<td>[</td>
+<td>91</td>
+<td>123</td>
+<td>27</td>
+<td>0;26</td>
+</tr>
+<tr>
+<td>]</td>
+<td>93</td>
+<td>125</td>
+<td>29</td>
+<td>0;27</td>
+</tr>
+<tr>
+<td></td>
+<td>92</td>
+<td>124</td>
+<td>28</td>
+<td>0;43</td>
+</tr>
+<tr>
+<td>;</td>
+<td>59</td>
+<td>58</td>
+<td>--</td>
+<td>0;39</td>
+</tr>
+<tr>
+<td>'</td>
+<td>39</td>
+<td>34</td>
+<td>--</td>
+<td>0;40</td>
+</tr>
+<tr>
+<td>,</td>
+<td>44</td>
+<td>60</td>
+<td>--</td>
+<td>0;51</td>
+</tr>
+<tr>
+<td>.</td>
+<td>46</td>
+<td>62</td>
+<td>--</td>
+<td>0;52</td>
+</tr>
+<tr>
+<td>/</td>
+<td>47</td>
+<td>63</td>
+<td>--</td>
+<td>0;53</td>
+</tr>
+<tr>
+<td>`</td>
+<td>96</td>
+<td>126</td>
+<td>--</td>
+<td>(0;41)</td>
+</tr>
+<tr>
+<td>ENTER (keypad)</td>
+<td>13</td>
+<td>--</td>
+<td>10</td>
+<td>(0;166)</td>
+</tr>
+<tr>
+<td>/ (keypad)</td>
+<td>47</td>
+<td>47</td>
+<td>(0;142)</td>
+<td>(0;74)</td>
+</tr>
+<tr>
+<td>* (keypad)</td>
+<td>42</td>
+<td>(0;144)</td>
+<td>(0;78)</td>
+<td>--</td>
+</tr>
+<tr>
+<td>- (keypad)</td>
+<td>45</td>
+<td>45</td>
+<td>(0;149)</td>
+<td>(0;164)</td>
+</tr>
+<tr>
+<td>+ (keypad)</td>
+<td>43</td>
+<td>43</td>
+<td>(0;150)</td>
+<td>(0;55)</td>
+</tr>
+<tr>
+<td>5 (keypad)</td>
+<td>(0;76)</td>
+<td>53</td>
+<td>(0;143)</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resources" tabindex="-1">Resources <a class="direct-link" href="#resources" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/ANSI_escape_code">Wikipedia: ANSI escape code</a></li>
+<li><a href="http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html">Build your own Command Line with ANSI escape codes</a></li>
+<li><a href="http://ascii-table.com/ansi-escape-sequences.php">ascii-table: ANSI Escape sequences</a></li>
+<li><a href="https://bluesock.org/~willkg/dev/ansi.html">bluesock: ansi codes</a></li>
+<li><a href="http://wiki.bash-hackers.org/scripting/terminalcodes">bash-hackers: Terminal Codes (ANSI/VT100) introduction</a></li>
+<li><a href="https://invisible-island.net/xterm/ctlseqs/ctlseqs.html">XTerm Control Sequences</a></li>
+</ul>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blog/hack-air/"><div><i class="la la-angle-left"></i> Wifi hacking with Airmon-ng</div></a>
+                    
+                        <a href="/blog/wine-setup/"><div>WINE best effort setup <i class="la la-angle-right"></i></div></a>
+                        <br>
+                        
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

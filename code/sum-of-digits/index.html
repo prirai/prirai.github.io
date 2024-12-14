@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sum of digits in C</title>
+        <meta name="description" content="In this tutorial we will be creating a C program which will calculate the sum of digits in a number using a function and recursion.">
+        <link rel="canonical" href="/code/sum-of-digits/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Sum of digits in C"/>
+        <meta property="og:url" content="/code/sum-of-digits/"/>
+        <meta property="og:description" content="In this tutorial we will be creating a C program which will calculate the sum of digits in a number using a function and recursion."/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blog</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Sum of digits in C</h1>
+<time datetime="2022-07-22">22 Jul 2022</time>
+    <a href="/tags/coding/" class="post-tag">coding</a>
+    <a href="/tags/c/" class="post-tag">c</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#algorithm">Algorithm</a></li><li><a href="#problem-description">Problem description</a></li><li><a href="#naive-approach">Naive Approach</a><ul><li><a href="#approach">Approach</a></li><li><a href="#examples">Examples</a></li><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space Complexity</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#advanced-approach">Advanced Approach</a><ul><li><a href="#methods-used">Methods used</a></li><li><a href="#approach-1">Approach</a></li><li><a href="#examples-1">Examples</a></li><li><a href="#program-source-code-1">Program/Source code</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#time-complexity-1">Time complexity</a></li><li><a href="#space-complexity-1">Space Complexity</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#recursive-approach">Recursive Approach</a><ul><li><a href="#methods-used-1">Methods used</a></li><li><a href="#approach-2">Approach</a></li><li><a href="#examples-2">Examples</a></li><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#time-complexity-2">Time complexity</a></li><li><a href="#space-complexity-2">Space Complexity</a></li><li><a href="#output-2">Output</a></li></ul></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <p>This is a C program which will calculate the sum of digits in a number.</p>
+<h2 id="algorithm" tabindex="-1">Algorithm <a class="direct-link" href="#algorithm" aria-hidden="true">#</a></h2>
+<ol>
+<li>Take the number as input.</li>
+<li>Divide the number by 10 and store the remainder in a variable.</li>
+<li>Add the remainder to the sum.</li>
+<li>Repeat the process until the number is not 0.</li>
+<li>Print the sum.</li>
+</ol>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>Given a number, find the sum of its digits.</p>
+<h2 id="naive-approach" tabindex="-1">Naive Approach <a class="direct-link" href="#naive-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we will divide the number by 10 and add the remainder to the sum.</p>
+<h3 id="approach" tabindex="-1">Approach <a class="direct-link" href="#approach" aria-hidden="true">#</a></h3>
+<ol>
+<li>Take the number as input.</li>
+<li>Divide the number by 10 and store the remainder in a variable.</li>
+<li>Add the remainder to the sum.</li>
+<li>Repeat the process until the number is not 0.</li>
+<li>Print the sum.</li>
+</ol>
+<h3 id="examples" tabindex="-1">Examples <a class="direct-link" href="#examples" aria-hidden="true">#</a></h3>
+<p>Input: 123
+Output: 6</p>
+<p>Input: 8679
+Output: 30</p>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* C program to find sum of digits of a number */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> num<span class="token punctuation">,</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> rem<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter a number: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Keep dividing until the number is not zero</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>num <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        rem <span class="token operator">=</span> num <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        sum <span class="token operator">=</span> sum <span class="token operator">+</span> rem<span class="token punctuation">;</span>
+        num <span class="token operator">=</span> num <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Sum of digits of the number is %d"</span><span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>The program asks the user to enter a number. Then divide the number by 10 and store the remainder in a variable. Then add the remainder to the sum. The program then repeats the process until the number is not 0. Finally, print the sum.</p>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>Time complexity of the above algorithm is O(n).</p>
+<h3 id="space-complexity" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>Space complexity of the above algorithm is O(1).</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./sumofdig 
+Enter a number: 123
+Sum of digits of the number is 6%
+
+&gt; ./sumofdig
+Enter a number: 138974
+Sum of digits of the number is 32
+</code></pre>
+<h2 id="advanced-approach" tabindex="-1">Advanced Approach <a class="direct-link" href="#advanced-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we use a separate function to calculate the sum of digits.</p>
+<h3 id="methods-used" tabindex="-1">Methods used <a class="direct-link" href="#methods-used" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>long sum_of_digits(long num)</code> - This function calculates the sum of digits of a number.</li>
+</ul>
+<h3 id="approach-1" tabindex="-1">Approach <a class="direct-link" href="#approach-1" aria-hidden="true">#</a></h3>
+<ol>
+<li>Take the number as input.</li>
+<li>Call the function <code>sum_of_digits</code> to calculate the sum of digits, the procedure is similar to whatever we did before.</li>
+<li>Print the sum.</li>
+</ol>
+<h3 id="examples-1" tabindex="-1">Examples <a class="direct-link" href="#examples-1" aria-hidden="true">#</a></h3>
+<p>Input: 14839481349
+Output: 54</p>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* Find the sum of digits of a number using a separate function */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">long</span> <span class="token function">sum_of_digits</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        sum <span class="token operator">+=</span> n <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        n <span class="token operator">/=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> n<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter a number: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%ld"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Sum of digits of the number is %ld"</span><span class="token punctuation">,</span> <span class="token function">sum_of_digits</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>The program asks the user to enter a number. Then call the function <code>sum_of_digits</code> to calculate the sum of digits, the procedure is similar to whatever we did before. Finally, print the sum.
+Suppose the user enters the number <code>14839481349</code>. In the <code>printf</code> statement, we call the function <code>sum_of_digits</code> with the number <code>14839481349</code> as the argument. Inside the function, a while loop executes until the number is not 0. The loop adds the remainder to the sum.</p>
+<h3 id="time-complexity-1" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-1" aria-hidden="true">#</a></h3>
+<p>Time complexity of the above algorithm is O(n).</p>
+<h3 id="space-complexity-1" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-1" aria-hidden="true">#</a></h3>
+<p>Space complexity of the above algorithm is O(1).</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./sumofdigfun 
+Enter a number: 14839481349
+Sum of digits of the number is 54
+
+&gt; ./sumofdigfun
+Enter a number: 127381723
+Sum of digits of the number is 34
+</code></pre>
+<h2 id="recursive-approach" tabindex="-1">Recursive Approach <a class="direct-link" href="#recursive-approach" aria-hidden="true">#</a></h2>
+<p>In this approach, we use a recursive function to calculate the sum of digits.</p>
+<h3 id="methods-used-1" tabindex="-1">Methods used <a class="direct-link" href="#methods-used-1" aria-hidden="true">#</a></h3>
+<ul>
+<li><code>long sum_of_digits_recur(long num)</code> - This function calculates the sum of digits of a number recursively.</li>
+</ul>
+<h3 id="approach-2" tabindex="-1">Approach <a class="direct-link" href="#approach-2" aria-hidden="true">#</a></h3>
+<ol>
+<li>Take the number as input.</li>
+<li>Call the function <code>sum_of_digits_recur</code> to calculate the sum of digits, the procedure is similar to whatever we did before with the difference that now it is recursive and therefore needs a few changes and a termination condition.</li>
+<li>Print the sum.</li>
+</ol>
+<h3 id="examples-2" tabindex="-1">Examples <a class="direct-link" href="#examples-2" aria-hidden="true">#</a></h3>
+<p>Input: 3248162424
+Output: 36</p>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* Find the sum of digits recursively */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">long</span> <span class="token function">sum_of_digits_recur</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token keyword">return</span> n <span class="token operator">%</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token function">sum_of_digits_recur</span><span class="token punctuation">(</span>n <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> n<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Enter a number: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%ld"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Sum of digits of the number is %ld"</span><span class="token punctuation">,</span> <span class="token function">sum_of_digits_recur</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>The program begins by asking the user to enter a number. Then call the function <code>sum_of_digits_recur</code> to calculate the sum of digits. Inside the function, we write a temrinating condition which is whenever the number becomes 0, the program should return back 0. Otherwise, the program should add the remainder along with the number divided by 10 which is turn sent back to the function. At the end, all sums are added up and the result is displayed to the user.</p>
+<h3 id="time-complexity-2" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-2" aria-hidden="true">#</a></h3>
+<p>Time complexity of the above algorithm is O(n).</p>
+<h3 id="space-complexity-2" tabindex="-1">Space Complexity <a class="direct-link" href="#space-complexity-2" aria-hidden="true">#</a></h3>
+<p>Space complexity of the above algorithm is O(n).</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre><code>&gt; ./sumofdigrecur      
+Enter a number: 3248162424
+Sum of digits of the number is 36                                                   
+
+&gt; ./sumofdigrecur
+Enter a number: 32471844421
+Sum of digits of the number is 40
+</code></pre>
+
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

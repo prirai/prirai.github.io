@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Implementation of FizzBuzz in C</title>
+        <meta name="description" content="In this tutorial we will create a program in C which will print the numbers from 1 to 100. But for multiples of three print &quot;Fizz&quot; instead of the number and for the multiples of five print &quot;Buzz&quot;. For numbers which are multiples of both three and five print &quot;FizzBuzz&quot;.">
+        <link rel="canonical" href="/code/fizzbuzz/"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Implementation of FizzBuzz in C"/>
+        <meta property="og:description" content="In this tutorial we will create a program in C which will print the numbers from 1 to 100. But for multiples of three print &quot;Fizz&quot; instead of the number and for the multiples of five print &quot;Buzz&quot;. For numbers which are multiples of both three and five print &quot;FizzBuzz&quot;."/>
+        <meta property="og:type" content="article"/>
+    </head>
+    <body>
+    <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                Home</a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                Blogs</a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                Books</a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                NewTab</a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                rsrc</a>
+        </header>
+        <main >
+            <h1>Implementation of FizzBuzz in C</h1>
+            <aside>
+                <h2>Table of Contents</h2>
+                <div class="toc" >
+        <ul><li><a href="#problem-description">Problem description</a></li><li><a href="#problem-solution">Problem Solution</a></li><li><a href="#fizzbuzz-simple-solution">FizzBuzz simple solution</a><ul><li><a href="#program-source-code">Program/Source code</a></li><li><a href="#explanation">Explanation</a></li><li><a href="#time-complexity">Time complexity</a></li><li><a href="#space-complexity">Space complexity</a></li><li><a href="#output">Output</a></li></ul></li><li><a href="#fizzbuzz-optimized-solution">FizzBuzz optimized solution</a><ul><li><a href="#program-source-code-1">Program/Source code</a></li><li><a href="#explanation-1">Explanation</a></li><li><a href="#time-complexity-1">Time complexity</a></li><li><a href="#space-complexity-1">Space complexity</a></li><li><a href="#output-1">Output</a></li></ul></li><li><a href="#fizzbuzz-advanced-solution">FizzBuzz advanced solution</a><ul><li><a href="#program-source-code-2">Program/Source code</a></li><li><a href="#explanation-2">Explanation</a></li><li><a href="#time-complexity-2">Time complexity</a></li><li><a href="#space-complexity-2">Space complexity</a></li><li><a href="#output-2">Output</a></li></ul></li></ul>
+      </div>
+            </aside>
+            <p>In this tutorial we will create a program in C which will print the numbers from 1 to 100. But for multiples of three print &quot;Fizz&quot; instead of the number and for the multiples of five print &quot;Buzz&quot;. For numbers which are multiples of both three and five print &quot;FizzBuzz&quot;.</p>
+<h1 id="fizzbuzz" tabindex="-1">FizzBuzz <a class="direct-link" href="#fizzbuzz" aria-hidden="true">#</a></h1>
+<p>FizzBuzz is a simple programming task used in software developer job interviews. It is often used as an initial screening question to help filter out candidates who lack basic coding skills.</p>
+<p>In this task, you are asked to write a program that prints the numbers from 1 to 100. But for multiples of three print &quot;Fizz&quot; instead of the number and for the multiples of five print &quot;Buzz&quot;. For numbers which are multiples of both three and five print &quot;FizzBuzz&quot;.</p>
+<p>There have been many variations of this task like:</p>
+<ul>
+<li>FizzBuzzBang (multiples of 3, 5, and 7)</li>
+<li>FizzBuzzBangBong (multiples of 3, 5, 7, and 11)</li>
+<li>FizzBuzzBangBongBaz (multiples of 3, 5, 7, 11, and 13)</li>
+</ul>
+<h1 id="example" tabindex="-1">Example <a class="direct-link" href="#example" aria-hidden="true">#</a></h1>
+<pre><code>1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz
+</code></pre>
+<h2 id="problem-description" tabindex="-1">Problem description <a class="direct-link" href="#problem-description" aria-hidden="true">#</a></h2>
+<p>Provide a C implementation of FizzBuzz.</p>
+<h2 id="problem-solution" tabindex="-1">Problem Solution <a class="direct-link" href="#problem-solution" aria-hidden="true">#</a></h2>
+<ol>
+<li>Iterate from 1 to 100.</li>
+<li>If the number is divisible by both 3 and 5, print &quot;FizzBuzz&quot;.</li>
+<li>Else if the number is divisible by 3, print &quot;Fizz&quot;.</li>
+<li>Else if the number is divisible by 5, print &quot;Buzz&quot;.</li>
+<li>Else print the number.</li>
+</ol>
+<h2 id="fizzbuzz-simple-solution" tabindex="-1">FizzBuzz simple solution <a class="direct-link" href="#fizzbuzz-simple-solution" aria-hidden="true">#</a></h2>
+<p>In this approach, we will use a loop to iterate from 1 to 100 and check if the number is divisible by 3, 5, or both.</p>
+<h3 id="program-source-code" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> i <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"FizzBuzz "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Fizz "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Buzz "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation" tabindex="-1">Explanation <a class="direct-link" href="#explanation" aria-hidden="true">#</a></h3>
+<p>In this program, we are using a for loop to iterate from 1 to 100. We are using the modulus operator to check if the number is divisible by 3 or 5. If the number is divisible by both 3 and 5, we are printing &quot;FizzBuzz&quot;. If the number is divisible by 3, we are printing &quot;Fizz&quot;. If the number is divisible by 5, we are printing &quot;Buzz&quot;. If the number is not divisible by 3 or 5, we are printing the number.</p>
+<h3 id="time-complexity" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity" aria-hidden="true">#</a></h3>
+<p>We are iterating from 1 to 100 and checking if the number is divisible by 3 or 5. So, n is 100. So, the time complexity is O(100) which is O(n).</p>
+<h3 id="space-complexity" tabindex="-1">Space complexity <a class="direct-link" href="#space-complexity" aria-hidden="true">#</a></h3>
+<p>We are not using any extra space. So, the space complexity is O(1).</p>
+<h3 id="output" tabindex="-1">Output <a class="direct-link" href="#output" aria-hidden="true">#</a></h3>
+<pre><code>1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz 31 32 Fizz 34 Buzz Fizz 37 38 Fizz Buzz 41 Fizz 43 44 FizzBuzz 46 47 Fizz 49 Buzz Fizz 52 53 Fizz Buzz 56 Fizz 58 59 FizzBuzz 61 62 Fizz 64 Buzz Fizz 67 68 Fizz Buzz 71 Fizz 73 74 FizzBuzz 76 77 Fizz 79 Buzz Fizz 82 83 Fizz Buzz 86 Fizz 88 89 FizzBuzz 91 92 Fizz 94 Buzz Fizz 97 98 Fizz Buzz
+</code></pre>
+<h2 id="fizzbuzz-optimized-solution" tabindex="-1">FizzBuzz optimized solution <a class="direct-link" href="#fizzbuzz-optimized-solution" aria-hidden="true">#</a></h2>
+<p>In this approach we use flags to check if the number is divisible by 3, 5, or both instead of checking the number for divisibility every time as using the modulus operator is an expensive operation.</p>
+<h3 id="program-source-code-1" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-1" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> flag3 <span class="token operator">=</span> i <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> flag5 <span class="token operator">=</span> i <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag3 <span class="token operator">&amp;&amp;</span> flag5<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"FizzBuzz "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>flag3<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Fizz "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>flag5<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Buzz "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-1" tabindex="-1">Explanation <a class="direct-link" href="#explanation-1" aria-hidden="true">#</a></h3>
+<p>In this approach, we use two flags initially to find whether the number is divisible by 3 or 5. This helps in decreasing the number of modulus operations. We then check if the number is divisible by both 3 and 5, 3, or 5. If the number is divisible by both 3 and 5, we are printing &quot;FizzBuzz&quot;. If the number is divisible by 3, we are printing &quot;Fizz&quot;. If the number is divisible by 5, we are printing &quot;Buzz&quot;. If the number is not divisible by 3 or 5, we are printing the number.</p>
+<h3 id="time-complexity-1" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-1" aria-hidden="true">#</a></h3>
+<p>We are iterating from 1 to 100 and checking if the number is divisible by 3 or 5. So, the time complexity is O(100) which is O(n).</p>
+<h3 id="space-complexity-1" tabindex="-1">Space complexity <a class="direct-link" href="#space-complexity-1" aria-hidden="true">#</a></h3>
+<p>We are not using any extra space. So, the space complexity is O(1).</p>
+<h3 id="output-1" tabindex="-1">Output <a class="direct-link" href="#output-1" aria-hidden="true">#</a></h3>
+<pre><code>1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz ... Buzz Fizz 97 98 Fizz Buzz
+</code></pre>
+<h2 id="fizzbuzz-advanced-solution" tabindex="-1">FizzBuzz advanced solution <a class="direct-link" href="#fizzbuzz-advanced-solution" aria-hidden="true">#</a></h2>
+<p>In this approach we'll use a string to store the output and print it at the end of the loop.</p>
+<h3 id="program-source-code-2" tabindex="-1">Program/Source code <a class="direct-link" href="#program-source-code-2" aria-hidden="true">#</a></h3>
+<pre class="language-c"><code class="language-c"><span class="token comment">/* FizzBuzz using string */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">char</span> output<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">strcat</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">"Fizz"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">strcat</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">"Buzz"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s "</span><span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="explanation-2" tabindex="-1">Explanation <a class="direct-link" href="#explanation-2" aria-hidden="true">#</a></h3>
+<p>In this approach, we are using a string to store the output. We are using the modulus operator to check if the number is divisible by 3 or 5. If the number is divisible by 3, we are appending &quot;Fizz&quot; to the string. If the number is divisible by 5, we are appending &quot;Buzz&quot; to the string. If the string is empty, we are printing the number. Else, we are printing the string.</p>
+<h3 id="time-complexity-2" tabindex="-1">Time complexity <a class="direct-link" href="#time-complexity-2" aria-hidden="true">#</a></h3>
+<p>We are iterating from 1 to 100 and checking if the number is divisible by 3 or 5. So, the time complexity is O(100) which is O(n).</p>
+<h3 id="space-complexity-2" tabindex="-1">Space complexity <a class="direct-link" href="#space-complexity-2" aria-hidden="true">#</a></h3>
+<p>We are not using any extra space. So, the space complexity is O(1).</p>
+<h3 id="output-2" tabindex="-1">Output <a class="direct-link" href="#output-2" aria-hidden="true">#</a></h3>
+<pre><code>1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz ... Buzz Fizz 97 98 Fizz Buzz
+</code></pre>
+
+            
+        </main>
+    </body>
+</html>
