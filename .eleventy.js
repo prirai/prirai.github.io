@@ -15,6 +15,7 @@ const mathjaxPlugin = require("eleventy-plugin-mathjax");
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/cdn");
+    eleventyConfig.addPassthroughCopy("src/icons");
     eleventyConfig.addPassthroughCopy("src/assets/fonts");
     eleventyConfig.addPassthroughCopy("src/assets/js");
     eleventyConfig.addPassthroughCopy("src/assets/img");

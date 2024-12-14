@@ -38,7 +38,7 @@ Where:
 
 ### 1. Outlook (Sunny, Overcast, Rain)
 
-<p>$H(\textrm{Play Golf}|\textrm{Sunny}) = -\cfrac{2}{5}*\log_2(\cfrac{2}{5}) -\cfrac{3}{5}*$\log _2(\cfrac{3}{5}) = 0.971$ </p>
+<p>$H(\textrm{Play Golf}|\textrm{Sunny}) = -\cfrac{2}{5}*\log_2(\cfrac{2}{5}) -\cfrac{3}{5}*\log _2(\cfrac{3}{5}) = 0.971$ </p>
 
 $H(\textrm{Play Golf}|\textrm{Overcast}) = -1*\log_2(1)-0*\log_2(0) = 0$
 

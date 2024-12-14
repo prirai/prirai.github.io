@@ -852,21 +852,6 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/main/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/rsrc/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/books/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
     <loc>https://prirai.github.io/tags/ansi/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
@@ -888,6 +873,11 @@
   
   <url>
     <loc>https://prirai.github.io/tags/c/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/ml/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -937,7 +927,17 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/ml/</loc>
+    <loc>https://prirai.github.io/tags/rsrc/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/main/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/books/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
