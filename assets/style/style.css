@@ -29,32 +29,35 @@
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-/* Headings */
 h1 {
-  font-size: 2em; /* Standard for main headings */
-  padding: 10px;
-  margin: 20px;
-  font-feature-settings: "smcp"; /* Keep small caps if needed */
+  font-size: 2.25rem;
+  padding: 0.5rem 0;
+  margin: 1.5rem 0;
+  font-feature-settings: "smcp";
+  letter-spacing: -0.05em;
 }
 
 h2 {
-  font-size: 1.5em; /* 1.5x smaller than h1 */
-  padding: 8px;
+  font-size: 1.75rem;
+  padding: 0.375rem 0;
+  margin: 1.25rem 0;
   border-bottom: 2px solid var(--accent-col);
-  margin: 16px;
+  line-height: 1.4;
 }
 
 h3 {
-  font-size: 1.25em; /* Slightly smaller than h2 */
-  padding: 6px;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  margin: 1rem 0;
   background-color: var(--accent-col-light);
   border-radius: var(--border-radius);
+  line-height: 1.35;
 }
 
 body {
@@ -81,6 +84,9 @@ header > a {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+header > a p {
+  margin-top: 5px;
 }
 header > a:active {
   border-radius: 25px;
@@ -217,7 +223,7 @@ table {
 
 th,
 td {
-  padding: 5px 10px;
+  padding: 5px 5px;
   border-top-width: 0;
   border-left-width: 0;
   max-width: 20%;
@@ -381,6 +387,15 @@ form > input:placeholder-shown {
   color: var(--txtcol);
 }
 
+mjx-container {
+  display: block; /* Ensure the MathJax container is treated as a block element */
+  max-width: 100%; /* Restrict the container width to the screen's width */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent text wrapping within the container */
+  padding: 8px; /* Optional: Add some padding for better aesthetics */
+  box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
 .post-title {
   margin: 10px 5px;
 }
@@ -433,8 +448,7 @@ a.post-tag {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 100px;
+  padding: 30px;
   border-radius: var(--border-radius);
 }
 
@@ -451,7 +465,7 @@ a.post-tag {
     border-radius: 6px;
     transition: 0.5s;
     margin: 10px;
-    padding: 20px;
+    padding: 5px;
   }
   header > a:hover, header > a:active {
     text-decoration: none;
@@ -461,7 +475,7 @@ a.post-tag {
     border-radius: 25px;
   }
   .social-icons {
-    max-width: 35%;
+    max-width: 60%;
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
@@ -508,10 +522,9 @@ a.post-tag {
     justify-content: center;
   }
   header > a {
-    width: 33%;
-    display: block;
-    margin: 6px;
-    padding: 25px 5px;
+    display: flex;
+    margin: 2px;
+    padding: 5px;
   }
   .social-icons {
     display: flex;
