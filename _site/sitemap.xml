@@ -207,6 +207,11 @@
   </url>
   
   <url>
+    <loc>https://prirai.github.io/rsrc/list-of-learning/</loc>
+    <lastmod>2022-11-20</lastmod>
+  </url>
+  
+  <url>
     <loc>https://prirai.github.io/blog/use_3ds/</loc>
     <lastmod>2022-12-17</lastmod>
   </url>
@@ -822,22 +827,7 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/rsrc/comp-coding-sites/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/courses/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
     <loc>https://prirai.github.io/rsrc/hacking-resources/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/rsrc/list-of-learning/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -848,6 +838,21 @@
   
   <url>
     <loc>https://prirai.github.io/tags/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/main/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/rsrc/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/books/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -873,11 +878,6 @@
   
   <url>
     <loc>https://prirai.github.io/tags/c/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/ml/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -927,17 +927,7 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/rsrc/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/main/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/books/</loc>
+    <loc>https://prirai.github.io/tags/ml/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
