@@ -842,21 +842,6 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/main/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/rsrc/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/books/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
     <loc>https://prirai.github.io/tags/ansi/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
@@ -882,6 +867,11 @@
   </url>
   
   <url>
+    <loc>https://prirai.github.io/tags/ml/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
     <loc>https://prirai.github.io/tags/hacking/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
@@ -898,6 +888,11 @@
   
   <url>
     <loc>https://prirai.github.io/tags/lisp/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/tips/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -927,7 +922,17 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/ml/</loc>
+    <loc>https://prirai.github.io/tags/rsrc/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/main/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/books/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -944,5 +949,10 @@
   <url>
     <loc>https://prirai.github.io/tags/story/</loc>
     <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/blog/newpipe-to-youtube/</loc>
+    <lastmod>2025-01-23</lastmod>
   </url>
 </urlset>
