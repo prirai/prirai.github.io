@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Newpipe2Youtube</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blog/newpipe-to-youtube/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Newpipe2Youtube"/>
+        <meta property="og:url" content="/blog/newpipe-to-youtube/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                <p>Home</p></a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                <p>Blog</p></a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                <p>Books</p></a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                <p>NewTab</p></a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                <p>rsrc</p></a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Newpipe2Youtube</h1>
+<time datetime="2025-01-23">23 Jan 2025</time>
+    <a href="/tags/tips/" class="post-tag">tips</a>
+
+
+
+<div class="p-space-10"></div>
+
+<hr>
+    <p>Ever worried about being able to easily transfer subscriptions from yt to newpipe but not back? Deleted some and added some more subscriptions and then want to go back to the official youtube app for a bit? I made a bash script where you input the both files (yt CSV and newpipe json), and it tells you what changed, which subs deleted and which o…</p>
+<p><a href="https://gist.github.com/prirai/74c214f9eb7205f42924ba4cf27b8aaf"><strong>newpipe2youtube.sh</strong></a></p>
+<pre class="language-shell"><code class="language-shell"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$#</span>"</span> <span class="token parameter variable">-ne</span> <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Usage: <span class="token variable">$0</span> &lt;youtube.csv> &lt;newpipe.json> "</span>
+<span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword">fi</span>
+
+<span class="token function">cat</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token string">','</span> -f2- <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/http:/https:/g'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/"//g'</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token operator">></span> yt.txt
+
+<span class="token function">cat</span> <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/},/},\n/g'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/url":"/url":"\n/g'</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">'"url"'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/","name":"/,/g'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/"}.*//g'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/\\\\u2019/’/g'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/\\\\\u2013/–/g'</span> <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token operator">></span> np.txt
+
+<span class="token function">diff</span> yt.txt np.txt
+
+<span class="token function">rm</span> np.txt yt.txt</code></pre>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blog/decision-trees/"><div><i class="la la-angle-left"></i> Decision Trees using Information Gain and Gini Index</div></a>
+                    
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>
