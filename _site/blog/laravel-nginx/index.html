@@ -102,7 +102,23 @@ After doing this, you should have the server running up on port 8000 by default.
 <p>In your laravel project's root directory:</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function">composer</span> require laravel/octane
 php artisan octane:install</code></pre>
-<p>You might need to check in the <code>config/octane.php</code> file and make sure the <code>server</code> is set to <code>frankenphp</code>. Now, we start the server at port 8000 using octane:</p>
+<p>You might need to check in the <code>config/octane.php</code> file and make sure the <code>server</code> is set to <code>frankenphp</code>. Create a file in the project's root directory and name it <code>Caddyfile</code>.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token punctuation">{</span>
+        frankenphp
+<span class="token punctuation">}</span>
+
+<span class="token comment"># The domain name of your server</span>
+localhost <span class="token punctuation">{</span>
+        <span class="token comment"># Set the webroot to the public/ directory</span>
+        root * public/
+        <span class="token comment"># Enable compression (optional)</span>
+        encode zstd br <span class="token function">gzip</span>
+        <span class="token comment"># Execute PHP files from the public/ directory and serve assets</span>
+        php_server <span class="token punctuation">{</span>
+                try_files <span class="token punctuation">{</span>path<span class="token punctuation">}</span> index.php
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Now, we start the server at port 8000 using octane:</p>
 <pre class="language-bash"><code class="language-bash">php artisan octane:start <span class="token parameter variable">--server</span><span class="token operator">=</span>swoole <span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1 <span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token number">8000</span></code></pre>
 <p>Note that this is not the webpage that your visitors will see, this is actually running as a user process while capturing a non-privileged port. Thus the web server itself can be handled by a user who doesn't require root access. Now, we can configure nginx to proxy requests to this server.</p>
 <h2 id="nginx-configuration" tabindex="-1">Nginx Configuration <a class="direct-link" href="#nginx-configuration" aria-hidden="true">#</a></h2>

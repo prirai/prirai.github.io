@@ -4,7 +4,7 @@
   <subtitle>Here I write about programming, linux and lifestyle.</subtitle>
   <link href="https://prirai.github.io/feed.xml" rel="self"/>
   <link href="https://prirai.github.io/"/>
-  <updated>2025-03-14T13:10:21Z</updated>
+  <updated>2025-03-14T13:28:22Z</updated>
   <id>https://prirai.github.io/</id>
   <author>
     <name>Priyanshu Rai</name>
@@ -56,7 +56,23 @@ After doing this, you should have the server running up on port 8000 by default.
 &lt;p&gt;In your laravel project&#39;s root directory:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;composer&lt;/span&gt; require laravel/octane
 php artisan octane:install&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You might need to check in the &lt;code&gt;config/octane.php&lt;/code&gt; file and make sure the &lt;code&gt;server&lt;/code&gt; is set to &lt;code&gt;frankenphp&lt;/code&gt;. Now, we start the server at port 8000 using octane:&lt;/p&gt;
+&lt;p&gt;You might need to check in the &lt;code&gt;config/octane.php&lt;/code&gt; file and make sure the &lt;code&gt;server&lt;/code&gt; is set to &lt;code&gt;frankenphp&lt;/code&gt;. Create a file in the project&#39;s root directory and name it &lt;code&gt;Caddyfile&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        frankenphp
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# The domain name of your server&lt;/span&gt;
+localhost &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# Set the webroot to the public/ directory&lt;/span&gt;
+        root * public/
+        &lt;span class=&quot;token comment&quot;&gt;# Enable compression (optional)&lt;/span&gt;
+        encode zstd br &lt;span class=&quot;token function&quot;&gt;gzip&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# Execute PHP files from the public/ directory and serve assets&lt;/span&gt;
+        php_server &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                try_files &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; index.php
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, we start the server at port 8000 using octane:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;php artisan octane:start &lt;span class=&quot;token parameter variable&quot;&gt;--server&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;swoole &lt;span class=&quot;token parameter variable&quot;&gt;--host&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&quot;token parameter variable&quot;&gt;--port&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that this is not the webpage that your visitors will see, this is actually running as a user process while capturing a non-privileged port. Thus the web server itself can be handled by a user who doesn&#39;t require root access. Now, we can configure nginx to proxy requests to this server.&lt;/p&gt;
 &lt;h2 id=&quot;nginx-configuration&quot; tabindex=&quot;-1&quot;&gt;Nginx Configuration &lt;a class=&quot;direct-link&quot; href=&quot;https://prirai.github.io/blog/laravel-nginx/#nginx-configuration&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
