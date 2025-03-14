@@ -82,7 +82,27 @@ composer require laravel/octane
 php artisan octane:install
 ```
 
-You might need to check in the `config/octane.php` file and make sure the `server` is set to `frankenphp`. Now, we start the server at port 8000 using octane:
+You might need to check in the `config/octane.php` file and make sure the `server` is set to `frankenphp`. Create a file in the project's root directory and name it `Caddyfile`.
+
+```bash
+{
+        frankenphp
+}
+
+# The domain name of your server
+localhost {
+        # Set the webroot to the public/ directory
+        root * public/
+        # Enable compression (optional)
+        encode zstd br gzip
+        # Execute PHP files from the public/ directory and serve assets
+        php_server {
+                try_files {path} index.php
+        }
+}
+```
+
+Now, we start the server at port 8000 using octane:
 
 ```bash
 php artisan octane:start --server=swoole --host=127.0.0.1 --port=8000
