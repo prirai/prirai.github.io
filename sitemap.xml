@@ -842,17 +842,17 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/c/</loc>
+    <loc>https://prirai.github.io/tags/main/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/coding/</loc>
+    <loc>https://prirai.github.io/tags/rsrc/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/cryptography/</loc>
+    <loc>https://prirai.github.io/tags/books/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -877,7 +877,7 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/ml/</loc>
+    <loc>https://prirai.github.io/tags/c/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -893,6 +893,21 @@
   
   <url>
     <loc>https://prirai.github.io/tags/hdl/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/web/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/deployment/</loc>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://prirai.github.io/tags/nginx/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
@@ -922,32 +937,17 @@
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/rsrc/</loc>
+    <loc>https://prirai.github.io/tags/coding/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/web/</loc>
+    <loc>https://prirai.github.io/tags/cryptography/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
   <url>
-    <loc>https://prirai.github.io/tags/deployment/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/nginx/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/main/</loc>
-    <lastmod>2024-12-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://prirai.github.io/tags/books/</loc>
+    <loc>https://prirai.github.io/tags/ml/</loc>
     <lastmod>2024-12-14</lastmod>
   </url>
   
