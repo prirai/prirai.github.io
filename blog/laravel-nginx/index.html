@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Setting up a Laravel 12x project and deploying using Nginx and Octane</title>
+        <meta name="description" content="The Tux minded Bookshelf">
+        <link rel="canonical" href="/blog/laravel-nginx/"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Setting up a Laravel 12x project and deploying using Nginx and Octane"/>
+        <meta property="og:url" content="/blog/laravel-nginx/"/>
+        <meta property="og:description" content=""/>
+        <meta property="og:image" content="/assets/img/mylogo.png"/>
+        <meta property="og:type" content="article"/>
+        <link rel="shortcut icon" type="image/jpg" href="/assets/img/mylogo.png"/>
+        <link rel="stylesheet" href="/assets/style/normalize.css">
+        <link rel="stylesheet" href="/assets/style/typebase.css">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <link rel="stylesheet" href="/assets/style/fonts.css">
+        <link rel="stylesheet" href="/assets/style/prism-okadia.css">
+        <link rel="stylesheet" href="/icons/line-awesome/css/line-awesome.css">
+        <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="The Tux minded Bookshelf">
+        <link rel="alternate" href="/feed/feed.json" type="application/json" title="The Tux minded Bookshelf">
+        
+    </head>
+    <body>
+        <header>
+            <a class="item" href="/">
+                <i class="las la-home"></i>
+                <p>Home</p></a>
+            <a class="item" href="/blog/">
+                <i class="las la-pen-alt"></i>
+                <p>Blog</p></a>
+            <a class="item" href="/books/">
+                <i class="las la-book"></i>
+                <p>Books</p></a>
+            <a class="item" href="/newtab/">
+                <i class="las la-plus"></i>
+                <p>NewTab</p></a>
+            <a class="item" href="/rsrc/">
+                <i class="las la-book-open"></i>
+                <p>rsrc</p></a>
+        </header>
+        <main  class="tmpl-post" >
+            
+<h1>Setting up a Laravel 12x project and deploying using Nginx and Octane</h1>
+<time datetime="2025-03-14">14 Mar 2025</time>
+    <a href="/tags/web/" class="post-tag">web</a>
+    <a href="/tags/deployment/" class="post-tag">deployment</a>
+    <a href="/tags/nginx/" class="post-tag">nginx</a>
+
+
+
+<div class="p-space-10"></div>
+
+    <aside>
+        <h2>Table of Contents</h2>
+        <div class="toc" >
+        <ul><li><a href="#getting-started">Getting Started</a></li><li><a href="#self-signed-ssl-certificates">Self-signed SSL Certificates</a></li><li><a href="#web-server-choices">Web server choices</a></li><li><a href="#nginx-configuration">Nginx Configuration</a></li></ul>
+      </div>
+    </aside>
+
+<hr>
+    <p>I highly recommend you to look at the official Laravel documentation for more information on setting up a Laravel project and deploying it using Nginx and Octane.</p>
+<p>Look up these:</p>
+<ul>
+<li><a href="https://laravel.com/docs/12.x">Laravel Documentation</a></li>
+<li><a href="https://nginx.org/en/docs/">Nginx Documentation</a></li>
+<li><a href="https://laravel.com/docs/12.x/octane">Octane Documentation</a></li>
+</ul>
+<h2 id="getting-started" tabindex="-1">Getting Started <a class="direct-link" href="#getting-started" aria-hidden="true">#</a></h2>
+<p>Laravel provides with some very awesome starter kits, these are something which are pre-built and you're welcome to play with them.</p>
+<p>For installing and working with your laravel projects, you need to have those installed. As we'll be using Nginx, we need to have that installed as well.
+You need to refer to your operating system specific documentation and then you can figure that out easily, wait, can you?</p>
+<p>There's also the option to use this script which instantly gets you php, composer and laravel installed in the same bundle.</p>
+<pre class="language-bash"><code class="language-bash">/bin/bash <span class="token parameter variable">-c</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://php.new/install/linux/8.4<span class="token variable">)</span></span>"</span></code></pre>
+<p>This is a herd-lite bundle and you're welcome to try out the full bundle <a href="https://herd.laravel.com/">Laravel - Herd</a> which is free for basic usage and it makes setting up and maintaining your project very easy. I won't be covering that here as we're looking at a more minimal configuration.</p>
+<p>So, onwards with the project creation, we'll be using a react starter kit here but you're free to choose the Vue or Livewire starter kits or start minimal, whatever suites your boat. Also, make sure to use an appropriate database system, here I chose postgreSQL. Have an appropriate version of that installed as well.</p>
+<pre class="language-bash"><code class="language-bash">laravel new my-app <span class="token comment">#Replace my-app with an appropriate name</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>my-app<span class="token operator">></span>
+<span class="token function">npm</span> i
+<span class="token function">composer</span> i
+<span class="token function">cp</span> .env.example .env
+php artisan key:generate
+php artisan migrate
+<span class="token function">npm</span> run build
+<span class="token function">composer</span> run dev</code></pre>
+<p>This typically runs both the Laravel development server (using <code>php artisan serve</code>) and the Vite development server, allowing you to see your changes in real-time. It combines hot-reloading for both PHP (using artisan serve) and React (using Vite).
+After doing this, you should have the server running up on port 8000 by default. Ran into issues? Ask me.</p>
+<h2 id="self-signed-ssl-certificates" tabindex="-1">Self-signed SSL Certificates <a class="direct-link" href="#self-signed-ssl-certificates" aria-hidden="true">#</a></h2>
+<p>Before we actually deploy the project, we do need to look at a couple more things. First is having a certificate signed by a Trusted Certificate Authority (CA). Or you can use Let's Encrypt which is free and easy to use.</p>
+<p>If these do not seem to work for you, you can also self-sign your own certificates and use them. Note that when a user visits your site, they will see a warning about the certificate being self-signed. This is expected and can be ignored.</p>
+<p>Make sure you have openssl installed. Now, generate a self-signed key and certificate pair:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> openssl req <span class="token parameter variable">-x509</span> <span class="token parameter variable">-nodes</span> <span class="token parameter variable">-days</span> <span class="token number">365</span> <span class="token parameter variable">-newkey</span> rsa:2048 <span class="token parameter variable">-keyout</span> /etc/ssl/private/nginx-selfsigned.key <span class="token parameter variable">-out</span> /etc/ssl/certs/nginx-selfsigned.crt</code></pre>
+<p>You'll be asked a few questions about your organization and location. You can fill appropriately.</p>
+<p>You can also create a strong DH (Diffie-Hellman) group for your server:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> openssl dhparam <span class="token parameter variable">-out</span> /etc/ssl/certs/dhparam.pem <span class="token number">2048</span></code></pre>
+<p>For the full process, you can refer to <a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04#step-2-configure-nginx-to-use-ssl">How to Create a Self-Signed SSL Certificate ... - DigitalOcean</a>. This has some more explanation and a full nginx configuration which might work for a simple website but won't work in case of laravel. Truth be told, I was having some issues with <code>php-fpm</code>. So, I ended up using the beast, which is octane algonside nginx.</p>
+<h2 id="web-server-choices" tabindex="-1">Web server choices <a class="direct-link" href="#web-server-choices" aria-hidden="true">#</a></h2>
+<p>We'll be installing <code>octane</code> here and will enable the <code>FrankenPHP</code> plugin. FrankenPHP uses the caddy web server and is lightning fasting in handling PHP-based projects, expecially laravel. The best part is, while PHP-FPM loads the entire application everytime a new user comes to make a request, in case of octane, the entire application is loaded once and then cached. This means we can serve requests much faster by getting rid of the booting up time.</p>
+<p>In your laravel project's root directory:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">composer</span> require laravel/octane
+php artisan octane:install</code></pre>
+<p>You might need to check in the <code>config/octane.php</code> file and make sure the <code>server</code> is set to <code>frankenphp</code>. Now, we start the server at port 8000 using octane:</p>
+<pre class="language-bash"><code class="language-bash">php artisan octane:start <span class="token parameter variable">--server</span><span class="token operator">=</span>swoole <span class="token parameter variable">--host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1 <span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token number">8000</span></code></pre>
+<p>Note that this is not the webpage that your visitors will see, this is actually running as a user process while capturing a non-privileged port. Thus the web server itself can be handled by a user who doesn't require root access. Now, we can configure nginx to proxy requests to this server.</p>
+<h2 id="nginx-configuration" tabindex="-1">Nginx Configuration <a class="direct-link" href="#nginx-configuration" aria-hidden="true">#</a></h2>
+<p>Create a configuration file at <code>/etc/nginx/sites-available/laravel-my-site</code>, keep the name as per your choice, add the following configuration:</p>
+<pre class="language-bash"><code class="language-bash">server <span class="token punctuation">{</span>
+    listen <span class="token number">80</span><span class="token punctuation">;</span>
+    server_name <span class="token operator">&lt;</span>server_ip<span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token builtin class-name">return</span> <span class="token number">301</span> https://<span class="token variable">$host</span><span class="token variable">$request_uri</span><span class="token punctuation">;</span> <span class="token comment"># Redirecting HTTP to HTTPS</span>
+<span class="token punctuation">}</span>
+
+server <span class="token punctuation">{</span>
+    listen <span class="token number">443</span> ssl<span class="token punctuation">;</span>
+    listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:443 ssl<span class="token punctuation">;</span>
+    http2 on<span class="token punctuation">;</span>  <span class="token comment"># Enable HTTP/2</span>
+
+    listen <span class="token number">443</span> quic reuseport<span class="token punctuation">;</span>  <span class="token comment"># Enable HTTP/3</span>
+    listen <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:443 quic reuseport<span class="token punctuation">;</span>
+    http3 on<span class="token punctuation">;</span>  <span class="token comment"># Enable HTTP/3</span>
+    server_name <span class="token operator">&lt;</span>server_ip<span class="token operator">></span><span class="token punctuation">;</span>
+
+    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt<span class="token punctuation">;</span>
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key<span class="token punctuation">;</span>
+
+    add_header Alt-Svc <span class="token string">'h3=":443"; ma=86400'</span><span class="token punctuation">;</span>  <span class="token comment"># Advertise HTTP/3</span>
+    add_header X-Content-Type-Options nosniff<span class="token punctuation">;</span>
+
+    location / <span class="token punctuation">{</span>
+        proxy_pass http://127.0.0.1:8000<span class="token punctuation">;</span> <span class="token comment"># Pass requests to octane server</span>
+        proxy_set_header Host <span class="token variable">$host</span><span class="token punctuation">;</span>
+        proxy_set_header X-Real-IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
+        proxy_set_header X-Forwarded-Proto https<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Now, we can symlink the configuration file to <code>/etc/nginx/sites-enabled/</code> and restart nginx:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> <span class="token parameter variable">-s</span> /etc/nginx/sites-available/laravel-my-site /etc/nginx/sites-enabled/
+<span class="token function">sudo</span> systemctl restart nginx</code></pre>
+<p>Also, test the configuration file for syntax errors:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> nginx <span class="token parameter variable">-t</span></code></pre>
+<p>You'll get some warnings related to ssl_stapling but you can ignore them safely as encryption will still work just fine.</p>
+<p>Open your browser and visit <code>https://&lt;server_ip&gt;</code> to see your Laravel application running over HTTP/3.</p>
+<p>Enjoy!</p>
+
+            <hr>
+                <div class="navigate-post">
+                        <a href="/blog/newpipe-to-youtube/"><div><i class="la la-angle-left"></i> Newpipe2Youtube</div></a>
+                    
+                </div>
+<script type="module" async>import mermaid from "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";document.addEventListener('DOMContentLoaded', mermaid.initialize({"loadOnSave":true}));</script>
+        </main>
+        <footer>
+            <div id="footer-content">
+    <div class="social-icons">
+        <div>
+            <a href="/feed.xml">
+                <i class="las la-rss"></i>
+            </a>
+        </div>
+        <div>
+            <a href="mailto:idealpriyanshu@gmail.com">
+                <i class="las la-envelope"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://fosstodon.org/web/accounts/106320318549156649">
+                <i class="lab la-mastodon"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://twitter.com/iaspriyanshu">
+                <i class="lab la-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://github.com/prirai">
+                <i class="lab la-github"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://gitlab.com/prirai">
+                <i class="lab la-gitlab"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/prirai/">
+                <i class="lab la-linkedin"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://reddit.com/u/PriRai">
+                <i class="lab la-reddit"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://t.me/prirai">
+                <i class="lab la-telegram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0xB61BCA5D7D24AD99">
+                <i class="las la-fingerprint"></i>
+            </a>
+        </div>
+    </div>
+    <!--<div class="social-icons" style="flex-wrap: nowrap;">
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=prev">↩ </a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/members.html/"><img src="https://gnulinuxindia.org/images/gliicon_cropped.png" alt="GLI WEBRING" width="50" height="30"></a>
+        </div>
+        <div>
+            <a href="https://gnulinuxindia.org/direct.html?name=prirai&dir=next"> ↪</a>
+        </div>
+    </div>-->
+    <div style="text-decoration: underline;">
+    Have fun and explore
+    <br>
+    <div style="width: 100; text-align: center;">
+    <a href="https://github.com/prirai/prirai.github.io"><i class="lab la-git"></i></a></div>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

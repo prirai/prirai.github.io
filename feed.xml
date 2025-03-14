@@ -4,12 +4,103 @@
   <subtitle>Here I write about programming, linux and lifestyle.</subtitle>
   <link href="https://prirai.github.io/feed.xml" rel="self"/>
   <link href="https://prirai.github.io/"/>
-  <updated>2025-01-23T17:15:33Z</updated>
+  <updated>2025-03-14T13:09:12Z</updated>
   <id>https://prirai.github.io/</id>
   <author>
     <name>Priyanshu Rai</name>
     <email>idealpriyanshu@gmail.com.com</email>
   </author>
+  
+  <entry>
+    <title>Setting up a Laravel 12x project and deploying using Nginx and Octane</title>
+    <link href="https://prirai.github.io/blog/laravel-nginx/"/>
+    <updated>2025-03-14T00:00:00Z</updated>
+    <id>https://prirai.github.io/blog/laravel-nginx/</id>
+    <content type="html">&lt;p&gt;I highly recommend you to look at the official Laravel documentation for more information on setting up a Laravel project and deploying it using Nginx and Octane.&lt;/p&gt;
+&lt;p&gt;Look up these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://laravel.com/docs/12.x&quot;&gt;Laravel Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://nginx.org/en/docs/&quot;&gt;Nginx Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://laravel.com/docs/12.x/octane&quot;&gt;Octane Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;getting-started&quot; tabindex=&quot;-1&quot;&gt;Getting Started &lt;a class=&quot;direct-link&quot; href=&quot;https://prirai.github.io/blog/laravel-nginx/#getting-started&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Laravel provides with some very awesome starter kits, these are something which are pre-built and you&#39;re welcome to play with them.&lt;/p&gt;
+&lt;p&gt;For installing and working with your laravel projects, you need to have those installed. As we&#39;ll be using Nginx, we need to have that installed as well.
+You need to refer to your operating system specific documentation and then you can figure that out easily, wait, can you?&lt;/p&gt;
+&lt;p&gt;There&#39;s also the option to use this script which instantly gets you php, composer and laravel installed in the same bundle.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;/bin/bash &lt;span class=&quot;token parameter variable&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-fsSL&lt;/span&gt; https://php.new/install/linux/8.4&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a herd-lite bundle and you&#39;re welcome to try out the full bundle &lt;a href=&quot;https://herd.laravel.com/&quot;&gt;Laravel - Herd&lt;/a&gt; which is free for basic usage and it makes setting up and maintaining your project very easy. I won&#39;t be covering that here as we&#39;re looking at a more minimal configuration.&lt;/p&gt;
+&lt;p&gt;So, onwards with the project creation, we&#39;ll be using a react starter kit here but you&#39;re free to choose the Vue or Livewire starter kits or start minimal, whatever suites your boat. Also, make sure to use an appropriate database system, here I chose postgreSQL. Have an appropriate version of that installed as well.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;laravel new my-app &lt;span class=&quot;token comment&quot;&gt;#Replace my-app with an appropriate name&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;my-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; i
+&lt;span class=&quot;token function&quot;&gt;composer&lt;/span&gt; i
+&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; .env.example .env
+php artisan key:generate
+php artisan migrate
+&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run build
+&lt;span class=&quot;token function&quot;&gt;composer&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This typically runs both the Laravel development server (using &lt;code&gt;php artisan serve&lt;/code&gt;) and the Vite development server, allowing you to see your changes in real-time. It combines hot-reloading for both PHP (using artisan serve) and React (using Vite).
+After doing this, you should have the server running up on port 8000 by default. Ran into issues? Ask me.&lt;/p&gt;
+&lt;h2 id=&quot;self-signed-ssl-certificates&quot; tabindex=&quot;-1&quot;&gt;Self-signed SSL Certificates &lt;a class=&quot;direct-link&quot; href=&quot;https://prirai.github.io/blog/laravel-nginx/#self-signed-ssl-certificates&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before we actually deploy the project, we do need to look at a couple more things. First is having a certificate signed by a Trusted Certificate Authority (CA). Or you can use Let&#39;s Encrypt which is free and easy to use.&lt;/p&gt;
+&lt;p&gt;If these do not seem to work for you, you can also self-sign your own certificates and use them. Note that when a user visits your site, they will see a warning about the certificate being self-signed. This is expected and can be ignored.&lt;/p&gt;
+&lt;p&gt;Make sure you have openssl installed. Now, generate a self-signed key and certificate pair:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; openssl req &lt;span class=&quot;token parameter variable&quot;&gt;-x509&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-nodes&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-days&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;365&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-newkey&lt;/span&gt; rsa:2048 &lt;span class=&quot;token parameter variable&quot;&gt;-keyout&lt;/span&gt; /etc/ssl/private/nginx-selfsigned.key &lt;span class=&quot;token parameter variable&quot;&gt;-out&lt;/span&gt; /etc/ssl/certs/nginx-selfsigned.crt&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You&#39;ll be asked a few questions about your organization and location. You can fill appropriately.&lt;/p&gt;
+&lt;p&gt;You can also create a strong DH (Diffie-Hellman) group for your server:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; openssl dhparam &lt;span class=&quot;token parameter variable&quot;&gt;-out&lt;/span&gt; /etc/ssl/certs/dhparam.pem &lt;span class=&quot;token number&quot;&gt;2048&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For the full process, you can refer to &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04#step-2-configure-nginx-to-use-ssl&quot;&gt;How to Create a Self-Signed SSL Certificate ... - DigitalOcean&lt;/a&gt;. This has some more explanation and a full nginx configuration which might work for a simple website but won&#39;t work in case of laravel. Truth be told, I was having some issues with &lt;code&gt;php-fpm&lt;/code&gt;. So, I ended up using the beast, which is octane algonside nginx.&lt;/p&gt;
+&lt;h2 id=&quot;web-server-choices&quot; tabindex=&quot;-1&quot;&gt;Web server choices &lt;a class=&quot;direct-link&quot; href=&quot;https://prirai.github.io/blog/laravel-nginx/#web-server-choices&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We&#39;ll be installing &lt;code&gt;octane&lt;/code&gt; here and will enable the &lt;code&gt;FrankenPHP&lt;/code&gt; plugin. FrankenPHP uses the caddy web server and is lightning fasting in handling PHP-based projects, expecially laravel. The best part is, while PHP-FPM loads the entire application everytime a new user comes to make a request, in case of octane, the entire application is loaded once and then cached. This means we can serve requests much faster by getting rid of the booting up time.&lt;/p&gt;
+&lt;p&gt;In your laravel project&#39;s root directory:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;composer&lt;/span&gt; require laravel/octane
+php artisan octane:install&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You might need to check in the &lt;code&gt;config/octane.php&lt;/code&gt; file and make sure the &lt;code&gt;server&lt;/code&gt; is set to &lt;code&gt;frankenphp&lt;/code&gt;. Now, we start the server at port 8000 using octane:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;php artisan octane:start &lt;span class=&quot;token parameter variable&quot;&gt;--server&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;swoole &lt;span class=&quot;token parameter variable&quot;&gt;--host&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&quot;token parameter variable&quot;&gt;--port&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that this is not the webpage that your visitors will see, this is actually running as a user process while capturing a non-privileged port. Thus the web server itself can be handled by a user who doesn&#39;t require root access. Now, we can configure nginx to proxy requests to this server.&lt;/p&gt;
+&lt;h2 id=&quot;nginx-configuration&quot; tabindex=&quot;-1&quot;&gt;Nginx Configuration &lt;a class=&quot;direct-link&quot; href=&quot;https://prirai.github.io/blog/laravel-nginx/#nginx-configuration&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Create a configuration file at &lt;code&gt;/etc/nginx/sites-available/laravel-my-site&lt;/code&gt;, keep the name as per your choice, add the following configuration:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;server &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    listen &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    server_name &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;server_ip&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;301&lt;/span&gt; https://&lt;span class=&quot;token variable&quot;&gt;$host&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$request_uri&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# Redirecting HTTP to HTTPS&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+server &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    listen &lt;span class=&quot;token number&quot;&gt;443&lt;/span&gt; ssl&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    listen &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;::&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;:443 ssl&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    http2 on&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Enable HTTP/2&lt;/span&gt;
+
+    listen &lt;span class=&quot;token number&quot;&gt;443&lt;/span&gt; quic reuseport&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Enable HTTP/3&lt;/span&gt;
+    listen &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;::&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;:443 quic reuseport&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    http3 on&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Enable HTTP/3&lt;/span&gt;
+    server_name &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;server_ip&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    add_header Alt-Svc &lt;span class=&quot;token string&quot;&gt;&#39;h3=&quot;:443&quot;; ma=86400&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Advertise HTTP/3&lt;/span&gt;
+    add_header X-Content-Type-Options nosniff&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    location / &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        proxy_pass http://127.0.0.1:8000&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# Pass requests to octane server&lt;/span&gt;
+        proxy_set_header Host &lt;span class=&quot;token variable&quot;&gt;$host&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        proxy_set_header X-Real-IP &lt;span class=&quot;token variable&quot;&gt;$remote_addr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-For &lt;span class=&quot;token variable&quot;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-Proto https&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, we can symlink the configuration file to &lt;code&gt;/etc/nginx/sites-enabled/&lt;/code&gt; and restart nginx:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-s&lt;/span&gt; /etc/nginx/sites-available/laravel-my-site /etc/nginx/sites-enabled/
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl restart nginx&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also, test the configuration file for syntax errors:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; nginx &lt;span class=&quot;token parameter variable&quot;&gt;-t&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You&#39;ll get some warnings related to ssl_stapling but you can ignore them safely as encryption will still work just fine.&lt;/p&gt;
+&lt;p&gt;Open your browser and visit &lt;code&gt;https://&amp;lt;server_ip&amp;gt;&lt;/code&gt; to see your Laravel application running over HTTP/3.&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Newpipe2Youtube</title>
